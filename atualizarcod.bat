@@ -8,7 +8,7 @@ echo.
 git add .
 
 :: Salva com uma mensagem automatica com a data e hora
-git commit -m "Atualizacao automatica: %date% %time%"
+git commit -m "https://github.com/systemdevx/Fup.git"
 
 :: Envia para o GitHub
 git push origin main
