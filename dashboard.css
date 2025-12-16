@@ -1,0 +1,48 @@
+/* Importa variáveis e reset básicos copiados da lógica anterior */
+:root { --bg: #f8f7f7; --gold: #d4af37; --silver: #a8a9ad; --text-sec: #666; }
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+
+body {
+    background: var(--bg);
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+main { z-index: 10; animation: fadeIn 2s ease forwards; }
+
+h1 {
+    font-family: 'Times New Roman', serif;
+    font-size: 3rem;
+    color: #333; /* Mais sóbrio para o painel */
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.gold-accent { color: var(--gold); }
+
+p { font-size: 1.1rem; color: var(--text-sec); font-weight: 300; letter-spacing: 1px; }
+
+.logout-btn {
+    margin-top: 40px;
+    background: none;
+    border: none;
+    border-bottom: 1px solid var(--text-sec);
+    color: var(--text-sec);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    cursor: pointer;
+    transition: 0.3s;
+    padding-bottom: 5px;
+}
+
+.logout-btn:hover { color: var(--gold); border-color: var(--gold); letter-spacing: 5px; }
+
+/* Necessário para o fundo animado funcionar aqui também */
+.square { position: absolute; background: transparent; border: 1px solid; opacity: 0; bottom: -60px; animation: floatUp linear forwards; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes floatUp { 0% { transform: translateY(0) rotate(0deg); opacity: 0; } 20% { opacity: 0.5; } 100% { transform: translateY(-110vh) rotate(180deg); opacity: 0; } }

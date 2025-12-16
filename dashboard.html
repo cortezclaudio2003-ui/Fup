@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FUP | Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <div id="animation-bg"></div>
+
+    <main>
+        <h1>Bem-vindo, <span id="user-display" class="gold-accent">Usuário</span></h1>
+        <p>Sistema FUP Conectado</p>
+
+        <button onclick="handleLogout()" class="logout-btn">Sair</button>
+    </main>
+
+    <script src="script.js"></script>
+    <script src="auth.js"></script>
+</body>
+</html>
