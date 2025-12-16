@@ -4,24 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FUP | Acesso</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="login.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
     <div id="animation-bg"></div>
 
     <main>
-        <h1>FUP</h1>
-        
-        <div class="form-container">
-            <input type="email" id="email" placeholder="E-mail" autocomplete="off">
-            <input type="password" id="password" placeholder="Senha">
-            <button onclick="handleLogin()" class="btn-gold">Entrar</button>
+        <div class="login-card">
+            <h1>FUP</h1>
+            
+            <div class="form-container">
+                <input type="email" id="email" placeholder="E-mail" autocomplete="off">
+                <input type="password" id="password" placeholder="Senha">
+                <button onclick="handleLogin()" class="btn-gold">Entrar</button>
+            </div>
+            
+            <div id="message"></div>
+            
+            <br>
+            <a href="index.html" class="link">Voltar</a>
         </div>
-        
-        <div id="message"></div>
-        <br>
-        <a href="index.html" class="link">Voltar</a>
     </main>
 
     <script src="script.js"></script>
