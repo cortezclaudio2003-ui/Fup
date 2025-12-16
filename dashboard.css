@@ -1,4 +1,3 @@
-/* Importa variáveis e reset básicos copiados da lógica anterior */
 :root { --bg: #f8f7f7; --gold: #d4af37; --silver: #a8a9ad; --text-sec: #666; }
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
 
@@ -12,37 +11,90 @@ body {
     text-align: center;
 }
 
-main { z-index: 10; animation: fadeIn 2s ease forwards; }
-
-h1 {
-    font-family: 'Times New Roman', serif;
-    font-size: 3rem;
-    color: #333; /* Mais sóbrio para o painel */
-    font-weight: 400;
-    margin-bottom: 10px;
+main { 
+    z-index: 10; 
+    animation: fadeIn 2s ease forwards;
+    width: 100%;
+    display: flex; /* Centraliza o card */
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
 }
 
-.gold-accent { color: var(--gold); }
+/* --- ESTILO DO CARD (DASHBOARD) --- */
+.dashboard-card {
+    background: rgba(255, 255, 255, 0.65); /* Um pouco mais transparente que o login */
+    backdrop-filter: blur(15px); /* Desfoque um pouco mais forte */
+    -webkit-backdrop-filter: blur(15px);
+    
+    padding: 60px 40px; /* Mais espaço interno */
+    border-radius: 25px;
+    width: 100%;
+    max-width: 600px; /* Mais largo que o login para acomodar futuros widgets */
+    
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08), 
+                0 5px 15px rgba(0, 0, 0, 0.05);
+    
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3); /* Leve toque dourado embaixo */
+    
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-p { font-size: 1.1rem; color: var(--text-sec); font-weight: 300; letter-spacing: 1px; }
+.dashboard-card:hover {
+    transform: translateY(-5px); /* Flutua levemente ao passar o mouse */
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.12);
+}
 
+/* Tipografia Ajustada para o Card */
+h1 {
+    font-family: 'Times New Roman', serif;
+    font-size: 3.5rem;
+    color: #333;
+    font-weight: 400;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+.gold-accent { 
+    color: var(--gold); 
+    font-style: italic; /* Dá um toque de assinatura */
+    text-shadow: 0 2px 10px rgba(212, 175, 55, 0.2);
+}
+
+p { 
+    font-size: 1.2rem; 
+    color: var(--text-sec); 
+    font-weight: 300; 
+    letter-spacing: 2px;
+    margin-bottom: 50px; /* Espaço para o botão */
+    text-transform: uppercase;
+    font-size: 0.8rem;
+}
+
+/* Botão de Sair Estilizado */
 .logout-btn {
-    margin-top: 40px;
-    background: none;
-    border: none;
-    border-bottom: 1px solid var(--text-sec);
+    background: transparent;
+    border: 1px solid var(--text-sec);
     color: var(--text-sec);
+    padding: 10px 30px;
+    border-radius: 50px; /* Botão estilo "Pílula" */
     font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 3px;
     cursor: pointer;
-    transition: 0.3s;
-    padding-bottom: 5px;
+    transition: all 0.4s ease;
 }
 
-.logout-btn:hover { color: var(--gold); border-color: var(--gold); letter-spacing: 5px; }
+.logout-btn:hover {
+    border-color: var(--gold);
+    color: white;
+    background: var(--gold);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+    letter-spacing: 5px;
+}
 
-/* Necessário para o fundo animado funcionar aqui também */
-.square { position: absolute; background: transparent; border: 1px solid; opacity: 0; bottom: -60px; animation: floatUp linear forwards; }
+/* Quadrados e Animações (Mantidos) */
+.square { position: absolute; background: transparent; border: 1px solid; opacity: 0; bottom: -60px; animation: floatUp linear forwards; pointer-events: none; z-index: 1; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes floatUp { 0% { transform: translateY(0) rotate(0deg); opacity: 0; } 20% { opacity: 0.5; } 100% { transform: translateY(-110vh) rotate(180deg); opacity: 0; } }
