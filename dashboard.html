@@ -1,50 +1,80 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-PT">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FUP | Dashboard</title>
+    <title>FUP | Enterprise Dashboard</title>
     <link rel="stylesheet" href="dashboard.css">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
     <nav class="sidebar">
-        <div class="logo">FUP</div>
+        <div class="logo-section">
+            <span class="logo-text">FUP</span>
+            <span class="logo-sub">ENTERPRISE</span>
+        </div>
+        
         <ul class="nav-links">
-            <li class="active"><i class='bx bx-grid-alt'></i> Painel</li>
-            <li><i class='bx bx-file'></i> Processos</li>
-            <li onclick="handleLogout()" class="logout-item"><i class='bx bx-log-out'></i> Sair</li>
+            <li class="active"><i class='bx bx-grid-alt'></i> Dashboard</li>
+            <li><i class='bx bx-bar-chart-alt-2'></i> Análises</li>
+            <li><i class='bx bx-task'></i> Processos</li>
+            <li><i class='bx bx-cog'></i> Configurações</li>
         </ul>
+
+        <div class="sidebar-footer">
+            <button onclick="handleLogout()" class="btn-logout">
+                <i class='bx bx-log-out'></i> Terminar Sessão
+            </button>
+        </div>
     </nav>
 
     <main class="content">
         <header>
-            <div class="header-info">
-                <h1 id="current-date">Carregando data...</h1>
-                <p>Bem-vindo ao sistema de gestão FUP.</p>
+            <div class="header-welcome">
+                <h1 id="current-date">Carregando...</h1>
+                <p>Bem-vindo de volta, <span id="user-display" class="highlight">utilizador</span></p>
             </div>
-            <div class="user-pill">
-                <i class='bx bx-user-circle'></i> 
-                <span id="user-display">Usuário</span>
+            <div class="header-actions">
+                <button class="btn-icon"><i class='bx bx-bell'></i></button>
+                <div class="profile-avatar"></div>
             </div>
         </header>
 
-        <section class="stats">
+        <section class="grid-stats">
             <div class="stat-card">
-                <i class='bx bx-time-five'></i>
-                <h3>12</h3>
-                <p>Pendentes</p>
+                <div class="stat-icon blue"><i class='bx bx-trending-up'></i></div>
+                <div class="stat-data">
+                    <span class="label">Vendas Anuais</span>
+                    <h3 class="value">1.2M€</h3>
+                    <span class="trend positive">+12% vs mês ant.</span>
+                </div>
             </div>
             <div class="stat-card">
-                <i class='bx bx-check-double'></i>
-                <h3>45</h3>
-                <p>Concluídos</p>
+                <div class="stat-icon green"><i class='bx bx-wallet'></i></div>
+                <div class="stat-data">
+                    <span class="label">Lucro Mensal</span>
+                    <h3 class="value">80K€</h3>
+                    <span class="trend positive">+5% vs mês ant.</span>
+                </div>
             </div>
             <div class="stat-card">
-                <i class='bx bx-trending-up'></i>
-                <h3>98%</h3>
-                <p>Eficiência</p>
+                <div class="stat-icon orange"><i class='bx bx-briefcase-alt-2'></i></div>
+                <div class="stat-data">
+                    <span class="label">Projetos Ativos</span>
+                    <h3 class="value">15</h3>
+                    <span class="trend">Estável</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="recent-activity">
+            <div class="card-header">
+                <h2>Processos Recentes</h2>
+                <button class="btn-text">Ver todos</button>
+            </div>
+            <div class="table-placeholder">
+                <p>Nenhum processo pendente para revisão.</p>
             </div>
         </section>
     </main>
