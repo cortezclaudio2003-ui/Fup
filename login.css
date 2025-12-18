@@ -1,7 +1,58 @@
-body { background: #f0f9ff; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; font-family: sans-serif; }
-.login-box { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); width: 350px; text-align: center; }
-h2 { color: #0369a1; margin-bottom: 25px; }
-input { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #e2e8f0; border-radius: 6px; box-sizing: border-box; }
-button { width: 100%; padding: 12px; background: #0284c7; color: white; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; transition: 0.3s; }
-button:hover { background: #0369a1; }
-.back { display: block; margin-top: 20px; color: #64748b; text-decoration: none; font-size: 0.9rem; }
+body { 
+    background: #f0f9ff; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    height: 100vh; 
+    margin: 0; 
+    font-family: 'Inter', sans-serif; 
+}
+
+.login-box { 
+    background: white; 
+    padding: 50px 40px; 
+    border-radius: 20px; 
+    box-shadow: 0 20px 40px rgba(2, 132, 199, 0.1); 
+    width: 100%;
+    max-width: 400px;
+}
+
+.login-header { text-align: center; margin-bottom: 35px; }
+.login-header h1 { color: #0284c7; font-size: 2.2rem; margin: 0; }
+.login-header p { color: #64748b; font-size: 0.9rem; margin-top: 5px; }
+
+.form-group { margin-bottom: 20px; }
+.form-group label { display: block; font-size: 0.85rem; font-weight: 600; color: #334155; margin-bottom: 8px; }
+
+input { 
+    width: 100%; 
+    padding: 14px; 
+    border: 1px solid #e2e8f0; 
+    border-radius: 10px; 
+    box-sizing: border-box; 
+    font-size: 1rem;
+    transition: 0.3s;
+}
+
+input:focus { outline: none; border-color: #0284c7; box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.1); }
+
+.btn-submit { 
+    width: 100%; 
+    padding: 14px; 
+    background: #0284c7; 
+    color: white; 
+    border: none; 
+    border-radius: 10px; 
+    font-weight: 700; 
+    cursor: pointer; 
+    font-size: 1rem;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+
+.btn-submit:hover { background: #0369a1; transform: translateY(-1px); }
+
+.auth-message { text-align: center; font-size: 0.85rem; margin-top: 15px; min-height: 20px; }
+
+.login-footer { text-align: center; margin-top: 30px; border-top: 1px solid #f1f5f9; padding-top: 20px; }
+.login-footer a { color: #94a3b8; text-decoration: none; font-size: 0.85rem; font-weight: 500; }

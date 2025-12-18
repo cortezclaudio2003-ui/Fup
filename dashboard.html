@@ -2,6 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard | FUP</title>
     <link rel="stylesheet" href="dashboard.css">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
@@ -9,23 +10,61 @@
 </head>
 <body>
     <aside class="sidebar">
-        <div class="brand">FUP</div>
+        <div class="brand">FUP <span>Enterprise</span></div>
         <nav>
-            <a href="#" class="active"><i class='bx bx-home'></i> Início</a>
-            <a href="#"><i class='bx bx-bar-chart'></i> Relatórios</a>
-            <button onclick="handleLogout()" class="logout"><i class='bx bx-log-out'></i> Sair</button>
+            <a href="#" class="active"><i class='bx bx-grid-alt'></i> Dashboard</a>
+            <a href="#"><i class='bx bx-package'></i> Processos</a>
+            <a href="#"><i class='bx bx-file'></i> Documentos</a>
+            <button onclick="handleLogout()" class="logout-btn">
+                <i class='bx bx-log-out'></i> Sair do Sistema
+            </button>
         </nav>
     </aside>
+
     <main class="content">
-        <header>
-            <h1 id="welcome">Painel de Controle</h1>
-            <div id="date"></div>
+        <header class="main-header">
+            <div>
+                <h1 id="welcome">Carregando...</h1>
+                <p id="date" class="subtitle"></p>
+            </div>
         </header>
-        <div class="grid">
-            <div class="card"><h3>Processos</h3><p>12 Ativos</p></div>
-            <div class="card"><h3>Financeiro</h3><p>R$ 45.000,00</p></div>
-        </div>
+
+        <section class="stats-grid">
+            <div class="card">
+                <div class="card-icon blue"><i class='bx bx-sync'></i></div>
+                <div><h3>Processos Ativos</h3><p>12</p></div>
+            </div>
+            <div class="card">
+                <div class="card-icon green"><i class='bx bx-dollar'></i></div>
+                <div><h3>Valor em Trânsito</h3><p>R$ 45.000,00</p></div>
+            </div>
+        </section>
+
+        <section class="table-section">
+            <div class="table-header">
+                <h2>Últimas Movimentações</h2>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Cliente</th>
+                        <th>Status</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>#2024-001</td>
+                        <td>Logística Brasil S.A</td>
+                        <td><span class="badge warning">Aguardando</span></td>
+                        <td><button class="btn-view">Ver</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
     </main>
+
     <script src="auth.js"></script>
     <script src="dashboard.js"></script>
 </body>
