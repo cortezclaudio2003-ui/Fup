@@ -1,28 +1,32 @@
 @echo off
+title Atualizador FUP - GitHub
 echo ==========================================
-echo       SINCRONIZANDO SISTEMA FUP...
+echo       SISTEMA FUP - SINCRONIZACAO
 echo ==========================================
 echo.
 
-:: Tenta baixar atualizações do servidor primeiro para evitar conflitos
-echo [1/3] Verificando atualizações no GitHub...
-git pull origin main
+:: Configura o repositório remoto caso ele tenha se perdido
+git remote set-url origin https://github.com/systemdevx/Fup.git
+
+echo [1/4] Puxando mudancas do GitHub (Pull)...
+:: O pull evita o erro de "atualizacao rejeitada"
+git pull origin main --rebase
 
 echo.
-echo [2/3] Adicionando novos arquivos...
+echo [2/4] Preparando arquivos...
 git add .
 
-:: O commit usa a data e hora atual no comentário 
-echo [3/3] Criando pacote de atualização...
-git commit -m "Update: UI Blue Light Style - %date% %time%" 
+echo.
+echo [3/4] Criando registro de alteracao (Commit)...
+:: Usa a data e hora para identificar a versao
+git commit -m "Auto-update: %date% %time%"
 
 echo.
-echo Tentando enviar para o GitHub...
+echo [4/4] Enviando para: https://github.com/systemdevx/Fup.git
 git push origin main
 
 echo.
 echo ==========================================
-echo       PROCESSO FINALIZADO.
-echo       Verifique se houve erros acima.
+echo       PROCESSO CONCLUIDO!
 echo ==========================================
 pause
