@@ -1,4 +1,3 @@
-/* Reseta margens padrões */
 * {
     margin: 0;
     padding: 0;
@@ -6,48 +5,71 @@
 }
 
 body {
-    background-color: #000;
+    background-color: #0a0e17; /* Azul marinho corporativo */
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family: 'Inter', sans-serif;
     overflow: hidden;
 }
 
-.intro-wrapper {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* Gradiente radial para dar profundidade ao centro */
-    background: radial-gradient(circle, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 90%);
+.loader-wrapper {
+    text-align: center;
 }
 
-#main-logo {
-    font-family: 'Bebas Neue', sans-serif;
-    color: #E50914; /* Vermelho Netflix */
-    font-size: 120px;
+.logo-container {
+    position: relative;
+    overflow: hidden; /* Esconde o texto para a revelação */
+    padding: 10px 20px;
+}
+
+.logo-text {
+    color: #ffffff;
+    font-size: 5rem;
+    font-weight: 700;
+    letter-spacing: -2px;
+    text-transform: uppercase;
+    /* Inicia escondido abaixo da linha */
+    transform: translateY(100%);
+    animation: revealText 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+}
+
+.logo-text span {
+    color: #007bff; /* Um detalhe em azul vibrante no 'u' */
+}
+
+/* Linha decorativa que cresce horizontalmente */
+.line {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 3px;
+    background-color: #007bff;
+    animation: expandLine 0.8s ease forwards;
+}
+
+.tagline {
+    color: #64748b;
+    font-size: 0.9rem;
     letter-spacing: 5px;
+    margin-top: 15px;
+    text-transform: uppercase;
     opacity: 0;
-    
-    /* Executa a animação: nome, duração, tipo de transição, mantém estado final */
-    animation: netflixIntro 4s ease-in-out forwards;
+    animation: fadeIn 1s ease 1s forwards;
 }
 
-@keyframes netflixIntro {
-    0% {
-        opacity: 0;
-        transform: scale(0.6);
-        filter: blur(20px);
-    }
-    30% {
-        opacity: 1;
-        filter: blur(0px);
-        transform: scale(1);
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1.4); /* O zoom continua crescendo lentamente */
-    }
+/* Keyframes das Animações */
+@keyframes expandLine {
+    to { width: 100%; }
+}
+
+@keyframes revealText {
+    to { transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
 }

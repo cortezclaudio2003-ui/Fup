@@ -1,19 +1,22 @@
-// Aguarda o carregamento completo da página
-window.onload = function() {
-    const logo = document.getElementById('main-logo');
+window.addEventListener('DOMContentLoaded', () => {
+    
+    // Simulação de inicialização de sistemas da empresa
+    console.log("Fup: Iniciando protocolos de segurança...");
 
-    // Após 4 segundos (tempo da animação), fazemos a transição de saída
+    // Definimos o tempo total da intro (4 segundos)
     setTimeout(() => {
-        // Adiciona um efeito de fade out suave na tela toda
-        document.body.style.transition = "opacity 1.5s ease";
-        document.body.style.opacity = "0";
+        const wrapper = document.querySelector('.loader-wrapper');
+        
+        // Transição de saída elegante (subida com fade)
+        wrapper.style.transition = "all 1s cubic-bezier(0.77, 0, 0.175, 1)";
+        wrapper.style.transform = "translateY(-20px)";
+        wrapper.style.opacity = "0";
 
-        // Após o fade out, redireciona para a sua página principal
         setTimeout(() => {
-            // Substitua 'home.html' pelo nome da sua página de entrada
-            console.log("Transição concluída. Redirecionando...");
-            // window.location.href = "home.html"; 
-        }, 1500);
+            // Aqui você redireciona para o login ou Dashboard do Fup
+            console.log("Acesso autorizado. Bem-vindo ao Fup.");
+            // window.location.href = "dashboard.html"; 
+        }, 1000);
 
     }, 4000);
-};
+});
