@@ -6,42 +6,34 @@
     <title>FUP | Dashboard Corporativo</title>
     
     <link rel="stylesheet" href="dashboard.css">
-    
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
     
     <div class="admin-wrapper">
-        
         <nav class="sidebar">
             <div class="sidebar-header">
-                <div class="logo-icon"><i class='bx bxs-cube-alt'></i></div>
+                <div class="logo-icon"><i class='bx bxs-layer'></i></div>
                 <div class="logo-text">
                     <h2>FUP</h2>
-                    <span>Enterprise System</span>
+                    <span>Enterprise ERP</span>
                 </div>
             </div>
 
             <ul class="menu-items">
-                <li class="section-label">Visão Geral</li>
+                <li class="section-label">Geral</li>
                 <li><a href="#" class="active"><i class='bx bxs-dashboard'></i> Dashboard</a></li>
                 
-                <li class="section-label">Comercial & Fiscal</li>
-                <li><a href="#"><i class='bx bx-cart-alt'></i> Pedidos de Venda</a></li>
-                <li><a href="#"><i class='bx bx-file'></i> Notas Fiscais</a></li>
+                <li class="section-label">Fiscal</li>
+                <li><a href="#"><i class='bx bx-cart'></i> Pedidos</a></li>
+                <li><a href="#"><i class='bx bx-file-blank'></i> Notas Fiscais</a></li>
                 
-                <li class="section-label">Comércio Exterior</li>
-                <li><a href="#"><i class='bx bx-globe'></i> Registro DI (Import)</a></li>
-                
-                <li class="section-label">Operacional</li>
-                <li><a href="#"><i class='bx bx-package'></i> Protocolo Materiais</a></li>
-                <li><a href="#"><i class='bx bx-check-shield'></i> Qualidade (SGQ)</a></li>
+                <li class="section-label">Logística</li>
+                <li><a href="#"><i class='bx bx-globe'></i> Importação DI</a></li>
+                <li><a href="#"><i class='bx bx-package'></i> Materiais</a></li>
             </ul>
 
             <div class="sidebar-footer">
@@ -49,171 +41,98 @@
                     <div class="user-avatar">AD</div>
                     <div class="user-info">
                         <span id="sidebar-user">Administrador</span>
-                        <small>Gerente Geral</small>
+                        <small>Gerente</small>
                     </div>
                 </div>
-                <button onclick="handleLogout()" class="btn-logout" title="Sair"><i class='bx bx-log-out'></i></button>
+                <button onclick="handleLogout()" class="btn-logout" style="background:transparent; border:none; color:#94a3b8; cursor:pointer; font-size:1.2rem;"><i class='bx bx-log-out'></i></button>
             </div>
         </nav>
 
         <main class="main-content">
-            
             <header class="top-header">
                 <div class="header-left">
-                    <h1 class="page-title">Visão Geral</h1>
-                    <p class="current-date" id="current-date">Carregando data...</p>
+                    <h1 class="page-title">Painel de Controle</h1>
+                    <p class="current-date" id="current-date">Carregando...</p>
                 </div>
 
-                <div class="header-center">
-                    <div class="search-bar">
-                        <i class='bx bx-search'></i>
-                        <input type="text" placeholder="Pesquisar pedido, NF ou processo...">
-                    </div>
+                <div class="search-bar">
+                    <i class='bx bx-search'></i>
+                    <input type="text" placeholder="Procurar processos...">
                 </div>
 
                 <div class="header-right">
-                    <div class="notification-box">
-                        <button class="icon-btn"><i class='bx bx-bell'></i><span class="badge">3</span></button>
-                    </div>
-                    <button class="icon-btn"><i class='bx bx-cog'></i></button>
+                    <button class="icon-btn" style="position:relative; background:none; border:none; font-size:1.4rem; cursor:pointer; color:var(--text-muted);">
+                        <i class='bx bx-bell'></i>
+                        <span style="position:absolute; top:0; right:0; background:var(--danger); width:8px; height:8px; border-radius:50%;"></span>
+                    </button>
                 </div>
             </header>
 
             <div class="content-scroll">
-                
                 <section class="kpi-grid">
                     <div class="kpi-card">
                         <div class="kpi-header">
-                            <div>
-                                <span class="kpi-label">Pedidos Pendentes</span>
-                                <h3 class="kpi-value">12</h3>
-                            </div>
+                            <span class="kpi-label">Pedidos Pendentes</span>
                             <div class="kpi-icon blue"><i class='bx bx-cart'></i></div>
                         </div>
-                        <div class="kpi-footer">
-                            <span class="trend up"><i class='bx bx-up-arrow-alt'></i> +4 novos</span>
-                            <span class="trend-text">desde ontem</span>
-                        </div>
+                        <h3 class="kpi-value">12</h3>
                     </div>
 
                     <div class="kpi-card">
                         <div class="kpi-header">
-                            <div>
-                                <span class="kpi-label">Notas Emitidas</span>
-                                <h3 class="kpi-value">45</h3>
-                            </div>
-                            <div class="kpi-icon gold"><i class='bx bx-file'></i></div>
+                            <span class="kpi-label">NF-e Emitidas</span>
+                            <div class="kpi-icon gold"><i class='bx bx-spreadsheet'></i></div>
                         </div>
-                        <div class="kpi-footer">
-                            <span class="trend neutral"><i class='bx bx-minus'></i> Estável</span>
-                            <span class="trend-text">vs. média mensal</span>
-                        </div>
+                        <h3 class="kpi-value">45</h3>
                     </div>
 
                     <div class="kpi-card">
                         <div class="kpi-header">
-                            <div>
-                                <span class="kpi-label">DIs em Trânsito</span>
-                                <h3 class="kpi-value">2</h3>
-                            </div>
-                            <div class="kpi-icon navy"><i class='bx bx-world'></i></div>
+                            <span class="kpi-label">DIs em Aberto</span>
+                            <div class="kpi-icon navy"><i class='bx bx-anchor'></i></div>
                         </div>
-                        <div class="kpi-footer">
-                            <span class="trend up"><i class='bx bx-time'></i> Chegada em 2 dias</span>
-                        </div>
+                        <h3 class="kpi-value">02</h3>
                     </div>
 
                     <div class="kpi-card">
                         <div class="kpi-header">
-                            <div>
-                                <span class="kpi-label">Índice SGQ</span>
-                                <h3 class="kpi-value">98.5%</h3>
-                            </div>
+                            <span class="kpi-label">Qualidade</span>
                             <div class="kpi-icon green"><i class='bx bx-check-shield'></i></div>
                         </div>
-                        <div class="kpi-footer">
-                            <span class="trend up"><i class='bx bx-up-arrow-alt'></i> +1.2%</span>
-                            <span class="trend-text">vs. meta</span>
-                        </div>
+                        <h3 class="kpi-value">98.5%</h3>
                     </div>
                 </section>
 
-                <h3 class="section-title">Acesso Rápido</h3>
-                <section class="modules-grid">
-                    <a href="#" class="module-card">
-                        <div class="module-icon"><i class='bx bx-cart-alt'></i></div>
-                        <div class="module-info"><h4>Pedidos</h4><p>Gestão Comercial</p></div>
-                        <div class="module-arrow"><i class='bx bx-chevron-right'></i></div>
-                    </a>
-
-                    <a href="#" class="module-card">
-                        <div class="module-icon"><i class='bx bx-file'></i></div>
-                        <div class="module-info"><h4>Notas Fiscais</h4><p>Entrada e Saída</p></div>
-                        <div class="module-arrow"><i class='bx bx-chevron-right'></i></div>
-                    </a>
-
-                    <a href="#" class="module-card featured">
-                        <div class="module-icon gold"><i class='bx bx-globe'></i></div>
-                        <div class="module-info"><h4>Registro DI</h4><p>Importação (Comex)</p></div>
-                        <div class="module-arrow"><i class='bx bx-chevron-right'></i></div>
-                    </a>
-
-                    <a href="#" class="module-card">
-                        <div class="module-icon"><i class='bx bx-package'></i></div>
-                        <div class="module-info"><h4>Materiais</h4><p>Estoque e Logística</p></div>
-                        <div class="module-arrow"><i class='bx bx-chevron-right'></i></div>
-                    </a>
-
-                    <a href="#" class="module-card">
-                        <div class="module-icon"><i class='bx bx-check-shield'></i></div>
-                        <div class="module-info"><h4>SGQ</h4><p>Gestão de Qualidade</p></div>
-                        <div class="module-arrow"><i class='bx bx-chevron-right'></i></div>
-                    </a>
-                </section>
-
-                <h3 class="section-title">Atividades Recentes</h3>
+                <h3 style="margin-bottom: 20px; font-weight: 700;">Atividades Recentes</h3>
                 <div class="table-wrapper">
                     <table class="data-table">
                         <thead>
                             <tr>
+                                <th>Processo</th>
+                                <th>Departamento</th>
                                 <th>Status</th>
-                                <th>ID Processo</th>
-                                <th>Módulo</th>
-                                <th>Descrição</th>
-                                <th>Data/Hora</th>
-                                <th class="text-right">Ação</th>
+                                <th>Data</th>
+                                <th>Ações</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td><span class="badge-status warning">Pendente</span></td>
-                                <td class="font-mono">#PED-9021</td>
+                                <td style="font-weight: 600;">#PED-9021</td>
                                 <td>Comercial</td>
-                                <td>Aprovação de crédito</td>
-                                <td>Hoje, 10:30</td>
-                                <td class="text-right"><button class="btn-action">Ver</button></td>
+                                <td><span class="badge-status warning">Pendente</span></td>
+                                <td>10:30</td>
+                                <td><button class="btn-action">Gerenciar</button></td>
                             </tr>
                             <tr>
-                                <td><span class="badge-status success">Concluído</span></td>
-                                <td class="font-mono">#DI-0442</td>
+                                <td style="font-weight: 600;">#DI-0442</td>
                                 <td>Importação</td>
-                                <td>Desembaraço finalizado</td>
-                                <td>Ontem, 16:45</td>
-                                <td class="text-right"><button class="btn-action">Ver</button></td>
-                            </tr>
-                            <tr>
-                                <td><span class="badge-status info">Em Análise</span></td>
-                                <td class="font-mono">#NC-202</td>
-                                <td>SGQ</td>
-                                <td>Não conformidade</td>
-                                <td>Ontem, 09:00</td>
-                                <td class="text-right"><button class="btn-action">Ver</button></td>
+                                <td><span class="badge-status success">Concluído</span></td>
+                                <td>Ontem</td>
+                                <td><button class="btn-action">Gerenciar</button></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-
-                <div style="height: 50px;"></div>
             </div>
         </main>
     </div>
