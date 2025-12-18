@@ -1,22 +1,17 @@
-window.addEventListener('DOMContentLoaded', () => {
-    
-    // Simulação de inicialização de sistemas da empresa
-    console.log("Fup: Iniciando protocolos de segurança...");
-
-    // Definimos o tempo total da intro (4 segundos)
+function irParaLogin() {
+    const intro = document.querySelector('.intro-screen');
+    intro.style.transition = "opacity 0.6s ease";
+    intro.style.opacity = "0";
     setTimeout(() => {
-        const wrapper = document.querySelector('.loader-wrapper');
-        
-        // Transição de saída elegante (subida com fade)
-        wrapper.style.transition = "all 1s cubic-bezier(0.77, 0, 0.175, 1)";
-        wrapper.style.transform = "translateY(-20px)";
-        wrapper.style.opacity = "0";
+        window.location.href = "login.html";
+    }, 600);
+}
 
-        setTimeout(() => {
-            // Aqui você redireciona para o login ou Dashboard do Fup
-            console.log("Acesso autorizado. Bem-vindo ao Fup.");
-            // window.location.href = "dashboard.html"; 
-        }, 1000);
+// Redireciona automaticamente após 4 segundos
+const autoRedirect = setTimeout(irParaLogin, 4000);
 
-    }, 4000);
+// Redireciona ao clicar em qualquer lugar
+window.addEventListener('click', () => {
+    clearTimeout(autoRedirect);
+    irParaLogin();
 });
