@@ -7,17 +7,20 @@ async function handleLogin() {
     const password = document.getElementById('password').value;
     const msg = document.getElementById('message');
 
-    msg.innerText = "Validando...";
+    msg.innerText = "Autenticando...";
     msg.style.color = "#0ea5e9";
 
-    const { data, error } = await sb.auth.signInWithPassword({ email, password });
-
-    if (error) {
-        msg.innerText = "Falha na autenticação.";
-        msg.style.color = "#ef4444";
-    } else {
-        msg.innerText = "Bem-vindo!";
-        setTimeout(() => window.location.href = "dashboard.html", 800);
+    try {
+        const { data, error } = await sb.auth.signInWithPassword({ email, password });
+        if (error) {
+            msg.innerText = "Erro: " + error.message;
+            msg.style.color = "#ef4444";
+        } else {
+            msg.innerText = "Bem-vindo!";
+            setTimeout(() => window.location.href = "dashboard.html", 500);
+        }
+    } catch (e) {
+        msg.innerText = "Erro de conexão.";
     }
 }
 
