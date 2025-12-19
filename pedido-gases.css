@@ -1,4 +1,4 @@
-/* --- BASE & VARIÁVEIS (Copiado do Dashboard para manter padrão) --- */
+/* --- BASE & VARIÁVEIS (Copiado do Dashboard) --- */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
@@ -23,7 +23,7 @@ body {
     overflow: hidden;
 }
 
-/* --- CABEÇALHO (Igual ao Dashboard) --- */
+/* --- CABEÇALHO (Copiado do Dashboard) --- */
 .main-header {
     background-color: var(--header-bg);
     color: var(--header-text);
@@ -33,7 +33,7 @@ body {
     justify-content: space-between;
     padding: 0 24px;
     z-index: 10;
-    flex-shrink: 0; /* Impede o header de encolher */
+    flex-shrink: 0;
 }
 
 .corporate-brand {
@@ -71,7 +71,7 @@ body {
     margin-left: 12px;
 }
 
-/* --- ESTRUTURA DO CONTEÚDO (Específico ou Adaptado) --- */
+/* --- ESTRUTURA PRINCIPAL --- */
 .app-body { 
     display: flex; 
     flex: 1; 
@@ -83,7 +83,7 @@ body {
     flex: 1; 
     padding: 24px; 
     overflow-y: auto;
-    max-width: 1200px; /* Limita largura em telas muito grandes */
+    max-width: 1200px;
     margin: 0 auto;
     width: 100%;
 }
@@ -111,7 +111,7 @@ body {
     border-radius: 12px;
 }
 
-/* --- ESTILOS EXCLUSIVOS DO PEDIDO --- */
+/* --- ESTILOS ESPECÍFICOS DO PEDIDO DE GASES --- */
 .form-container {
     background: #fff;
     border: 1px solid var(--border-color);
@@ -121,6 +121,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
 .form-placeholder {
@@ -130,7 +131,7 @@ body {
 
 .form-placeholder i {
     font-size: 3rem;
-    color: #E49B76; /* Mesma cor do header */
+    color: #E49B76; /* Laranja do tema */
     margin-bottom: 16px;
     display: block;
 }
