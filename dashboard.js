@@ -1,20 +1,35 @@
-<div class="menu-container">
-    <button class="icon-trigger" id="moreOptionsBtn" title="Mais Opções">
-        <i class="ri-more-2-fill"></i>
-    </button>
+function logout() {
+    window.location.href = "login.html";
+}
 
-    <div class="dropdown-menu" id="actionsMenu">
-        <button class="menu-item" title="Novo Registro">
-            <i class="ri-add-line"></i> 
-            <span>Novo Registro</span>
-        </button>
-        
-        <button class="menu-item" title="Limpar Filtro">
-            <i class="ri-delete-bin-line"></i> 
-            <span>Limpar Filtro</span>
-        </button>
-        
-        <button class="menu-item" title="Salvar Filtro">
-            <i class="ri-save-3-line"></i> 
-            <span>Salvar Filtro</span>
-        </button>
+document.addEventListener('DOMContentLoaded', () => {
+    console.log("Dashboard carregado.");
+    
+    // Toggle do Menu de Ações (3 pontinhos)
+    const moreOptionsBtn = document.getElementById('moreOptionsBtn');
+    const actionsMenu = document.getElementById('actionsMenu');
+
+    if (moreOptionsBtn && actionsMenu) {
+        moreOptionsBtn.addEventListener('click', (e) => {
+            e.stopPropagation(); // Evita fechar imediatamente
+            actionsMenu.classList.toggle('show');
+            moreOptionsBtn.classList.toggle('active');
+        });
+
+        // Fechar menu ao clicar fora
+        document.addEventListener('click', (e) => {
+            if (!actionsMenu.contains(e.target) && !moreOptionsBtn.contains(e.target)) {
+                actionsMenu.classList.remove('show');
+                moreOptionsBtn.classList.remove('active');
+            }
+        });
+    }
+
+    // Exemplo de interatividade nos filtros
+    const filterPills = document.querySelectorAll('.filter-pill');
+    filterPills.forEach(pill => {
+        pill.addEventListener('click', () => {
+            console.log("Filtro clicado: " + pill.innerText);
+        });
+    });
+});
