@@ -13,10 +13,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const menuItems = document.querySelectorAll('.sidebar-menu li');
 
     // --- 1. BOTÃO NOVO PEDIDO ---
+    // Atualizado para redirecionar para a página de Nova Requisição
     if (btnNewOrder) {
         btnNewOrder.addEventListener('click', () => {
             console.log("Botão Novo Pedido clicado.");
-            alert("Abrir formulário de Novo Pedido...");
+            window.location.href = "NovaRequisicao.html";
         });
     }
 

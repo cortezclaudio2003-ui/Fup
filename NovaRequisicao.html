@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FUP - Nova Requisição</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="Transações.css">
+    <link rel="stylesheet" href="NovaRequisicao.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-left">
+            <h1 class="corporate-brand">FUP</h1>
+        </div>
+        <nav class="header-nav">
+            <a href="dashboard.html" class="header-link"><i class="ri-dashboard-line"></i> Dashboard</a>
+            <a href="Transações.html" class="header-link active"><i class="ri-fire-line"></i> Transações</a>
+            <a href="#" class="header-link"><i class="ri-file-text-line"></i> Registros Fiscais</a>
+            <a href="#" class="header-link"><i class="ri-file-text-line"></i> Cadastros</a>
+            <a href="#" class="header-link"><i class="ri-database-2-line"></i> Registros Ativos</a>
+            <a href="#" class="header-link" onclick="logout()"><i class="ri-logout-box-r-line"></i> Sair</a>
+            <div class="user-profile-circle">UC</div> 
+        </nav>
+    </header>
+
+    <section class="catalog-toolbar">
+        <div class="breadcrumbs">
+            <strong>Catálogo ></strong> <span>Faça uma busca ou navegue por grupos</span>
+        </div>
+        <div class="catalog-actions">
+            <button class="btn-catalog-cancel" onclick="window.location.href='Transações.html'">
+                <i class="ri-close-circle-line"></i> Cancelar
+            </button>
+            <button class="btn-catalog-advance">
+                Avançar <i class="ri-arrow-right-circle-line"></i>
+            </button>
+        </div>
+    </section>
+
+    <div class="catalog-body">
+        
+        <aside class="filter-panel">
+            <div class="search-group">
+                <input type="text" placeholder="Buscar" class="search-input">
+                <button class="search-btn"><i class="ri-search-line"></i></button>
+            </div>
+            <div class="filter-placeholder">
+                </div>
+        </aside>
+
+        <main class="results-panel">
+            
+            <div class="info-bar">
+                <div class="info-item">
+                    <span class="label">Categoria da requisição</span>
+                    <span class="value">CCI CONIPA</span>
+                </div>
+                <div class="info-breadcrumb">
+                    <span class="blue-text">EMPRESA</span> <br> 3000 - CONIPA
+                    <i class="ri-arrow-right-s-line"></i>
+                    <span class="blue-text">ORGANIZAÇÃO DE...</span> <br> OCCO - CONIPA
+                    <i class="ri-arrow-right-s-line"></i>
+                    <span class="blue-text">CENTRO</span> <br> FAB1 - FABRICA...
+                </div>
+                <button class="btn-edit-settings"><i class="ri-settings-3-fill"></i> EDITAR</button>
+            </div>
+
+            <div class="results-header-row">
+                <div class="col-bar"></div>
+                <div class="col-bar long"></div>
+                <div class="col-bar"></div>
+                <div class="col-bar"></div>
+                <div class="col-bar short"></div>
+            </div>
+
+            <div class="items-grid">
+                <div class="item-row">
+                    <div class="line sm"></div> <div class="line md"></div> <div class="line xl"></div> 
+                    <div class="spacer"></div>
+                    <div class="line md"></div> <div class="line md"></div> <div class="line md"></div> <div class="line sm"></div> 
+                    <i class="ri-shopping-cart-2-line cart-icon"></i>
+                </div>
+                <div class="item-row">
+                    <div class="line sm"></div> <div class="line md"></div> <div class="line xl"></div> 
+                    <div class="spacer"></div>
+                    <div class="line md"></div> <div class="line md"></div> <div class="line md"></div> <div class="line sm"></div> 
+                    <i class="ri-shopping-cart-2-line cart-icon"></i>
+                </div>
+                <div class="item-row">
+                    <div class="line sm"></div> <div class="line md"></div> <div class="line xl"></div> 
+                    <div class="spacer"></div>
+                    <div class="line md"></div> <div class="line md"></div> <div class="line md"></div> <div class="line sm"></div> 
+                    <i class="ri-shopping-cart-2-line cart-icon"></i>
+                </div>
+                 <div class="item-row">
+                    <div class="line sm"></div> <div class="line md"></div> <div class="line xl"></div> 
+                    <div class="spacer"></div>
+                    <div class="line md"></div> <div class="line md"></div> <div class="line md"></div> <div class="line sm"></div> 
+                    <i class="ri-shopping-cart-2-line cart-icon"></i>
+                </div>
+                 <div class="item-row">
+                    <div class="line sm"></div> <div class="line md"></div> <div class="line xl"></div> 
+                    <div class="spacer"></div>
+                    <div class="line md"></div> <div class="line md"></div> <div class="line md"></div> <div class="line sm"></div> 
+                    <i class="ri-shopping-cart-2-line cart-icon"></i>
+                </div>
+            </div>
+        </main>
+
+        <aside class="cart-sidebar">
+            <div class="cart-header">
+                <div class="cart-actions">
+                    <i class="ri-arrow-left-line"></i>
+                    <i class="ri-shopping-cart-2-fill"></i>
+                    <span>Carrinho</span>
+                    <a href="#" class="clear-link">Limpar</a>
+                </div>
+            </div>
+            <div class="cart-total">
+                <span>Total</span>
+                <span class="total-value">0,000000</span>
+            </div>
+            <div class="cart-body">
+                </div>
+        </aside>
+
+    </div>
+
+    <script src="Transações.js"></script>
+</body>
+</html>
