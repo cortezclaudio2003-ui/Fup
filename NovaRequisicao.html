@@ -54,18 +54,30 @@
         <main class="results-panel">
             
             <div class="info-bar">
-                <div class="info-item">
-                    <span class="label">Categoria da requisição</span>
-                    <span class="value">CCI CONIPA</span>
+                
+                <div class="info-block">
+                    <span class="block-label">Categoria da requisição</span>
+                    <span class="block-value">CCI CONIPA</span>
                 </div>
-                <div class="info-breadcrumb">
-                    <span class="blue-text">EMPRESA</span> <br> 3000 - CONIPA
-                    <i class="ri-arrow-right-s-line"></i>
-                    <span class="blue-text">ORGANIZAÇÃO DE...</span> <br> OCCO - CONIPA
-                    <i class="ri-arrow-right-s-line"></i>
-                    <span class="blue-text">CENTRO</span> <br> FAB1 - FABRICA...
+
+                <div class="info-block">
+                    <span class="block-label">EMPRESA</span>
+                    <span class="block-value">3000 - CONIPA</span>
                 </div>
-                <button class="btn-edit-settings"><i class="ri-settings-3-fill"></i> EDITAR</button>
+                
+                <div class="info-block">
+                    <span class="block-label">ORGANIZAÇÃO DE COMPRAS</span>
+                    <span class="block-value">OCCO - CONIPA</span>
+                </div>
+
+                <div class="info-block">
+                    <span class="block-label">CENTRO</span>
+                    <span class="block-value">FAB1 - FABRICA MANAUS</span>
+                </div>
+
+                <button class="btn-edit-settings" id="btnOpenConfig">
+                    <i class="ri-settings-3-fill"></i> EDITAR
+                </button>
             </div>
 
             <div class="results-header-row">
@@ -77,36 +89,11 @@
             </div>
 
             <div class="items-grid">
-                <div class="item-row">
-                    <div class="line sm"></div> <div class="line md"></div> <div class="line xl"></div> 
-                    <div class="spacer"></div>
-                    <div class="line md"></div> <div class="line md"></div> <div class="line md"></div> <div class="line sm"></div> 
-                    <i class="ri-shopping-cart-2-line cart-icon"></i>
-                </div>
-                <div class="item-row">
-                    <div class="line sm"></div> <div class="line md"></div> <div class="line xl"></div> 
-                    <div class="spacer"></div>
-                    <div class="line md"></div> <div class="line md"></div> <div class="line md"></div> <div class="line sm"></div> 
-                    <i class="ri-shopping-cart-2-line cart-icon"></i>
-                </div>
-                <div class="item-row">
-                    <div class="line sm"></div> <div class="line md"></div> <div class="line xl"></div> 
-                    <div class="spacer"></div>
-                    <div class="line md"></div> <div class="line md"></div> <div class="line md"></div> <div class="line sm"></div> 
-                    <i class="ri-shopping-cart-2-line cart-icon"></i>
-                </div>
-                 <div class="item-row">
-                    <div class="line sm"></div> <div class="line md"></div> <div class="line xl"></div> 
-                    <div class="spacer"></div>
-                    <div class="line md"></div> <div class="line md"></div> <div class="line md"></div> <div class="line sm"></div> 
-                    <i class="ri-shopping-cart-2-line cart-icon"></i>
-                </div>
-                 <div class="item-row">
-                    <div class="line sm"></div> <div class="line md"></div> <div class="line xl"></div> 
-                    <div class="spacer"></div>
-                    <div class="line md"></div> <div class="line md"></div> <div class="line md"></div> <div class="line sm"></div> 
-                    <i class="ri-shopping-cart-2-line cart-icon"></i>
-                </div>
+                <div class="item-row"><div class="line sm"></div> <div class="line md"></div> <div class="line xl"></div> <div class="spacer"></div> <div class="line md"></div> <div class="line md"></div> <div class="line md"></div> <div class="line sm"></div> <i class="ri-shopping-cart-2-line cart-icon"></i></div>
+                <div class="item-row"><div class="line sm"></div> <div class="line md"></div> <div class="line xl"></div> <div class="spacer"></div> <div class="line md"></div> <div class="line md"></div> <div class="line md"></div> <div class="line sm"></div> <i class="ri-shopping-cart-2-line cart-icon"></i></div>
+                <div class="item-row"><div class="line sm"></div> <div class="line md"></div> <div class="line xl"></div> <div class="spacer"></div> <div class="line md"></div> <div class="line md"></div> <div class="line md"></div> <div class="line sm"></div> <i class="ri-shopping-cart-2-line cart-icon"></i></div>
+                <div class="item-row"><div class="line sm"></div> <div class="line md"></div> <div class="line xl"></div> <div class="spacer"></div> <div class="line md"></div> <div class="line md"></div> <div class="line md"></div> <div class="line sm"></div> <i class="ri-shopping-cart-2-line cart-icon"></i></div>
+                <div class="item-row"><div class="line sm"></div> <div class="line md"></div> <div class="line xl"></div> <div class="spacer"></div> <div class="line md"></div> <div class="line md"></div> <div class="line md"></div> <div class="line sm"></div> <i class="ri-shopping-cart-2-line cart-icon"></i></div>
             </div>
         </main>
 
@@ -123,12 +110,73 @@
                 <span>Total</span>
                 <span class="total-value">0,000000</span>
             </div>
-            <div class="cart-body">
-                </div>
+            <div class="cart-body"></div>
         </aside>
 
     </div>
 
-    <script src="Transações.js"></script>
+    <div id="configModal" class="modal-overlay hidden">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3>Configuração</h3>
+                <button class="modal-close-icon" id="btnCloseIcon">&times;</button>
+            </div>
+            
+            <div class="modal-body">
+                
+                <div class="alert-message">
+                    <i class="ri-information-fill"></i>
+                    No momento existe apenas uma opção de categoria disponível.
+                </div>
+
+                <div class="form-row">
+                    <label>Categoria de Requisição:</label>
+                    <div class="input-wrapper">
+                        <select class="modal-input">
+                            <option selected>CCI CONIPA</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <label>EMPRESA:</label>
+                    <div class="input-wrapper">
+                        <select class="modal-input">
+                            <option selected>3000 - CONIPA</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <label>ORGANIZAÇÃO DE COMPRAS:</label>
+                    <div class="input-wrapper">
+                        <select class="modal-input">
+                            <option selected>OCCO - CONIPA</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <label>CENTRO:</label>
+                    <div class="input-wrapper">
+                        <select class="modal-input">
+                            <option selected>FAB1 - FABRICA MANAUS</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn-modal-save">
+                    <i class="ri-save-3-line"></i> Salvar
+                </button>
+                <button class="btn-modal-close" id="btnCloseBtn">
+                    <i class="ri-close-line"></i> Fechar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="NovaRequisicao.js"></script>
 </body>
 </html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FUP - Cadastros</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="dashboard.css"> <link rel="stylesheet" href="cadastros.css"> </head>
+<body>
+    <header class="main-header">
+        <div class="header-left">
+            <h1 class="corporate-brand">FUP</h1>
+        </div>
+        <nav class="header-nav">
+            <a href="dashboard.html" class="header-link"><i class="ri-dashboard-line"></i> Dashboard</a>
+            <a href="Transações.html" class="header-link"><i class="ri-fire-line"></i> Transações</a>
+            <a href="#" class="header-link"><i class="ri-file-text-line"></i> Registros Fiscais</a>
+            <a href="#" class="header-link active"><i class="ri-file-user-line"></i> Cadastros</a>
+            <a href="#" class="header-link"><i class="ri-database-2-line"></i> Registros Ativos</a>
+            <a href="#" class="header-link" onclick="logout()"><i class="ri-logout-box-r-line"></i> Sair</a>
+            <div class="user-profile-circle">UC</div> 
+        </nav>
+    </header>
+
+    <section class="custom-filter-bar">
+        <div class="tabs-row">
+            <div class="tab-item active">
+                Gestão de Pessoas <i class="ri-arrow-down-s-line"></i>
+            </div>
+            <div class="tab-item">
+                Histórico <i class="ri-arrow-down-s-line"></i>
+            </div>
+        </div>
+
+        <div class="filters-row">
+            <div class="filters-left">
+                <button class="filter-pill btn-primary" onclick="openModal()">
+                    <i class="ri-add-circle-line"></i> Novo Cadastro
+                </button>
+
+                <button class="filter-pill">
+                    Status: Ativos <i class="ri-arrow-down-s-line"></i>
+                </button>
+                
+                <div class="menu-container">
+                    <button class="icon-trigger" id="moreOptionsBtn" title="Mais Opções">
+                        <i class="ri-more-2-fill"></i>
+                    </button>
+                    <div class="dropdown-menu" id="actionsMenu">
+                        <button class="menu-item-icon" title="Exportar"><i class="ri-file-excel-line"></i></button>
+                        <button class="menu-item-icon" title="Imprimir"><i class="ri-printer-line"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="app-body">
+        <main class="main-content">
+            <div class="content-header">
+                <h2>Lista de Colaboradores</h2>
+                <div class="pagination-stub" id="totalRecords">Carregando...</div>
+            </div>
+        
+            <div class="data-table-container">
+                <table class="corporate-table" id="tabelaCadastros">
+                    <thead>
+                        <tr>
+                            <th>Nome Completo</th>
+                            <th>E-mail</th>
+                            <th>Cargo</th>
+                            <th>Status</th>
+                            <th style="text-align: right;">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Novo Cadastro</h3>
+                <button class="close-modal" onclick="closeModal()"><i class="ri-close-line"></i></button>
+            </div>
+            <div class="modal-body">
+                <form id="formCadastro">
+                    <input type="hidden" id="editId"> <div class="form-group">
+                        <label>Nome Completo</label>
+                        <input type="text" id="nome" required placeholder="Ex: João Silva">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>E-mail Corporativo</label>
+                        <input type="email" id="email" required placeholder="joao@fup.com">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Cargo</label>
+                            <input type="text" id="cargo" required placeholder="Ex: Analista">
+                        </div>
+                        <div class="form-group">
+                            <label>Status</label>
+                            <select id="status">
+                                <option value="Ativo">Ativo</option>
+                                <option value="Inativo">Inativo</option>
+                                <option value="Férias">Férias</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn-cancel" onclick="closeModal()">Cancelar</button>
+                        <button type="submit" class="btn-save">Salvar Registro</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="cadastros.js"></script>
+</body>
+</html>
