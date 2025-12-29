@@ -1,111 +1,140 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FUP - Dashboard</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <title>Fup | Executive View</title>
     <link rel="stylesheet" href="dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header class="main-header">
-        <div class="header-left">
-            <h1 class="corporate-brand">FUP</h1>
+
+    <nav class="top-navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                Fup<span class="dot-blue">.</span>
+            </div>
+
+            <div class="nav-links">
+                <a href="#" class="nav-item active">Visão Geral</a>
+                <a href="#" class="nav-item">Financeiro</a>
+                <a href="#" class="nav-item">Equipes</a>
+                <a href="#" class="nav-item">Compliance</a>
+            </div>
+
+            <div class="nav-profile">
+                <div class="notification-badge">
+                    <span class="bell-icon">🔔</span>
+                    <span class="dot-alert"></span>
+                </div>
+                <div class="user-pill">
+                    <div class="avatar-circle">AD</div>
+                    <span class="user-name">Admin</span>
+                </div>
+                <button class="btn-logout" id="logout-btn">Sair</button>
+            </div>
         </div>
-        <nav class="header-nav">
-            <a href="#" class="header-link active"><i class="ri-dashboard-line"></i> Dashboard</a>
+    </nav>
+
+    <main class="main-container">
+        
+        <header class="page-header">
+            <div>
+                <h1 class="page-title">Painel de Controle</h1>
+                <p class="page-subtitle" id="date-display">Carregando data...</p>
+            </div>
+            <div class="header-actions">
+                <button class="btn btn-yellow">⚠ Relatório de Auditoria</button>
+                <button class="btn btn-blue">+ Nova Operação</button>
+            </div>
+        </header>
+
+        <section class="stats-row">
             
-            <a href="Transações.html" class="header-link"><i class="ri-fire-line"></i> Transações</a>
-            <a href="#" class="header-link"><i class="ri-file-text-line"></i> Registros Fiscais</a>
-            <a href="cadastros.html" class="header-link"><i class="ri-fire-line"></i> Cadastros</a>
-            <a href="#" class="header-link"><i class="ri-database-2-line"></i> Registros Ativos</a>
-            <a href="#" class="header-link" onclick="logout()"><i class="ri-logout-box-r-line"></i> Sair</a>
-            <div class="user-profile-circle">UC</div> 
-        </nav>
-    </header>
+            <div class="stat-card border-blue">
+                <div class="stat-icon bg-blue-light">
+                    📊
+                </div>
+                <div class="stat-info">
+                    <span class="stat-label">Receita Líquida</span>
+                    <h3 class="card-value" data-target="12450000">R$ 0,00</h3>
+                    <span class="stat-delta text-blue">▲ 8% Meta atingida</span>
+                </div>
+            </div>
 
-    <section class="custom-filter-bar">
-        <div class="tabs-row">
-            <div class="tab-item active">
-                Aprovações e Requisições <i class="ri-arrow-down-s-line"></i>
+            <div class="stat-card border-yellow">
+                <div class="stat-icon bg-yellow-light">
+                    ⚡
+                </div>
+                <div class="stat-info">
+                    <span class="stat-label">Aprovações Pendentes</span>
+                    <h3 class="card-value" data-target="14">0</h3>
+                    <span class="stat-delta text-yellow">Necessitam atenção</span>
+                </div>
             </div>
-            <div class="tab-item">
-                Painel de compras <i class="ri-arrow-down-s-line"></i>
-            </div>
-        </div>
 
-        <div class="filters-row">
-            <div class="filters-left">
-                <button class="filter-pill">
-                    Todos Processos <i class="ri-arrow-down-s-line"></i>
-                </button>
-                <button class="filter-pill">
-                    Criado em: Todo período <i class="ri-arrow-down-s-line"></i>
-                </button>
-                
-                <div class="menu-container">
-                    <button class="icon-trigger" id="moreOptionsBtn" title="Mais Opções">
-                        <i class="ri-more-2-fill"></i>
-                    </button>
-                    <div class="dropdown-menu" id="actionsMenu">
-                        <button class="menu-item-icon" title="Novo"><i class="ri-add-line"></i></button>
-                        <button class="menu-item-icon" title="Excluir"><i class="ri-delete-bin-line"></i></button>
-                        <button class="menu-item-icon" title="Salvar"><i class="ri-save-line"></i></button>
-                    </div>
+            <div class="stat-card border-red">
+                <div class="stat-icon bg-red-light">
+                    📉
+                </div>
+                <div class="stat-info">
+                    <span class="stat-label">Despesas Operacionais</span>
+                    <h3 class="card-value" data-target="4500000">R$ 0,00</h3>
+                    <span class="stat-delta text-red">▼ 2% Acima do budget</span>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <div class="app-body">
-        <main class="main-content">
-            <div class="content-header">
-                <h2>Visão Geral</h2>
-                <div class="pagination-stub">Atualizado agora</div>
+        </section>
+
+        <section class="content-panel">
+            <div class="panel-header">
+                <h3>Monitoramento em Tempo Real</h3>
+                <span class="status-live">● Sistema Operante</span>
             </div>
-        
-            <div class="kpi-grid">
-                <div class="kpi-card">
-                    <div class="kpi-icon icon-blue"><i class="ri-fire-line"></i></div>
-                    <div class="kpi-info"><h3>0</h3><p>Pedidos de Gases</p></div>
-                </div>
-                <div class="kpi-card">
-                    <div class="kpi-icon icon-warning"><i class="ri-file-warning-line"></i></div>
-                    <div class="kpi-info"><h3>0</h3><p>Pendências Fiscais</p></div>
-                </div>
-                <div class="kpi-card">
-                    <div class="kpi-icon icon-success"><i class="ri-database-2-line"></i></div>
-                    <div class="kpi-info"><h3>0</h3><p>Ativos Registrados</p></div>
-                </div>
-            </div>
-        
-            <div class="content-header" style="margin-top: 32px;">
-                <h2>Últimas Movimentações</h2>
-            </div>
-            <div class="data-table-container">
-                <table class="corporate-table">
-                    <thead>
-                        <tr>
-                            <th>Horário</th>
-                            <th>Módulo</th>
-                            <th>Descrição</th>
-                            <th>Usuário</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td colspan="5" style="text-align: center; padding: 48px; color: #999;">
-                                <i class="ri-inbox-line" style="font-size: 2.5rem; display: block; margin-bottom: 12px;"></i>
-                                Nenhum registro encontrado.
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </main>
-    </div>
+            
+            <table class="modern-table">
+                <thead>
+                    <tr>
+                        <th width="40%">Descrição da Transação</th>
+                        <th>Categoria</th>
+                        <th>Valor</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="row-title">Aquisição de Servidores (AWS)</div>
+                            <div class="row-sub">ID: #FUP-9921 • Infraestrutura</div>
+                        </td>
+                        <td>Tecnologia</td>
+                        <td class="font-bold">R$ 120.000,00</td>
+                        <td><span class="badge badge-blue">Processado</span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row-title">Reembolso Executivo - Viagem Dubai</div>
+                            <div class="row-sub">ID: #FUP-9922 • Diretoria</div>
+                        </td>
+                        <td>Corporativo</td>
+                        <td class="font-bold">R$ 45.200,00</td>
+                        <td><span class="badge badge-yellow">Em Análise</span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="row-title">Multa Contratual - Fornecedor X</div>
+                            <div class="row-sub">ID: #FUP-9923 • Jurídico</div>
+                        </td>
+                        <td>Passivo</td>
+                        <td class="font-bold text-red">- R$ 12.500,00</td>
+                        <td><span class="badge badge-red">Crítico</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+    </main>
+
     <script src="dashboard.js"></script>
 </body>
 </html>
