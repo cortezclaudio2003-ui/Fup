@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fup | Central de Aprovações</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="aprovacoes.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="app-body">
+
+    <header class="clean-header">
+        <div class="header-content">
+            <h2 class="page-title">Central de Aprovações</h2>
+            <a href="cadastros.html" class="btn-back">
+                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                Voltar
+            </a>
+        </div>
+    </header>
+
+    <main class="content-area-wide">
+        
+        <div class="fixed-top-section">
+            <div class="intro-box">
+                <p>Gerencie as solicitações pendentes por categoria.</p>
+            </div>
+
+            <div class="tabs-scroll-wrapper">
+                <div class="tabs-container">
+                    <button class="tab-btn active" data-main="cadastros">
+                        Cadastros <span class="counter-badge">0</span>
+                    </button>
+                    <button class="tab-btn" data-main="bloqueio">
+                        Bloqueio <span class="counter-badge">0</span>
+                    </button>
+                    <button class="tab-btn" data-main="alteracoes">
+                        Alterações <span class="counter-badge">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <section class="content-panel full-height">
+            
+            <div class="panel-header">
+                <div id="sub-filter-container" class="sub-filters"></div>
+
+                <div class="filter-box">
+                    <span class="label-filter">Ordenar:</span>
+                    <select class="select-filter">
+                        <option>Mais Antigas</option>
+                        <option>Mais Recentes</option>
+                        <option>Urgentes</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="table-scroll-area">
+                <table class="modern-table">
+                    <thead id="dynamic-thead"></thead>
+                    
+                    <tbody id="tabela-aprovacoes">
+                        
+                        <tr data-main="cadastros" data-sub="ativo">
+                            <td><span class="ordem-id">P-010</span></td>
+                            <td><strong>Notebook Dell Latitude 5420</strong></td>
+                            <td>Hoje</td>
+                            <td>João Silva</td>
+                            <td class="actions-cell"><button class="btn-action btn-approve">✓</button><button class="btn-action btn-reject">✕</button></td>
+                        </tr>
+
+                        <tr data-main="cadastros" data-sub="fornecedor" style="display:none;">
+                            <td><span class="ordem-id">P-011</span></td>
+                            <td><strong>Tech Solutions Ltda</strong></td>
+                            <td>45.123.001/0001-99</td>
+                            <td><span class="badge-tag">Nacional</span></td>
+                            <td>Ontem</td>
+                            <td>Maria Compras</td>
+                            <td class="actions-cell"><button class="btn-action btn-approve">✓</button><button class="btn-action btn-reject">✕</button></td>
+                        </tr>
+
+                        <tr data-main="cadastros" data-sub="itens" style="display:none;">
+                            <td><span class="ordem-id">P-012</span></td>
+                            <td><span class="badge-tag">AXM</span></td>
+                            <td>990231</td>
+                            <td><strong>Cabo HDMI 2.0 Blindado</strong></td>
+                            <td>UN</td>
+                            <td>Almoxarifado</td>
+                            <td class="actions-cell"><button class="btn-action btn-approve">✓</button><button class="btn-action btn-reject">✕</button></td>
+                        </tr>
+
+
+                        <tr data-main="bloqueio" data-sub="ativo" style="display:none;">
+                            <td><span class="ordem-id">P-013</span></td>
+                            <td><strong>Monitor LG 29" #AST-004</strong> <span class="text-alert">(Avaria)</span></td>
+                            <td>20/12</td>
+                            <td>Suporte TI</td>
+                            <td class="actions-cell"><button class="btn-action btn-approve">✓</button><button class="btn-action btn-reject">✕</button></td>
+                        </tr>
+
+                        <tr data-main="bloqueio" data-sub="fornecedor" style="display:none;">
+                            <td><span class="ordem-id">P-014</span></td>
+                            <td><strong>Transportadora Veloz</strong> <span class="text-alert">(Fim Contrato)</span></td>
+                            <td>10.000.000/0001-10</td>
+                            <td><span class="badge-tag">Local</span></td>
+                            <td>15/12</td>
+                            <td>Pedro Log.</td>
+                            <td class="actions-cell"><button class="btn-action btn-approve">✓</button><button class="btn-action btn-reject">✕</button></td>
+                        </tr>
+
+                        <tr data-main="bloqueio" data-sub="itens" style="display:none;">
+                            <td><span class="ordem-id">P-015</span></td>
+                            <td><span class="badge-tag">AX</span></td>
+                            <td>110022</td>
+                            <td><strong>Teclado USB Básico</strong> <span class="text-alert">(Descontinuado)</span></td>
+                            <td>UN</td>
+                            <td>Estoque</td>
+                            <td class="actions-cell"><button class="btn-action btn-approve">✓</button><button class="btn-action btn-reject">✕</button></td>
+                        </tr>
+
+
+                        <tr data-main="alteracoes" data-sub="ativo" style="display:none;">
+                            <td><span class="ordem-id">P-016</span></td>
+                            <td><strong>Projetor Epson</strong> <span class="text-info">(Troca de Setor)</span></td>
+                            <td>10/12</td>
+                            <td>RH</td>
+                            <td class="actions-cell"><button class="btn-action btn-approve">✓</button><button class="btn-action btn-reject">✕</button></td>
+                        </tr>
+
+                        <tr data-main="alteracoes" data-sub="fornecedor" style="display:none;">
+                            <td><span class="ordem-id">P-017</span></td>
+                            <td><strong>Grupo Alpha S.A.</strong> <span class="text-info">(Dados Bancários)</span></td>
+                            <td>12.345.678/0001-00</td>
+                            <td><span class="badge-tag">Importado</span></td>
+                            <td>10/12</td>
+                            <td>Financeiro</td>
+                            <td class="actions-cell"><button class="btn-action btn-approve">✓</button><button class="btn-action btn-reject">✕</button></td>
+                        </tr>
+
+                        <tr data-main="alteracoes" data-sub="itens" style="display:none;">
+                            <td><span class="ordem-id">P-018</span></td>
+                            <td><span class="badge-tag">AXP</span></td>
+                            <td>882100</td>
+                            <td><strong>Mouse Sem Fio Logitech</strong> <span class="text-info">(Desc. Técnica)</span></td>
+                            <td>PC</td>
+                            <td>Pedro TI</td>
+                            <td class="actions-cell"><button class="btn-action btn-approve">✓</button><button class="btn-action btn-reject">✕</button></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="aprovacoes.js"></script>
+</body>
+</html>

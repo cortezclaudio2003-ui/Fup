@@ -1,25 +1,38 @@
-// Função do Botão Solicitar Cadastro
-function novaSolicitacao() {
-    const confirmar = confirm("Deseja iniciar uma nova solicitação de cadastro?");
-    
-    if (confirmar) {
-        alert("Solicitação enviada para o setor responsável!");
-    }
-}
-
-// Lógica das Abas (Carrega quando a página está pronta)
 document.addEventListener('DOMContentLoaded', () => {
-    const tabs = document.querySelectorAll('.tab-btn');
     
+    // --- LÓGICA DE FILTRAGEM ---
+    // Seleciona APENAS os buttons, ignorando o link <a>
+    const tabs = document.querySelectorAll('button.tab-btn');
+    const tableRows = document.querySelectorAll('#tabela-cadastros tr');
+
     tabs.forEach(tab => {
         tab.addEventListener('click', () => {
-            // Remove active de todas
+            // 1. Atualiza visual (remove active de todos os botões)
             tabs.forEach(t => t.classList.remove('active'));
-            // Adiciona na clicada
             tab.classList.add('active');
+
+            // 2. Filtra
+            const target = tab.getAttribute('data-target');
             
-            console.log(`Filtro selecionado: ${tab.innerText}`);
-            // Aqui você poderá adicionar a lógica para filtrar a tabela no futuro
+            tableRows.forEach(row => {
+                const categoriaRow = row.getAttribute('data-categoria');
+
+                if (target === 'todas') {
+                    row.style.display = 'table-row';
+                } else if (target === categoriaRow) {
+                    row.style.display = 'table-row';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
         });
     });
+
+    // Filtro de Período
+    const filtroPeriodo = document.getElementById('filtro-periodo');
+    if(filtroPeriodo) {
+        filtroPeriodo.addEventListener('change', (e) => {
+            console.log(`Filtro: ${e.target.value}`);
+        });
+    }
 });

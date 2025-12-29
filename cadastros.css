@@ -1,44 +1,60 @@
 /* Estilos Exclusivos para Cadastros */
 
-/* --- Estilos das Abas --- */
+/* --- Link Ativo do Menu --- */
+.active-link { color: var(--blue) !important; font-weight: 600; }
+
+/* --- Barra de Ferramentas --- */
+.top-toolbar {
+    display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 1px solid var(--border-color); margin-bottom: 2rem; padding-top: 1rem;
+}
+.toolbar-actions { padding-bottom: 0.5rem; }
+
+/* --- Abas --- */
 .tabs-container {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 2rem;
-    padding-left: 0.5rem;
-    border-bottom: 1px solid var(--border-color);
+    display: flex; gap: 1rem; padding-left: 0.5rem; margin-bottom: 0; border-bottom: none;
 }
 
 .tab-btn {
-    background: transparent;
-    border: none;
-    border-bottom: 2px solid transparent;
-    padding: 0.8rem 1.5rem;
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: var(--text-secondary);
-    cursor: pointer;
-    transition: all 0.2s;
+    background: transparent; border: none; border-bottom: 2px solid transparent;
+    padding: 0.8rem 1.5rem; font-size: 0.95rem; font-weight: 600;
+    color: var(--text-secondary); cursor: pointer; transition: all 0.2s;
+    margin-bottom: -1px;
+    font-family: inherit; /* Garante fonte igual */
 }
-
 .tab-btn:hover { color: var(--blue); }
-
 .tab-btn.active {
-    color: var(--blue);
-    border-bottom-color: var(--blue);
+    color: var(--blue); border-bottom-color: var(--blue);
     background: linear-gradient(to top, var(--blue-light), transparent);
 }
 
-/* --- Botões da Tabela --- */
-.btn-icon-small {
-    background: transparent;
-    border: none;
-    color: var(--text-secondary);
-    font-size: 1.2rem;
-    cursor: pointer;
-    padding: 0 10px;
-    transition: color 0.2s;
+/* Estilo específico para quando a aba é um link */
+.link-tab {
+    text-decoration: none; /* Remove sublinhado */
+    display: inline-block;
 }
-.btn-icon-small:hover {
-    color: var(--blue);
-}
+
+/* --- Painel e Filtros --- */
+.content-panel { background: var(--bg-surface); border-radius: 12px; border: 1px solid var(--border-color); overflow: hidden; }
+.panel-header { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem; border-bottom: 1px solid var(--border-color); }
+.panel-header h3 { margin: 0; font-size: 1.1rem; color: var(--text-primary); }
+
+.filter-box { display: flex; align-items: center; gap: 0.5rem; background: #fff; border: 1px solid var(--border-color); padding: 0.4rem 0.8rem; border-radius: 6px; transition: border 0.2s; }
+.filter-box:hover { border-color: var(--blue); }
+.filter-icon { width: 16px; height: 16px; color: var(--text-secondary); }
+.select-filter { border: none; background: transparent; font-size: 0.9rem; color: var(--text-primary); font-weight: 500; cursor: pointer; outline: none; }
+
+/* --- Tabela --- */
+.modern-table { width: 100%; border-collapse: collapse; }
+.modern-table th { text-align: left; padding: 1rem 1.5rem; background: #f9fafb; color: var(--text-secondary); font-size: 0.8rem; text-transform: uppercase; font-weight: 600; border-bottom: 1px solid var(--border-color); }
+.modern-table td { padding: 1rem 1.5rem; border-bottom: 1px solid var(--border-color); color: var(--text-primary); font-size: 0.95rem; }
+.modern-table tr:last-child td { border-bottom: none; }
+.row-title { font-weight: 600; color: var(--text-primary); }
+.row-sub { font-size: 0.85rem; color: var(--text-secondary); margin-top: 2px; }
+.ordem-id { font-family: monospace; font-size: 0.9rem; background: #f3f4f6; padding: 2px 6px; border-radius: 4px; color: var(--text-secondary); }
+.badge { padding: 4px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; }
+.badge-yellow { background: var(--yellow-light); color: var(--yellow); }
+.badge-blue { background: var(--blue-light); color: var(--blue); }
+.badge-green { background: #dcfce7; color: #166534; }
+.btn-icon-small { background: transparent; border: none; color: var(--text-secondary); font-size: 1.2rem; cursor: pointer; padding: 0 10px; transition: color 0.2s; }
+.btn-icon-small:hover { color: var(--blue); }
