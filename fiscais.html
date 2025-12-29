@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fup | Registros Fiscais</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="fiscais.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="top-navbar">
+        <div class="nav-container">
+            <a href="dashboard.html" class="nav-brand">Fup<span class="dot-blue">.</span></a>
+            <div class="nav-links">
+                <a href="dashboard.html" class="nav-item">Visão Geral</a>
+                <a href="transacoes.html" class="nav-item">Transações</a>
+                <a href="fiscais.html" class="nav-item">Registros Fiscais</a>
+                <a href="ativos.html" class="nav-item">Registros Ativos</a>
+            </div>
+            <div class="nav-profile">
+                <div class="notification-badge">
+                    <svg class="icon-nav" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
+                    <span class="dot-alert"></span>
+                </div>
+                <div class="user-pill">
+                    <div class="avatar-circle">AD</div>
+                    <span class="user-name">Admin</span>
+                </div>
+                <button class="btn-logout" id="logout-btn">Sair</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-container">
+        <header class="page-header">
+            <div>
+                <h1 class="page-title">Documentos Fiscais</h1>
+                <p class="page-subtitle">Central de Notas Fiscais, DARFs e Comprovantes.</p>
+            </div>
+            <div class="header-actions">
+                <button class="btn btn-blue">Upload XML/PDF</button>
+            </div>
+        </header>
+
+        <div class="tabs-container">
+            <button class="tab-btn active" onclick="switchTab('emitidas')">Notas Emitidas</button>
+            <button class="tab-btn" onclick="switchTab('recebidas')">Notas Recebidas</button>
+            <button class="tab-btn" onclick="switchTab('impostos')">Guias de Impostos</button>
+        </div>
+
+        <section class="content-panel">
+            <div id="tab-content">
+                <table class="modern-table">
+                    <thead>
+                        <tr>
+                            <th>Documento</th>
+                            <th>Competência</th>
+                            <th>Valor Total</th>
+                            <th>Vencimento</th>
+                            <th>Arquivo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="row-title">NF-e #000.293.112</div>
+                                <div class="row-sub">Dest: Cliente Beta S.A.</div>
+                            </td>
+                            <td>Out/2025</td>
+                            <td class="font-bold">R$ 22.400,00</td>
+                            <td><span class="badge badge-blue">Emitida</span></td>
+                            <td><button class="btn-icon"><svg class="icon-nav" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg></button></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="row-title">NF-e #000.293.113</div>
+                                <div class="row-sub">Dest: Consultoria XYZ</div>
+                            </td>
+                            <td>Out/2025</td>
+                            <td class="font-bold">R$ 5.000,00</td>
+                            <td><span class="badge badge-red">Cancelada</span></td>
+                            <td><button class="btn-icon"><svg class="icon-nav" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <script src="dashboard.js"></script>
+    <script src="fiscais.js"></script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+/* Estilos Exclusivos Ativos */
+
+.asset-filters {
+    display: flex;
+    gap: 0.8rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.filter-pill {
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    background: white;
+    border: 1px solid var(--border-color);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.filter-pill:hover { border-color: var(--blue); color: var(--blue); }
+.filter-pill.active { background: var(--blue); color: white; border-color: var(--blue); }
+
+.assets-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.asset-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.asset-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+
+.asset-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
+
+.asset-icon {
+    width: 40px; height: 40px; border-radius: 8px; display: flex; align-items: center; justify-content: center;
+}
+.bg-blue-light { background: var(--blue-light); }
+.bg-yellow-light { background: var(--yellow-light); }
+
+.tag { padding: 4px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; }
+.tag-ok { background: #ecfdf5; color: #059669; }
+.tag-warn { background: var(--yellow-light); color: var(--yellow); }
+
+.asset-body h4 { font-size: 1.1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.2rem; }
+.asset-id { font-size: 0.8rem; color: var(--text-secondary); font-family: monospace; margin-bottom: 1rem; }
+
+.asset-meta {
+    display: flex; flex-direction: column; gap: 4px; font-size: 0.85rem; color: var(--text-secondary); padding: 0.8rem 0; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);
+}
+.asset-meta strong { color: var(--text-primary); }
+
+.asset-footer {
+    display: flex; gap: 1rem; margin-top: 1rem;
+}
+.btn-text {
+    background: none; border: none; cursor: pointer; font-weight: 600; font-size: 0.85rem; color: var(--text-secondary); transition: 0.2s;
+}
+.btn-text:hover { color: var(--text-primary); }

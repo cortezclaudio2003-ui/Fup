@@ -1,16 +1,16 @@
 :root {
     /* --- CORES DO TEMA --- */
-    --bg-body: #f3f4f6;       /* Cinza de fundo */
-    --bg-surface: #ffffff;    /* Branco dos cards */
-    --text-primary: #111827;  /* Preto suave */
-    --text-secondary: #6b7280;/* Cinza texto */
-    --border-color: #e5e7eb;  /* Bordas finas */
+    --bg-body: #f3f4f6;       
+    --bg-surface: #ffffff;    
+    --text-primary: #111827;  
+    --text-secondary: #6b7280;
+    --border-color: #e5e7eb;  
 
     /* --- PALETA DE DESTAQUE --- */
     --blue: #2563eb;
     --blue-light: #eff6ff;
     
-    --yellow: #ca8a04;        /* Amarelo Ouro Escuro (Profissional) */
+    --yellow: #ca8a04;        
     --yellow-light: #fefce8;
     
     --red: #dc2626;
@@ -23,6 +23,11 @@
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+    /* ESTA LINHA CORRIGE O PULO DO MENU */
+    overflow-y: scroll; 
+}
 
 body {
     background-color: var(--bg-body);
@@ -65,6 +70,11 @@ svg { display: block; }
     font-weight: 800;
     letter-spacing: -1px;
     margin-right: 3rem;
+    text-decoration: none;
+    color: var(--text-primary);
+    /* Garante que não tenha margens estranhas */
+    display: flex; 
+    align-items: center;
 }
 .dot-blue { color: var(--blue); }
 
@@ -85,6 +95,8 @@ svg { display: block; }
 }
 
 .nav-item:hover { color: var(--blue); }
+
+/* Classe para indicar a página atual */
 .nav-item.active {
     color: var(--blue);
     border-bottom-color: var(--blue);
@@ -134,10 +146,9 @@ svg { display: block; }
 .btn-blue { background-color: var(--blue); color: white; box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2); }
 .btn-yellow { background-color: var(--yellow-light); color: var(--yellow); border: 1px solid rgba(202, 138, 4, 0.2); }
 
-/* --- 3. GRID DE CARDS (Layout 4 Colunas) --- */
+/* --- 3. GRID DE CARDS --- */
 .stats-grid-wrapper {
     display: grid;
-    /* Ajusta automaticamente: Tenta colocar 4 cards. Se ficar apertado, quebra linha */
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
     margin-bottom: 2.5rem;
@@ -172,13 +183,14 @@ svg { display: block; }
 .text-yellow { color: var(--yellow); }
 .text-secondary { color: var(--text-secondary); }
 
-/* --- 4. TABELA --- */
+/* --- 4. TABELA E PAINÉIS --- */
 .content-panel {
     background: var(--bg-surface);
     border-radius: 12px;
     box-shadow: var(--shadow-sm);
     padding: 2rem;
     border: 1px solid var(--border-color);
+    margin-bottom: 2rem;
 }
 
 .panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }

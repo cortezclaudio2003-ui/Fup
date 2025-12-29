@@ -1,0 +1,48 @@
+/* Estilos Exclusivos para Transações */
+
+.filters-bar {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.input-search {
+    flex: 1;
+    padding: 0.6rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-family: var(--font-stack);
+    outline: none;
+    transition: 0.2s;
+}
+.input-search:focus { border-color: var(--blue); }
+
+.input-select {
+    padding: 0.6rem 2rem 0.6rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background-color: white;
+    font-family: var(--font-stack);
+    color: var(--text-primary);
+    cursor: pointer;
+}
+
+.btn-icon-only {
+    padding: 0.6rem;
+    background: var(--bg-body);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    cursor: pointer;
+    color: var(--text-secondary);
+}
+.btn-icon-only:hover { color: var(--blue); border-color: var(--blue); }
+
+.text-green { color: #059669; }
+.btn-link {
+    background: none; border: none; color: var(--blue); font-weight: 600; cursor: pointer; font-size: 0.85rem;
+}
+.btn-link:hover { text-decoration: underline; }

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fup | Transações</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="transacoes.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="top-navbar">
+        <div class="nav-container">
+            <a href="dashboard.html" class="nav-brand">Fup<span class="dot-blue">.</span></a>
+            <div class="nav-links">
+                <a href="dashboard.html" class="nav-item">Visão Geral</a>
+                <a href="transacoes.html" class="nav-item">Transações</a>
+                <a href="fiscais.html" class="nav-item">Registros Fiscais</a>
+                <a href="ativos.html" class="nav-item">Registros Ativos</a>
+            </div>
+            <div class="nav-profile">
+                <div class="notification-badge">
+                    <svg class="icon-nav" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
+                    <span class="dot-alert"></span>
+                </div>
+                <div class="user-pill">
+                    <div class="avatar-circle">AD</div>
+                    <span class="user-name">Admin</span>
+                </div>
+                <button class="btn-logout" id="logout-btn">Sair</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-container">
+        <header class="page-header">
+            <div>
+                <h1 class="page-title">Histórico de Transações</h1>
+                <p class="page-subtitle">Gerencie entradas, saídas e conciliações bancárias.</p>
+            </div>
+            <div class="header-actions">
+                <button class="btn btn-blue" onclick="novaTransacao()">
+                    <svg class="icon-btn" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                    Nova Transação
+                </button>
+            </div>
+        </header>
+
+        <section class="filters-bar">
+            <input type="text" placeholder="Buscar por ID, descrição..." class="input-search">
+            <select class="input-select">
+                <option>Todas as Categorias</option>
+                <option>Tecnologia</option>
+                <option>Marketing</option>
+                <option>Pessoal</option>
+            </select>
+            <select class="input-select">
+                <option>Status: Todos</option>
+                <option>Concluído</option>
+                <option>Pendente</option>
+            </select>
+            <button class="btn-icon-only"><svg class="icon-nav" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"></path></svg></button>
+        </section>
+
+        <section class="content-panel">
+            <table class="modern-table">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th width="35%">Descrição</th>
+                        <th>Método</th>
+                        <th>Valor</th>
+                        <th>Status</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="transactions-body">
+                    <tr>
+                        <td class="text-secondary">28 Out, 2025</td>
+                        <td>
+                            <div class="row-title">Licença Google Workspace</div>
+                            <div class="row-sub">Software • Mensal</div>
+                        </td>
+                        <td>Cartão Corp.</td>
+                        <td class="font-bold text-red">- R$ 1.250,00</td>
+                        <td><span class="badge badge-blue">Pago</span></td>
+                        <td><button class="btn-link">Ver</button></td>
+                    </tr>
+                    <tr>
+                        <td class="text-secondary">27 Out, 2025</td>
+                        <td>
+                            <div class="row-title">Pagamento Cliente: Alpha Ltda</div>
+                            <div class="row-sub">Nota Fiscal #9920</div>
+                        </td>
+                        <td>PIX</td>
+                        <td class="font-bold text-green">+ R$ 15.000,00</td>
+                        <td><span class="badge badge-blue">Recebido</span></td>
+                        <td><button class="btn-link">Ver</button></td>
+                    </tr>
+                    <tr>
+                        <td class="text-secondary">25 Out, 2025</td>
+                        <td>
+                            <div class="row-title">Compra de Periféricos</div>
+                            <div class="row-sub">Infraestrutura</div>
+                        </td>
+                        <td>Boleto</td>
+                        <td class="font-bold text-secondary">R$ 3.400,00</td>
+                        <td><span class="badge badge-yellow">Agendado</span></td>
+                        <td><button class="btn-link">Ver</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <script src="dashboard.js"></script>
+    <script src="transacoes.js"></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+/* Estilos Exclusivos Fiscais */
+
+.tabs-container {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0;
+    padding-left: 1rem;
+}
+
+.tab-btn {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 1rem 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.tab-btn:hover { color: var(--blue); }
+
+.tab-btn.active {
+    color: var(--blue);
+    border-bottom-color: var(--blue);
+    background: linear-gradient(to top, var(--blue-light), transparent);
+}
+
+.btn-icon {
+    background: var(--bg-body);
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--text-primary);
+}
+.btn-icon:hover { background: var(--border-color); }
