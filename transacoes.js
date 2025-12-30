@@ -9,9 +9,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const gridBody = document.getElementById('grid-body');
     const tabs = document.querySelectorAll('.sub-pill');
-    let currentType = 'todas';
     
-    // Filtros Excel
+    // Botões de Ação
+    const btnNovoPedido = document.getElementById('btn-novo-pedido');
+    const btnNovoContrato = document.getElementById('btn-novo-contrato');
+
+    let currentType = 'todas';
     let activeFilters = {}; 
     let activeDropdown = null;
     const dropdownTemplate = document.getElementById('filter-dropdown-template');
@@ -23,8 +26,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 tabs.forEach(t => t.classList.remove('active'));
                 tab.classList.add('active');
                 currentType = tab.getAttribute('data-target');
-                activeFilters = {}; // Reseta filtros ao trocar aba
+                
+                activeFilters = {}; 
                 document.querySelectorAll('.btn-filter').forEach(b => b.classList.remove('active-filter'));
+                
+                updateActionButtons(); 
                 renderGrid();
             });
         });
@@ -41,7 +47,21 @@ document.addEventListener('DOMContentLoaded', () => {
             if (activeDropdown && !activeDropdown.contains(e.target)) closeDropdown();
         });
 
+        // Estado inicial
+        updateActionButtons();
         renderGrid();
+    }
+
+    // Mostra/Esconde botões baseado na aba
+    function updateActionButtons() {
+        btnNovoPedido.classList.add('hidden');
+        btnNovoContrato.classList.add('hidden');
+
+        if (currentType === 'pedidos') {
+            btnNovoPedido.classList.remove('hidden');
+        } else if (currentType === 'contratos') {
+            btnNovoContrato.classList.remove('hidden');
+        }
     }
 
     function getTabData() {
@@ -53,11 +73,9 @@ document.addEventListener('DOMContentLoaded', () => {
         gridBody.innerHTML = '';
         let items = getTabData();
 
-        // Aplicar filtros de coluna
         items = items.filter(item => {
             for (const key in activeFilters) {
                 if (!activeFilters[key] || activeFilters[key].length === 0) continue;
-                // Busca valor. Se for composto (ex: desc + sub), simplifica para desc
                 let val = item[key];
                 if(key === 'desc') val = item.desc; 
                 if(!activeFilters[key].includes(val)) return false;
@@ -87,7 +105,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- LÓGICA DO DROPDOWN (Reutilizável) ---
     function toggleFilterDropdown(btn, colKey) {
         if (activeDropdown && activeDropdown.dataset.col === colKey) {
             closeDropdown(); return;
@@ -105,15 +122,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const list = dropdown.querySelector('.filter-options-list');
         const isAll = !activeFilters[colKey];
 
-        // Opção All
         list.innerHTML = `<label class="filter-option-item"><input type="checkbox" value="ALL" ${isAll?'checked':''}> (Selecionar Tudo)</label>`;
-        
         uniqueValues.forEach(val => {
             const checked = isAll || activeFilters[colKey].includes(val);
             list.innerHTML += `<label class="filter-option-item"><input type="checkbox" value="${val}" ${checked?'checked':''}> ${val}</label>`;
         });
 
-        // Eventos
         const inputs = list.querySelectorAll('input');
         inputs[0].addEventListener('change', (e) => {
             inputs.forEach((inp, idx) => { if(idx>0) inp.checked = e.target.checked; });
@@ -158,4 +172,6 @@ document.addEventListener('DOMContentLoaded', () => {
     init();
 });
 
-function novaTransacao() { alert("Nova Transação"); }
+// --- FUNÇÕES DE NAVEGAÇÃO ATUALIZADAS ---
+function novoPedido() { window.location.href = 'novo_pedido.html'; }
+function novoContrato() { window.location.href = 'novo_contrato.html'; }
