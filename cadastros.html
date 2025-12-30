@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fup | Solicitações de Cadastro</title>
+    <title>Fup | Cadastros</title>
     <link rel="stylesheet" href="dashboard.css">
-    <link rel="stylesheet" href="cadastros.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="transacoes.css"> <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -15,15 +14,16 @@
             <a href="dashboard.html" class="nav-brand">FUP<span class="dot-blue">.</span></a>
             <div class="nav-links">
                 <a href="dashboard.html" class="nav-item">Visão Geral</a>
-                <a href="transacoes.html" class="nav-item">Transações</a>
-                <a href="fiscais.html" class="nav-item">Registros Fiscais</a>
-                <a href="ativos.html" class="nav-item">Registros Ativos</a>
-                <a href="cadastros.html" class="nav-item active-link">Cadastros</a>
+    <a href="transacoes.html" class="nav-item">Transações</a>
+    <a href="fiscais.html" class="nav-item">Registros Fiscais</a>
+    <a href="ativos.html" class="nav-item">Registros Ativos</a>
+    <a href="cadastros.html" class="nav-item">Cadastros</a>
+    <a href="aprovacoes.html" class="nav-item">Aprovações</a>
             </div>
             <div class="nav-profile">
                 <div class="notification-badge">
-                    <span class="dot-alert"></span>
                     <svg class="icon-nav" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
+                    <span class="dot-alert"></span>
                 </div>
                 <div class="user-pill">
                     <div class="avatar-circle">AD</div>
@@ -39,90 +39,88 @@
         <div class="top-toolbar">
             
             <div class="tabs-container">
-                <button class="tab-btn active" data-target="todas">Todas</button>
-                <button class="tab-btn" data-target="solicitacao">Solicitações</button>
-                
-                <a href="aprovacoes.html" class="tab-btn link-tab">Aprovações</a>
+                <button class="tab-btn active" data-target="todos">Todos</button>
+                <button class="tab-btn" data-target="ativos">Ativos</button>
+                <button class="tab-btn" data-target="fornecedores">Fornecedores</button>
+                <button class="tab-btn" data-target="itens">Itens</button>
             </div>
 
             <div class="toolbar-actions">
-                <a href="solicitacao_cadastros.html" class="btn btn-blue" style="text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem;">
-                    <svg class="icon-btn" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width: 20px; height: 20px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
-                    Solicitar Cadastro
+                <a href="solicitacao_cadastros.html" class="btn btn-blue">
+                    <svg class="icon-btn" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                    Novo Cadastro
                 </a>
             </div>
 
         </div>
 
-        <section class="content-panel">
-            <div class="panel-header">
-                <h3>Solicitações Recentes</h3>
-                
-                <div class="filter-box">
-                    <svg class="filter-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"></path></svg>
-                    <select id="filtro-periodo" class="select-filter">
-                        <option value="mes">Este Mês</option>
-                        <option value="minhas_solicitacoes">Minhas Solicitações</option>
-                    </select>
-                </div>
-            </div>
+        <section class="filters-bar">
+            <input type="text" placeholder="Buscar cadastros..." class="input-search">
+            <select class="input-select">
+                <option>Status: Ativo</option>
+                <option>Inativo</option>
+                <option>Bloqueado</option>
+            </select>
+            <a href="aprovacoes.html" class="btn-icon-only" title="Central de Aprovações">
+                <svg class="icon-nav" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            </a>
+        </section>
 
+        <section class="content-panel">
             <table class="modern-table">
                 <thead>
                     <tr>
-                        <th width="40%">Tipo / Descrição</th>
-                        <th>Nº Ordem</th>
-                        <th>Data Pedido</th>
-                        <th>Solicitante</th>
+                        <th width="10%">Código</th>
+                        <th width="35%">Descrição / Nome</th>
+                        <th>Categoria</th>
+                        <th>Data Criação</th>
                         <th>Status</th>
-                        <th></th>
+                        <th>Ações</th>
                     </tr>
                 </thead>
-                <tbody id="tabela-cadastros">
+                <tbody id="cadastros-body">
                     
-                    <tr data-categoria="solicitacao">
+                    <tr data-category="ativos">
+                        <td class="text-secondary">AT-042</td>
                         <td>
-                            <div class="row-title">Novo Fornecedor: Tech Supply</div>
-                            <div class="row-sub">CNPJ: 12.345.678/0001-90</div>
+                            <div class="row-title">Dell Latitude 5420</div>
+                            <div class="row-sub">Equipamento de TI</div>
                         </td>
-                        <td><span class="ordem-id">P - 04</span></td>
-                        <td>Hoje, 10:30</td>
-                        <td>Admin</td>
-                        <td><span class="badge badge-yellow">Pendente</span></td>
-                        <td><button class="btn-icon-small">⋮</button></td>
+                        <td>Ativos</td>
+                        <td class="text-secondary">10 Out, 2025</td>
+                        <td><span class="badge badge-green">Em Uso</span></td>
+                        <td><button class="btn-link">Editar</button></td>
                     </tr>
 
-                    <tr data-categoria="solicitacao">
+                    <tr data-category="fornecedores">
+                        <td class="text-secondary">FN-109</td>
                         <td>
-                            <div class="row-title">Novo Cliente: Grupo Alpha</div>
-                            <div class="row-sub">Varejo • Contrato Anual</div>
+                            <div class="row-title">Tech Solutions Ltda</div>
+                            <div class="row-sub">CNPJ: 45.123.001/0001-99</div>
                         </td>
-                        <td><span class="ordem-id">P - 03</span></td>
-                        <td>Ontem</td>
-                        <td>Roberto Vendas</td>
-                        <td><span class="badge badge-blue">Em Análise</span></td>
-                        <td><button class="btn-icon-small">⋮</button></td>
+                        <td>Fornecedores</td>
+                        <td class="text-secondary">05 Set, 2025</td>
+                        <td><span class="badge badge-blue">Ativo</span></td>
+                        <td><button class="btn-link">Editar</button></td>
                     </tr>
 
-                    <tr data-categoria="solicitacao">
+                    <tr data-category="itens">
+                        <td class="text-secondary">IT-882</td>
                         <td>
-                            <div class="row-title">Bloqueio: Monitor #AST-102</div>
-                            <div class="row-sub">Motivo: Avaria técnica</div>
+                            <div class="row-title">Cabo HDMI 3m</div>
+                            <div class="row-sub">Periféricos</div>
                         </td>
-                        <td><span class="ordem-id">P - 02</span></td>
-                        <td>20/12/2024</td>
-                        <td>Ana TI</td>
-                        <td><span class="badge badge-green">Aprovado</span></td>
-                        <td><button class="btn-icon-small">⋮</button></td>
+                        <td>Itens</td>
+                        <td class="text-secondary">12 Ago, 2025</td>
+                        <td><span class="badge badge-green">Disponível</span></td>
+                        <td><button class="btn-link">Editar</button></td>
                     </tr>
 
                 </tbody>
             </table>
         </section>
-
     </main>
 
     <script src="dashboard.js"></script>
-    <script src="cadastros.js"></script>
-</body>
+    <script src="transacoes.js"></script> </body>
 </html>

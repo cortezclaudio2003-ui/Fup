@@ -1,240 +1,222 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- CONFIGURAÇÕES ---
-    const columnConfigs = {
-        ativo: `<tr><th width="10%">Nº Ordem</th><th>Descrição / Justificativa</th><th>Data Criação</th><th>Solicitante</th><th width="60px" style="text-align: right;">Ações</th></tr>`,
-        fornecedor: `<tr><th width="10%">Nº Ordem</th><th>Razão Social</th><th>CNPJ</th><th>Nacionalidade</th><th>Data Criação</th><th>Solicitante</th><th width="60px" style="text-align: right;">Ações</th></tr>`,
-        itens: `<tr><th width="10%">Nº Ordem</th><th width="8%">Grupo</th><th>Código</th><th>Descrição do Item</th><th width="8%">Unidade</th><th>Solicitante</th><th width="60px" style="text-align: right;">Ações</th></tr>`
+    // --- CONFIGURAÇÃO DAS RAMIFICAÇÕES ---
+    const subCategories = {
+        cadastros: [
+            { id: 'ativos', label: 'Ativos Patrimoniais' },
+            { id: 'fornecedores', label: 'Fornecedores' },
+            { id: 'itens', label: 'Itens' }
+        ],
+        pedidos: [
+            { id: 'todos', label: 'Todos' },
+            { id: 'pendentes', label: 'Pendentes de Aprovação' },
+            { id: 'historico', label: 'Histórico de Pedidos' }
+        ],
+        contratos: [
+            { id: 'todos', label: 'Todos' } // Placeholder
+        ],
+        bloqueios: [
+            { id: 'todos', label: 'Todos' } // Placeholder
+        ]
     };
 
-    const menus = {
-        cadastros: [ { id: 'ativo', label: 'Cadastro Ativos' }, { id: 'fornecedor', label: 'Cadastro Fornecedores' }, { id: 'itens', label: 'Cadastro Itens' } ],
-        bloqueio: [ { id: 'ativo', label: 'Bloqueio Ativos' }, { id: 'fornecedor', label: 'Bloqueio Fornecedores' }, { id: 'itens', label: 'Bloqueio Itens' } ],
-        alteracoes: [ { id: 'ativo', label: 'Alterações Ativos' }, { id: 'fornecedor', label: 'Alterações Fornecedores' }, { id: 'itens', label: 'Alterações Itens' } ]
-    };
-
-    // Referências DOM
-    const mainTabs = document.querySelectorAll('.tab-btn');
-    const subContainer = document.getElementById('sub-filter-container');
-    const theadContainer = document.getElementById('dynamic-thead');
-    const tableBody = document.getElementById('tabela-aprovacoes');
-
-    // Filtros DOM
-    const filterSelect = document.getElementById('filter-type');
-    const inputMonth = document.getElementById('input-month');
-    const inputYear = document.getElementById('input-year');
-    const inputSingle = document.getElementById('input-single-date');
-    const inputRange = document.getElementById('input-range-date');
-    const btnApplyFilter = document.getElementById('btn-apply-filter');
-
-    // Modal DOM
-    const modal = document.getElementById('modal-acao');
-    const modalTitle = document.getElementById('modal-title');
-    const modalDesc = document.getElementById('modal-desc');
-    const modalInputArea = document.getElementById('modal-input-area');
-    const modalTextArea = document.getElementById('modal-reason');
-    const btnConfirm = document.getElementById('btn-modal-confirm');
-    const btnCancel = document.getElementById('btn-modal-cancel');
-    const btnClose = document.getElementById('btn-modal-close');
-
-    let currentMain = 'cadastros';
-    let currentSub = 'ativo';
-    let counts = {};
-    let currentRow = null;
-    let currentActionType = null;
-
-    // --- FILTROS DE DATA ---
-    if (filterSelect) {
-        filterSelect.addEventListener('change', (e) => {
-            const val = e.target.value;
-            // 1. Oculta Todos
-            inputMonth.classList.add('hidden');
-            inputYear.classList.add('hidden');
-            inputSingle.classList.add('hidden');
-            inputRange.classList.add('hidden');
-            btnApplyFilter.classList.add('hidden');
-
-            // 2. Mostra Específico
-            if (val === 'month') {
-                inputMonth.classList.remove('hidden');
-                btnApplyFilter.classList.remove('hidden');
-            } else if (val === 'year') {
-                inputYear.classList.remove('hidden');
-                btnApplyFilter.classList.remove('hidden');
-            } else if (val === 'date') {
-                inputSingle.classList.remove('hidden');
-                btnApplyFilter.classList.remove('hidden');
-            } else if (val === 'range') {
-                inputRange.classList.remove('hidden');
-                btnApplyFilter.classList.remove('hidden');
-            }
-        });
-    }
-
-    // --- FUNÇÕES DE TABELA ---
-    function updateTableHeaders(subType) {
-        theadContainer.innerHTML = columnConfigs[subType] || columnConfigs['ativo'];
-    }
-
-    function renderTableRows() {
-        tableBody.innerHTML = '';
-        let items = [];
+    // --- DADOS (Mock Data com Categoria/Subcategoria) ---
+    const mockData = [
+        // CADASTROS
+        { type: 'cadastros', sub: 'ativos', id: 'AT-001', desc: 'Notebook Dell', details: 'TI / Hardware', user: 'Roberto', date: '30/12/2025', status: 'Novo', stClass: 'st-new' },
+        { type: 'cadastros', sub: 'fornecedores', id: 'FOR-992', desc: 'Tech Solutions Ltda', details: 'CNPJ: 12.xxx', user: 'Maria', date: '29/12/2025', status: 'Novo', stClass: 'st-new' },
+        { type: 'cadastros', sub: 'itens', id: 'IT-550', desc: 'Cabo HDMI', details: 'Material Consumo', user: 'Almox.', date: '28/12/2025', status: 'Novo', stClass: 'st-new' },
         
-        // Dados de Exemplo
-        if (currentMain === 'cadastros' && currentSub === 'ativo') {
-            items = [
-                { id: 'P-010', desc: 'Notebook Dell Latitude 5420', date: '12/12/2025', user: 'João Silva' },
-                { id: 'P-011', desc: 'Monitor Samsung 24"', date: '13/12/2025', user: 'Ana RH' }
-            ];
-        } else if (currentMain === 'cadastros' && currentSub === 'fornecedor') {
-            items = [{ id: 'P-012', desc: 'Tech Solutions Ltda', date: '10/12/2025', user: 'Maria Compras' }];
-        } else if (currentMain === 'cadastros' && currentSub === 'itens') {
-            items = [{ id: 'P-013', desc: 'Cabo HDMI 2.0', date: '11/12/2025', user: 'Almoxarifado' }];
-        } else if (currentMain === 'bloqueio') {
-            items = [{ id: 'P-014', desc: 'Monitor LG (Avaria)', date: '20/12/2025', user: 'Suporte TI' }];
+        // PEDIDOS
+        { type: 'pedidos', sub: 'pendentes', id: 'PED-100', desc: 'Compra Licenças', details: 'R$ 5.000,00', user: 'TI', date: '25/12/2025', status: 'Pendente', stClass: 'st-urgent' },
+        { type: 'pedidos', sub: 'pendentes', id: 'PED-101', desc: 'Mobiliário', details: 'R$ 12.000,00', user: 'RH', date: '24/12/2025', status: 'Pendente', stClass: 'st-urgent' },
+        { type: 'pedidos', sub: 'historico', id: 'PED-090', desc: 'Material Limpeza', details: 'R$ 500,00', user: 'Facilities', date: '10/11/2025', status: 'Aprovado', stClass: 'st-history' },
+        
+        // BLOQUEIOS
+        { type: 'bloqueios', sub: 'todos', id: 'BLK-22', desc: 'Forn. Logística SA', details: 'Pendência Fiscal', user: 'Fiscal', date: '01/12/2025', status: 'Bloqueado', stClass: 'st-urgent' }
+    ];
+
+    // --- DOM REFERENCES ---
+    const mainTabs = document.querySelectorAll('.tab-item');
+    const subNavContainer = document.getElementById('sub-navigation');
+    const gridBody = document.getElementById('approval-grid');
+    const checkAll = document.getElementById('check-all');
+    const bulkActions = document.getElementById('bulk-actions');
+    const selectedCountSpan = document.getElementById('selected-count');
+
+    // Modal
+    const modal = document.getElementById('modal-me');
+    const modalDocRef = document.getElementById('modal-doc-ref');
+    const modalTextArea = document.getElementById('modal-text');
+    const btnCancelModal = document.getElementById('btn-cancel-modal');
+    const btnCloseModal = document.getElementById('btn-close');
+    const btnConfirmModal = document.getElementById('btn-confirm-modal');
+
+    // STATE
+    let currentMain = 'cadastros';
+    let currentSub = 'ativos'; // Padrão inicial
+    let selectedIds = new Set();
+    let actionTargetRow = null;
+
+    // --- FUNÇÕES ---
+
+    function init() {
+        // Inicializa com a primeira aba
+        renderSubTabs('cadastros');
+    }
+
+    // Renderiza os botões de sub-nível (Pills)
+    function renderSubTabs(mainKey) {
+        subNavContainer.innerHTML = '';
+        const subs = subCategories[mainKey] || [];
+        
+        if (subs.length > 0) {
+            currentSub = subs[0].id; // Reseta para o primeiro subitem
         }
 
-        // Renderiza
+        subs.forEach((sub, index) => {
+            const btn = document.createElement('button');
+            btn.className = `sub-pill ${index === 0 ? 'active' : ''}`;
+            btn.innerText = sub.label;
+            
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.sub-pill').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentSub = sub.id;
+                renderGrid();
+            });
+            
+            subNavContainer.appendChild(btn);
+        });
+
+        renderGrid();
+    }
+
+    // Renderiza a Tabela baseado no Main e Sub atual
+    function renderGrid() {
+        gridBody.innerHTML = '';
+        selectedIds.clear();
+        updateBulkUI();
+        if(checkAll) checkAll.checked = false;
+
+        // Filtra os dados
+        const items = mockData.filter(item => {
+            const matchMain = item.type === currentMain;
+            
+            // Lógica Especial para Pedidos:
+            // Se sub for 'todos', traz tudo de pedidos.
+            // Se sub for 'pendentes', traz só pendentes.
+            // Se sub for 'historico', traz o resto.
+            let matchSub = false;
+            
+            if (currentMain === 'pedidos') {
+                if (currentSub === 'todos') matchSub = true;
+                else if (currentSub === 'pendentes') matchSub = (item.sub === 'pendentes');
+                else if (currentSub === 'historico') matchSub = (item.sub === 'historico');
+            } else {
+                // Para Cadastros e outros, match exato
+                matchSub = (item.sub === currentSub || currentSub === 'todos');
+            }
+
+            return matchMain && matchSub;
+        });
+
+        if (items.length === 0) {
+            gridBody.innerHTML = '<tr><td colspan="7" style="text-align:center; padding: 30px; color:#888;">Nenhum registro encontrado.</td></tr>';
+            return;
+        }
+
         items.forEach(item => {
             const tr = document.createElement('tr');
             tr.innerHTML = `
-                <td><span class="ordem-id">${item.id}</span></td>
-                <td><strong>${item.desc}</strong></td>
-                <td>${item.date}</td>
-                <td>${item.user}</td>
-                <td class="actions-cell">
-                    <div class="action-dropdown">
-                        <button class="btn-more" title="Ações">⋮</button>
-                        <div class="dropdown-menu hidden">
-                            <button class="menu-item item-forward">Reencaminhar</button>
-                            <button class="menu-item item-reject">Recusar</button>
-                            <div class="dropdown-divider"></div>
-                            <button class="menu-item item-approve">Aprovar</button>
-                        </div>
+                <td class="col-center"><input type="checkbox" class="row-check" data-id="${item.id}"></td>
+                <td>
+                    <div class="status-indicator ${item.stClass}">
+                        <span class="dot-status"></span> ${item.status}
                     </div>
                 </td>
+                <td>
+                    <span class="doc-id">${item.id}</span>
+                    <span class="doc-desc">${item.desc}</span>
+                </td>
+                <td>
+                    <span class="val-main">${item.details}</span>
+                </td>
+                <td>${item.user}</td>
+                <td>${item.date}</td>
+                <td class="col-center">
+                    <button class="btn-icon-row btn-approve-row" title="Aprovar">✓</button>
+                    <button class="btn-icon-row btn-reject-row" title="Reprovar">✕</button>
+                </td>
             `;
-            tableBody.appendChild(tr);
-        });
-        calculateCounts();
-    }
-
-    function calculateCounts() {
-        const total = tableBody.children.length;
-        mainTabs.forEach(t => {
-            const m = t.getAttribute('data-main');
-            const b = t.querySelector('.counter-badge');
-            if(m === currentMain && b) b.innerText = total;
-            else if(b) b.innerText = 0;
-        });
-        document.querySelectorAll('.pill').forEach(p => {
-            const s = p.getAttribute('data-sub');
-            const b = p.querySelector('.counter-badge');
-            if(s === currentSub && b) b.innerText = total;
-            else if(b) b.innerText = 0;
-        });
-    }
-
-    function renderSubFilters(mainKey) {
-        subContainer.innerHTML = '';
-        menus[mainKey].forEach((item, i) => {
-            const btn = document.createElement('button');
-            btn.className = 'pill';
-            btn.innerHTML = `${item.label} <span class="counter-badge">0</span>`;
-            btn.setAttribute('data-sub', item.id);
-            if(i===0) { btn.classList.add('active'); currentSub = item.id; }
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.pill').forEach(p=>p.classList.remove('active'));
-                btn.classList.add('active');
-                currentSub = item.id;
-                updateTableHeaders(currentSub);
-                renderTableRows();
+            
+            // Listeners da Linha
+            const checkbox = tr.querySelector('.row-check');
+            checkbox.addEventListener('change', (e) => {
+                if(e.target.checked) selectedIds.add(item.id);
+                else selectedIds.delete(item.id);
+                updateBulkUI();
             });
-            subContainer.appendChild(btn);
+
+            tr.querySelector('.btn-approve-row').addEventListener('click', () => {
+                if(confirm(`Aprovar ${item.id}?`)) { tr.remove(); }
+            });
+
+            tr.querySelector('.btn-reject-row').addEventListener('click', () => {
+                openRejectModal(item.id, tr);
+            });
+
+            gridBody.appendChild(tr);
         });
-        updateTableHeaders(currentSub);
-        renderTableRows();
     }
 
-    // --- DROPDOWN & MODAL ---
-    document.addEventListener('click', (e) => {
-        if (!e.target.closest('.action-dropdown')) {
-            document.querySelectorAll('.dropdown-menu').forEach(el => el.classList.add('hidden'));
-        }
-    });
+    function updateBulkUI() {
+        selectedCountSpan.innerText = selectedIds.size;
+        bulkActions.style.display = selectedIds.size > 0 ? 'flex' : 'none';
+    }
 
-    tableBody.addEventListener('click', (e) => {
-        const btnMore = e.target.closest('.btn-more');
-        if (btnMore) {
-            e.stopPropagation();
-            const dropdown = btnMore.nextElementSibling;
-            document.querySelectorAll('.dropdown-menu').forEach(el => {
-                if(el !== dropdown) el.classList.add('hidden');
-            });
-            dropdown.classList.toggle('hidden');
-            return;
-        }
-        const btnAction = e.target.closest('.menu-item');
-        if (btnAction) {
-            const row = btnAction.closest('tr');
-            btnAction.closest('.dropdown-menu').classList.add('hidden');
-            if(btnAction.classList.contains('item-approve')) openModal('approve', row);
-            if(btnAction.classList.contains('item-forward')) openModal('forward', row);
-            if(btnAction.classList.contains('item-reject')) openModal('reject', row);
-        }
-    });
-
-    function openModal(actionType, row) {
-        currentRow = row;
-        currentActionType = actionType;
+    function openRejectModal(docId, rowElement) {
         modal.classList.remove('hidden');
+        modalDocRef.innerText = docId;
         modalTextArea.value = '';
-        modalInputArea.classList.add('hidden');
-        btnConfirm.className = 'btn-primary-modal';
-
-        const descText = row.querySelectorAll('td')[1].innerText;
-
-        if (actionType === 'approve') {
-            modalTitle.innerText = "Confirmar Aprovação";
-            modalDesc.innerHTML = `Deseja aprovar <strong>${descText}</strong>?`;
-            btnConfirm.innerText = "Sim, Aprovar";
-            btnConfirm.classList.add('type-approve');
-        } else if (actionType === 'forward') {
-            modalTitle.innerText = "Reencaminhar";
-            modalDesc.innerText = "Justifique o reencaminhamento:";
-            modalInputArea.classList.remove('hidden');
-            btnConfirm.innerText = "Confirmar";
-            btnConfirm.classList.add('type-forward');
-        } else if (actionType === 'reject') {
-            modalTitle.innerText = "Recusar";
-            modalDesc.innerText = "Motivo da recusa:";
-            modalInputArea.classList.remove('hidden');
-            btnConfirm.innerText = "Recusar";
-            btnConfirm.classList.add('type-reject');
-        }
+        actionTargetRow = rowElement;
     }
 
-    function confirmAction() {
-        if(!currentRow) return;
-        if (currentActionType !== 'approve' && modalTextArea.value.trim() === "") {
-            alert("Preencha o campo de texto.");
-            return;
-        }
+    // --- EVENTOS GERAIS ---
+    
+    // Troca de Aba Principal
+    mainTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            mainTabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            currentMain = tab.getAttribute('data-target');
+            renderSubTabs(currentMain);
+        });
+    });
+
+    // Check All
+    if(checkAll) {
+        checkAll.addEventListener('change', (e) => {
+            const checks = gridBody.querySelectorAll('.row-check');
+            const isChecked = e.target.checked;
+            selectedIds.clear();
+            checks.forEach(c => {
+                c.checked = isChecked;
+                if(isChecked) selectedIds.add(c.getAttribute('data-id'));
+            });
+            updateBulkUI();
+        });
+    }
+
+    // Modal
+    btnCancelModal.onclick = () => modal.classList.add('hidden');
+    btnCloseModal.onclick = () => modal.classList.add('hidden');
+    btnConfirmModal.addEventListener('click', () => {
+        if(modalTextArea.value.trim() === "") { alert("Motivo obrigatório."); return; }
         modal.classList.add('hidden');
-        currentRow.style.backgroundColor = currentActionType === 'approve' ? '#ecfdf5' : '#fef2f2';
-        setTimeout(() => { currentRow.remove(); calculateCounts(); }, 300);
-    }
+        if(actionTargetRow) actionTargetRow.remove();
+    });
 
-    mainTabs.forEach(t => t.addEventListener('click', () => {
-        mainTabs.forEach(tab => tab.classList.remove('active'));
-        t.classList.add('active');
-        currentMain = t.getAttribute('data-main');
-        renderSubFilters(currentMain);
-    }));
-
-    btnConfirm.onclick = confirmAction;
-    btnCancel.onclick = () => modal.classList.add('hidden');
-    btnClose.onclick = () => modal.classList.add('hidden');
-
-    renderSubFilters('cadastros');
+    // Inicialização
+    init();
 });
