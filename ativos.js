@@ -1,15 +1,23 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Lógica de Abas
-    const tabs = document.querySelectorAll('.tab-btn');
+    
+    // Lógica de Sub-Abas (Pills)
+    const tabs = document.querySelectorAll('.sub-pill');
     
     tabs.forEach(tab => {
         tab.addEventListener('click', () => {
-            // Remove active de todas
             tabs.forEach(t => t.classList.remove('active'));
-            // Adiciona na clicada
             tab.classList.add('active');
             
+            // Aqui entraria a lógica de filtro dos cards se necessário
             console.log(`Filtrando grid por: ${tab.innerText}`);
         });
     });
+
+    // Logout
+    const logoutBtn = document.getElementById('logout-btn');
+    if(logoutBtn) {
+        logoutBtn.addEventListener('click', () => {
+            if(confirm("Deseja sair?")) window.location.href = 'index.html';
+        });
+    }
 });

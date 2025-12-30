@@ -23,21 +23,20 @@ document.addEventListener('DOMContentLoaded', () => {
         inputData.value = new Date().toISOString().split('T')[0];
     }
 
-    // 2. Número da Ordem (Auto-Incremento com Prefixo P - )
+    // 2. Número da Ordem (Simulado)
     if(inputOrdem) {
         const ultimoIdSalvo = localStorage.getItem('fup_last_order_id') || 0;
         proximoId = parseInt(ultimoIdSalvo) + 1;
-        
-        // Formata: P - 01
         inputOrdem.value = `P - ${proximoId.toString().padStart(2, '0')}`;
     }
 
-    // Navegação
+    // Navegação Passo 1 -> Passo 2
     options.forEach(opt => {
         opt.addEventListener('click', () => {
             tipoSelecionado = opt.getAttribute('data-tipo');
-            opt.style.backgroundColor = '#f3f4f6';
-            setTimeout(() => { irParaPasso2(); }, 100);
+            // Feedback visual rápido
+            opt.style.borderColor = '#0065a3'; 
+            setTimeout(() => { irParaPasso2(); }, 150);
         });
     });
 
@@ -60,7 +59,8 @@ document.addEventListener('DOMContentLoaded', () => {
         step2Busca.classList.add('hidden');
         footer.classList.add('hidden');
         step1.classList.remove('hidden');
-        options.forEach(opt => opt.style.backgroundColor = '');
+        // Reseta estilos
+        options.forEach(opt => opt.style.borderColor = '');
     });
 
     btnEnviar.addEventListener('click', () => {
@@ -68,7 +68,6 @@ document.addEventListener('DOMContentLoaded', () => {
         btnEnviar.disabled = true;
 
         setTimeout(() => {
-            // Salva apenas o número (inteiro) no banco/storage
             if (tipoSelecionado === 'Cadastro') {
                 localStorage.setItem('fup_last_order_id', proximoId);
             }
@@ -77,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 800);
     });
     
-    // Tabela Busca
+    // Seleção na tabela de busca
     const resultItems = document.querySelectorAll('.result-row.item');
     resultItems.forEach(item => {
         item.addEventListener('click', () => {

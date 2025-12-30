@@ -11,18 +11,15 @@
 
     <header class="me-shell">
         <div class="shell-start">
-            <button class="btn-menu-hamburger">
-                <span class="bar"></span><span class="bar"></span><span class="bar"></span>
-            </button>
-            <span class="brand-logo">FUP<span class="dot">.</span> <span class="module-name">e-Procurement</span></span>
+            <span class="brand-logo">FUP<span class="dot">.</span> <span class="module-name"></span></span>
         </div>
         <div class="shell-end">
             <div class="user-info">
-                <span class="user-name">Admin</span>
-                <span class="user-role">Gestor de Compras</span>
+                <span class="user-name"></span>
+                <span class="user-role"></span>
             </div>
-            <a href="cadastros.html" class="btn-exit" title="Voltar">
-                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+            <a href="cadastros.html" class="btn-exit" title="Voltar" style="text-decoration: none; font-weight: 500; font-size: 14px; display: flex; align-items: center;">
+                Voltar
             </a>
         </div>
     </header>
@@ -31,23 +28,31 @@
         
         <div class="page-header-container">
             <div class="page-title-row">
-                <h1 class="page-title">Aprovação de Documentos</h1>
-                <div class="breadcrumb">Home > Tarefas > Aprovações</div>
+                <h1 class="page-title"></h1>
+                <div class="breadcrumb"></div>
             </div>
 
             <div class="me-tabs">
-                <button class="tab-item active" data-target="cadastros">Cadastros</button>
-                <button class="tab-item" data-target="pedidos">Pedidos</button>
-                <button class="tab-item" data-target="contratos">Contratos</button>
-                <button class="tab-item" data-target="bloqueios">Bloqueios</button>
+                <button class="tab-item active" data-target="cadastros">
+                    Cadastros <span class="tab-badge">2</span>
+                </button>
+                <button class="tab-item" data-target="pedidos">
+                    Pedidos <span class="tab-badge">5</span>
+                </button>
+                <button class="tab-item" data-target="contratos">
+                    Contratos <span class="tab-badge">0</span>
+                </button>
+                <button class="tab-item" data-target="bloqueios">
+                    Bloqueios <span class="tab-badge">1</span>
+                </button>
             </div>
 
             <div class="me-sub-nav" id="sub-navigation">
                 </div>
         </div>
 
-        <div class="table-toolbar">
-            <div class="toolbar-right" id="bulk-actions" style="display: none;">
+        <div class="table-toolbar" style="display: none;">
+            <div class="toolbar-right" id="bulk-actions">
                 <span class="selected-label"><span id="selected-count">0</span> selecionados</span>
                 <button class="btn-toolbar action-approve" id="btn-bulk-approve">Aprovar Seleção</button>
                 <button class="btn-toolbar action-reject" id="btn-bulk-reject">Reprovar Seleção</button>
@@ -59,11 +64,38 @@
                 <thead>
                     <tr>
                         <th width="40" class="col-center"><input type="checkbox" id="check-all"></th>
-                        <th width="100">Status</th>
-                        <th>Documento</th>
-                        <th>Categoria / Valor</th>
-                        <th>Solicitante</th>
-                        <th>Data</th>
+                        
+                        <th width="120">
+                            <div class="th-content">
+                                Status 
+                                <button class="btn-filter" data-col="status">▼</button>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="th-content">
+                                Documento
+                                <button class="btn-filter" data-col="doc">▼</button>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="th-content">
+                                Categoria / Valor
+                                <button class="btn-filter" data-col="details">▼</button>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="th-content">
+                                Solicitante
+                                <button class="btn-filter" data-col="user">▼</button>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="th-content">
+                                Data
+                                <button class="btn-filter" data-col="date">▼</button>
+                            </div>
+                        </th>
+                        
                         <th width="80" class="col-center">Ações</th>
                     </tr>
                 </thead>
@@ -72,6 +104,18 @@
         </div>
 
     </main>
+
+    <div id="filter-dropdown-template" class="filter-dropdown hidden">
+        <div class="filter-search-container">
+            <input type="text" class="filter-search-input" placeholder="Buscar...">
+        </div>
+        <div class="filter-options-list">
+            </div>
+        <div class="filter-actions">
+            <button class="btn-filter-clear">Limpar</button>
+            <button class="btn-filter-apply">Aplicar</button>
+        </div>
+    </div>
 
     <div id="modal-me" class="modal-overlay hidden">
         <div class="modal-window">

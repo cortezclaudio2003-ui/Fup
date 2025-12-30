@@ -3,178 +3,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fup | Executive View</title>
+    <title>Dashboard | ME Style</title>
     <link rel="stylesheet" href="dashboard.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="me-body">
 
-    <nav class="top-navbar">
-        <div class="nav-container">
-            <a href="dashboard.html" class="nav-brand">FUP<span class="dot-blue">.</span></a>
+    <header class="me-shell">
+        <div class="shell-start">
+            <span class="brand-logo">FUP<span class="dot">.</span> <span class="module-name">Executive View</span></span>
+        </div>
+        <div class="shell-end">
+            <div class="user-info">
+                <span class="user-name">Admin</span>
+                <span class="user-role">Administrador</span>
+            </div>
+            <button id="logout-btn" class="btn-exit" title="Sair" style="background:none; border:none; text-decoration: none; font-weight: 500; font-size: 14px; display: flex; align-items: center;">
+                Sair
+            </button>
+        </div>
+    </header>
 
-            <div class="nav-links">
-    <a href="dashboard.html" class="nav-item">Visão Geral</a>
-    <a href="transacoes.html" class="nav-item">Transações</a>
-    <a href="fiscais.html" class="nav-item">Registros Fiscais</a>
-    <a href="ativos.html" class="nav-item">Registros Ativos</a>
-    <a href="cadastros.html" class="nav-item">Cadastros</a>
-    <a href="aprovacoes.html" class="nav-item">Aprovações</a> </div>
+    <main class="me-workspace">
+        
+        <div class="page-header-container">
+            <div class="page-title-row">
+                <h1 class="page-title">Visão Geral Corporativa</h1>
+                <div class="breadcrumb" id="date-display">Carregando data...</div>
+            </div>
 
-            <div class="nav-profile">
-                <div class="notification-badge">
-                    <svg class="icon-nav" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
-                    <span class="dot-alert"></span>
-                </div>
-                <div class="user-pill">
-                    <div class="avatar-circle">AD</div>
-                    <span class="user-name">Admin</span>
-                </div>
-                <button class="btn-logout" id="logout-btn">Sair</button>
+            <div class="me-tabs">
+                <a href="dashboard.html" class="tab-item active">
+                    Visão Geral
+                </a>
+                <a href="transacoes.html" class="tab-item">
+                    Transações
+                </a>
+                <a href="fiscais.html" class="tab-item">
+                    Registros Fiscais
+                </a>
+                <a href="ativos.html" class="tab-item">
+                    Registros Ativos
+                </a>
+                <a href="cadastros.html" class="tab-item">
+                    Cadastros
+                </a>
+                <a href="aprovacoes.html" class="tab-item">
+                    Aprovações <span class="tab-badge">7</span>
+                </a>
             </div>
         </div>
-    </nav>
 
-    <main class="main-container">
-        
-        <header class="page-header">
-            <div>
-                <h1 class="page-title">Visão Geral Corporativa</h1>
-                <p class="page-subtitle" id="date-display">Carregando data...</p>
-            </div>
-            <div class="header-actions">
-                <button class="btn btn-yellow">
-                    <svg class="icon-btn" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
-                    Auditoria Pendente
-                </button>
-                <button class="btn btn-blue">
-                    <svg class="icon-btn" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-                    Exportar Q3
-                </button>
-            </div>
-        </header>
-
-        <section class="stats-grid-wrapper">
+        <div class="dashboard-scroll-area">
             
-            <div class="stat-card border-blue">
-                <div class="card-top">
-                    <span class="stat-label">Receita Líquida (MRR)</span>
-                    <svg class="icon-sm text-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            <div class="dashboard-content">
+                
+                <div class="actions-bar">
+                    <button class="btn-me-secondary">Auditoria Pendente</button>
+                    <button class="btn-me-primary">Exportar Q3</button>
                 </div>
-                <h3 class="card-value" data-target="12450000">R$ 0,00</h3>
-                <span class="stat-delta text-blue">▲ 12.5% vs mês anterior</span>
-            </div>
 
-            <div class="stat-card border-blue">
-                <div class="card-top">
-                    <span class="stat-label">EBITDA Ajustado</span>
-                    <svg class="icon-sm text-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
-                </div>
-                <h3 class="card-value" data-target="4200000">R$ 0,00</h3>
-                <span class="stat-delta text-blue">▲ 5.2% Margem saudável</span>
-            </div>
+                <section class="stats-grid-wrapper">
+                    
+                    <div class="stat-card border-blue">
+                        <div class="card-top">
+                            <span class="stat-label">Receita Líquida (MRR)</span>
+                        </div>
+                        <h3 class="card-value" data-target="12450000">R$ 0,00</h3>
+                        <span class="stat-delta text-blue">▲ 12.5% vs mês anterior</span>
+                    </div>
 
-            <div class="stat-card border-red">
-                <div class="card-top">
-                    <span class="stat-label">Burn Rate (Despesa)</span>
-                    <svg class="icon-sm text-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 17h8m0 0V9m0 8l-8-8-4 4-6 6"></path></svg>
-                </div>
-                <h3 class="card-value" data-target="850000">R$ 0,00</h3>
-                <span class="stat-delta text-red">▼ 2.1% Acima do previsto</span>
-            </div>
+                    <div class="stat-card border-blue">
+                        <div class="card-top">
+                            <span class="stat-label">EBITDA Ajustado</span>
+                        </div>
+                        <h3 class="card-value" data-target="4200000">R$ 0,00</h3>
+                        <span class="stat-delta text-blue">▲ 5.2% Margem saudável</span>
+                    </div>
 
-            <div class="stat-card border-yellow">
-                <div class="card-top">
-                    <span class="stat-label">Runway (Caixa)</span>
-                    <svg class="icon-sm text-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path></svg>
-                </div>
-                <h3 class="card-value" data-target="18000000">R$ 0,00</h3>
-                <span class="stat-delta text-secondary">24 Meses de Operação</span>
-            </div>
+                    <div class="stat-card border-red">
+                        <div class="card-top">
+                            <span class="stat-label">Burn Rate (Despesa)</span>
+                        </div>
+                        <h3 class="card-value" data-target="850000">R$ 0,00</h3>
+                        <span class="stat-delta text-red">▼ 2.1% Acima do previsto</span>
+                    </div>
 
-            <div class="stat-card border-blue">
-                <div class="card-top">
-                    <span class="stat-label">Novos Clientes (Q3)</span>
-                    <svg class="icon-sm text-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                </div>
-                <h3 class="card-value" data-target="142">0</h3>
-                <span class="stat-delta text-blue">▲ Recorde mensal</span>
-            </div>
+                    <div class="stat-card border-yellow">
+                        <div class="card-top">
+                            <span class="stat-label">Runway (Caixa)</span>
+                        </div>
+                        <h3 class="card-value" data-target="18000000">R$ 0,00</h3>
+                        <span class="stat-delta text-gray">24 Meses de Operação</span>
+                    </div>
 
-            <div class="stat-card border-yellow">
-                <div class="card-top">
-                    <span class="stat-label">CAC (Custo Aquisição)</span>
-                    <svg class="icon-sm text-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
-                </div>
-                <h3 class="card-value" data-target="3200">R$ 0,00</h3>
-                <span class="stat-delta text-yellow">⚠ Atenção Necessária</span>
-            </div>
+                    <div class="stat-card border-blue">
+                        <div class="card-top">
+                            <span class="stat-label">Novos Clientes</span>
+                        </div>
+                        <h3 class="card-value" data-target="142">0</h3>
+                        <span class="stat-delta text-blue">▲ Recorde mensal</span>
+                    </div>
 
-            <div class="stat-card border-blue">
-                <div class="card-top">
-                    <span class="stat-label">LTV (Ciclo de Vida)</span>
-                    <svg class="icon-sm text-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                </div>
-                <h3 class="card-value" data-target="45000">R$ 0,00</h3>
-                <span class="stat-delta text-blue">Retenção Alta</span>
-            </div>
+                    <div class="stat-card border-blue">
+                        <div class="card-top">
+                            <span class="stat-label">Headcount Global</span>
+                        </div>
+                        <h3 class="card-value" data-target="850">0</h3>
+                        <span class="stat-delta text-gray">+12 Vagas abertas</span>
+                    </div>
 
-            <div class="stat-card border-blue">
-                <div class="card-top">
-                    <span class="stat-label">Headcount Global</span>
-                    <svg class="icon-sm text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                </div>
-                <h3 class="card-value" data-target="850">0</h3>
-                <span class="stat-delta text-secondary">+12 Vagas abertas</span>
-            </div>
-        </section>
+                </section>
 
-        <section class="content-panel">
-            <div class="panel-header">
-                <h3>Monitoramento em Tempo Real</h3>
-                <div class="status-badge"><span class="pulse-dot"></span> Online</div>
+                <section class="content-panel">
+                    <div class="panel-header">
+                        <h3>Monitoramento em Tempo Real</h3>
+                        <div class="status-badge"><span class="pulse-dot"></span> Online</div>
+                    </div>
+                    
+                    <table class="me-table">
+                        <thead>
+                            <tr>
+                                <th width="40%">Descrição da Transação</th>
+                                <th>Categoria</th>
+                                <th>Valor</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <span class="doc-id">Aquisição de Servidores AWS</span>
+                                    <span class="doc-desc">ID: #FUP-9921 • Infraestrutura</span>
+                                </td>
+                                <td>Tecnologia</td>
+                                <td class="val-main">R$ 120.000,00</td>
+                                <td><div class="status-indicator st-new"><span class="dot-status" style="background:#2563eb"></span> Processado</div></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="doc-id">Reembolso Executivo - Viagem</span>
+                                    <span class="doc-desc">ID: #FUP-9922 • Diretoria</span>
+                                </td>
+                                <td>Corporativo</td>
+                                <td class="val-main">R$ 45.200,00</td>
+                                <td><div class="status-indicator st-history"><span class="dot-status" style="background:#ca8a04"></span> Em Análise</div></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="doc-id">Multa Contratual - Fornecedor X</span>
+                                    <span class="doc-desc">ID: #FUP-9923 • Jurídico</span>
+                                </td>
+                                <td>Passivo</td>
+                                <td class="val-main" style="color:var(--status-red)">- R$ 12.500,00</td>
+                                <td><div class="status-indicator st-urgent"><span class="dot-status"></span> Crítico</div></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
             </div>
-            
-            <table class="modern-table">
-                <thead>
-                    <tr>
-                        <th width="40%">Descrição da Transação</th>
-                        <th>Categoria</th>
-                        <th>Valor</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <div class="row-title">Aquisição de Servidores (AWS)</div>
-                            <div class="row-sub">ID: #FUP-9921 • Infraestrutura</div>
-                        </td>
-                        <td>Tecnologia</td>
-                        <td class="font-bold">R$ 120.000,00</td>
-                        <td><span class="badge badge-blue">Processado</span></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="row-title">Reembolso Executivo - Viagem Dubai</div>
-                            <div class="row-sub">ID: #FUP-9922 • Diretoria</div>
-                        </td>
-                        <td>Corporativo</td>
-                        <td class="font-bold">R$ 45.200,00</td>
-                        <td><span class="badge badge-yellow">Em Análise</span></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="row-title">Multa Contratual - Fornecedor X</div>
-                            <div class="row-sub">ID: #FUP-9923 • Jurídico</div>
-                        </td>
-                        <td>Passivo</td>
-                        <td class="font-bold text-red">- R$ 12.500,00</td>
-                        <td><span class="badge badge-red">Crítico</span></td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+        </div>
 
     </main>
 
