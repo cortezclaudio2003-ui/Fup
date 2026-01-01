@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de Compras</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo-area">
+            <h1>VIVARA <span style="font-size: 0.5em; color: #666;">(Clone)</span></h1>
+        </div>
+        
+        <nav>
+            <ul>
+                <li>
+                    <a href="#" onclick="mostrarTela('dashboard', this)" class="active">
+                        <span class="material-icons-outlined">dashboard</span>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" onclick="mostrarTela('transacoes', this)">
+                        <span class="material-icons-outlined">receipt_long</span>
+                        <span>Transações</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" onclick="mostrarTela('fornecedores', this)">
+                        <span class="material-icons-outlined">storefront</span>
+                        <span>Fornecedores</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" onclick="mostrarTela('catalogo', this)">
+                        <span class="material-icons-outlined">shopping_bag</span>
+                        <span>Catálogos</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" onclick="mostrarTela('usuarios', this)">
+                        <span class="material-icons-outlined">group</span>
+                        <span>Usuários</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="user-profile">
+            <div class="avatar">JS</div>
+        </div>
+    </header>
+
+    <div class="sub-header">
+        <div class="left-actions">
+            <div class="dropdown">
+                <span>Aprovações e Requisições</span>
+                <span class="material-icons-outlined">expand_more</span>
+            </div>
+            <div class="dropdown">
+                <span>Painel de compras</span>
+                <span class="material-icons-outlined">expand_more</span>
+            </div>
+        </div>
+        <div class="right-actions">
+             <span class="material-icons-outlined icon-btn">more_vert</span>
+        </div>
+    </div>
+
+    <div class="filter-bar">
+        <button class="btn-filter">Todos Processos <span class="material-icons-outlined">expand_more</span></button>
+        <button class="btn-filter">Criado em: Todo período <span class="material-icons-outlined">expand_more</span></button>
+        <div class="divider"></div>
+        <button class="icon-action"><span class="material-icons-outlined">add</span></button>
+        <button class="icon-action"><span class="material-icons-outlined">delete</span></button>
+        <button class="icon-action"><span class="material-icons-outlined">save</span></button>
+    </div>
+
+    <main>
+        <section id="dashboard" class="tela active-tela">
+            
+            <div class="dashboard-grid-top">
+                
+                <div class="card hero-card">
+                    <div class="hero-content">
+                        <h2>Crie novos processos</h2>
+                        <p>Crie requisições, cotações, contratos e pedidos.</p>
+                        <button class="btn-cta">
+                            <span class="material-icons-outlined">add</span> Nova Transação
+                        </button>
+                    </div>
+                    <div class="hero-illustration">
+                        <span class="material-icons-outlined" style="font-size: 6rem; opacity: 0.2; color: white;">assignment</span>
+                    </div>
+                </div>
+
+                <div class="card simple-card">
+                    <div class="card-top">
+                        <span class="material-icons-outlined icon-blue">chat</span>
+                        <h3>Mensagens</h3>
+                    </div>
+                    <a href="#" class="link-bottom">acessar</a>
+                </div>
+
+                <div class="card simple-card">
+                    <div class="card-top">
+                        <span class="material-icons-outlined icon-blue">link</span> <h3>Visualizar catálogo</h3>
+                    </div>
+                    <a href="#" class="link-bottom">acessar</a>
+                </div>
+            </div>
+
+            <div class="dashboard-grid-bottom">
+                
+                <div class="processos-container">
+                    <h3>Acompanhar processos</h3>
+                    <div class="stats-row">
+                        <div class="card stat-card">
+                            <span class="material-icons-outlined icon-stat">edit_note</span>
+                            <span class="stat-number">11878</span>
+                            <span class="stat-label">Requisição</span>
+                        </div>
+                        <div class="card stat-card">
+                            <span class="material-icons-outlined icon-stat">inventory_2</span>
+                            <span class="stat-number">11840</span>
+                            <span class="stat-label">Pedido</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pendencias-container">
+                    <h3>Pendências de aprovação</h3>
+                    <div class="card empty-state">
+                        <h4>Tudo certo por aqui!</h4>
+                        <p>Você não tem pendências no momento.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="transacoes" class="tela"><h1>Transações</h1></section>
+        <section id="fornecedores" class="tela"><h1>Fornecedores</h1></section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
