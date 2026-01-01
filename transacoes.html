@@ -15,7 +15,6 @@
 
     <header>
         <div class="logo-area">
-            <span class="material-icons-outlined" id="toggleSidebarBtn" style="cursor:pointer; margin-right: 15px; color: #333;">menu</span>
             <h1>VIVARA <span style="font-size: 0.5em; color: #666;">(Clone)</span></h1>
         </div>
         
@@ -61,9 +60,13 @@
 
     <div class="erp-sub-header">
         <div class="erp-left">
+            <button id="toggleSidebarBtn" class="icon-toggle-btn" title="Expandir/Recolher Menu">
+                <span class="material-icons-outlined">menu_open</span>
+            </button>
+
             <div class="btn-group">
                 <button class="btn-primary-erp">
-                    <span class="material-icons-outlined">add</span> Requisição Nor...
+                    <span class="material-icons-outlined">add</span> Novo Pedido
                 </button>
                 <button class="btn-primary-erp-arrow">
                     <span class="material-icons-outlined">expand_more</span>
@@ -76,6 +79,7 @@
                 <span class="material-icons-outlined search-icon">search</span>
                 <input type="text" placeholder="Pesquisar" class="erp-input-search">
             </div>
+            
             <button class="btn-text-icon">
                 <span class="material-icons-outlined">filter_list</span> Filtros
             </button>
@@ -88,7 +92,6 @@
     <div class="transacoes-wrapper">
         
         <aside id="sidebarTransacoes" class="sidebar-erp">
-            
             <div class="sidebar-inner-search">
                 <span class="material-icons-outlined">search</span>
                 <input type="text" placeholder="Buscar neste menu">
@@ -174,17 +177,9 @@
                     </li>
                 </ul>
             </div>
-
-            <div class="menu-group">
-                <div class="group-title">
-                    <span>FILTROS SALVOS</span>
-                    <span class="material-icons-outlined arrow">expand_less</span>
-                </div>
-            </div>
         </aside>
 
         <main class="transacoes-content-erp">
-            
             <div class="table-toolbar">
                 <div class="toolbar-left">
                     <button class="pill-btn">
@@ -250,18 +245,6 @@
                             <td class="text-blue">4600016928</td>
                             <td>APORTE LEI DO IDOSO - Hospital do Amor - Amparo ao</td>
                         </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td class="text-blue">21564179</td>
-                            <td></td>
-                            <td>APORTE LEI DO IDOSO - Hospital do Amor - Amparo ao Idoso</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td class="text-blue">69492996</td>
-                            <td></td>
-                            <td>APORTE LEI DO IDOSO - Hospital do Amor - Amparo ao</td>
-                        </tr>
                          <tr>
                             <td><input type="checkbox"></td>
                             <td class="text-blue">847031</td>
@@ -271,7 +254,6 @@
                     </tbody>
                 </table>
             </div>
-
         </main>
     </div>
 

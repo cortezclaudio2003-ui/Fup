@@ -1,12 +1,12 @@
 /* Layout da Página */
 .transacoes-wrapper {
     display: flex;
-    height: calc(100vh - 75px - 60px); /* Ajuste conforme header e subheader */
+    height: calc(100vh - 75px - 60px);
     overflow: hidden;
     background-color: #fff;
 }
 
-/* --- ERP SUB-HEADER (Barra superior branca com botão azul) --- */
+/* --- ERP SUB-HEADER --- */
 .erp-sub-header {
     background: white;
     height: 60px;
@@ -17,6 +17,32 @@
     padding: 0 20px;
 }
 
+/* Esquerda: Botão Menu + Botão Novo */
+.erp-left {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Espaço entre o ícone de menu e o botão novo */
+}
+
+/* Botão de Toggle Menu (Ícone) */
+.icon-toggle-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #666;
+    padding: 5px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+.icon-toggle-btn:hover {
+    background-color: #f0f0f0;
+    color: #1A56DB;
+}
+
+/* Grupo de Botões (Novo Pedido) */
 .btn-group {
     display: flex;
     align-items: center;
@@ -50,19 +76,21 @@
     align-items: center;
 }
 
+/* Direita: Pesquisa e Filtros */
 .erp-right {
     display: flex;
     align-items: center;
     gap: 15px;
 }
 
+/* --- PESQUISA MAIOR --- */
 .erp-search-container {
     background-color: #F5F6FA;
     border-radius: 4px;
     display: flex;
     align-items: center;
     padding: 5px 10px;
-    width: 250px;
+    width: 450px; /* AUMENTADO de 250px para 450px */
 }
 
 .erp-input-search {
@@ -96,7 +124,7 @@
     display: flex; align-items: center;
 }
 
-/* --- SIDEBAR (Estilo do print) --- */
+/* --- SIDEBAR --- */
 .sidebar-erp {
     width: 260px;
     background: white;
@@ -159,7 +187,6 @@
 
 .menu-group li:hover { background-color: #F5F6FA; }
 
-/* Item Ativo (Azul Claro) */
 .active-item {
     background-color: #EBF2FF !important;
     color: #1A56DB !important;
@@ -169,7 +196,6 @@
 .icon-left { font-size: 20px; color: #999; }
 .arrow-right { font-size: 16px; color: #BBB; }
 
-/* Ponto Vermelho de Notificação */
 .red-dot {
     width: 8px; height: 8px; background-color: #FF3D00;
     border-radius: 50%;
@@ -215,7 +241,7 @@
 .icon-nav { font-size: 20px; cursor: pointer; color: #888; }
 .icon-nav:hover { color: #333; }
 
-/* Estrutura da Tabela */
+/* Tabela */
 .table-container-erp {
     flex-grow: 1;
     overflow-y: auto;
@@ -249,7 +275,6 @@ td {
 
 tbody tr:hover { background-color: #FAFAFA; }
 
-/* Checkbox simples */
 input[type="checkbox"] {
     width: 16px; height: 16px;
     border: 1px solid #ccc;
