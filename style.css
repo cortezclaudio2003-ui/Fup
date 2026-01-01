@@ -1,7 +1,7 @@
 /* --- Variáveis baseadas na imagem --- */
 :root {
     --bg-body: #F5F6FA;      /* Fundo cinza bem claro */
-    --header-bg: #E8DCC6;    /* Cor "Areia/Bege" do header da Vivara */
+    --header-bg: #E8DCC6;    /* Cor "Areia/Bege" do header */
     --header-bg-neutral: #FFFFFF; 
     
     --primary-blue: #1A56DB; /* Azul "Royal" forte do botão */
@@ -26,7 +26,7 @@ header {
 
 .logo-area h1 { font-family: serif; letter-spacing: 1px; font-weight: 700; }
 
-/* --- ALTERAÇÃO AQUI: Menu movido para a direita --- */
+/* Menu movido para a direita */
 nav { 
     margin-left: auto;   /* Empurra o menu para a direita */
     margin-right: 30px;  /* Espaço entre o menu e o avatar */
@@ -87,10 +87,17 @@ nav ul li a:hover, nav ul li a.active {
     display: flex; align-items: center; gap: 5px; font-size: 0.85rem; font-weight: 500;
 }
 
+/* Botões de Ação (Add, Delete, Save) */
 .icon-action {
     background: transparent; border: none; color: var(--text-grey); cursor: pointer; padding: 5px;
+    display: flex; align-items: center; justify-content: center;
 }
 .icon-action:hover { color: var(--text-dark); }
+
+/* --- ALTERAÇÃO AQUI: Tamanho reduzido dos ícones --- */
+.icon-action .material-icons-outlined {
+    font-size: 18px; /* Reduzido de 24px para 18px */
+}
 
 .divider { height: 20px; width: 1px; background: #ddd; margin: 0 10px; }
 
