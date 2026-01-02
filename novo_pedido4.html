@@ -73,12 +73,14 @@
                         <label>Anexo</label>
                         <div class="attachment-wrapper">
                             <input type="file" id="fileUploadInput" style="display: none;">
-                            <label for="fileUploadInput" class="attachment-btn">
+                            
+                            <label for="fileUploadInput" class="attachment-btn" id="lblAnexoBtn">
                                 <span class="material-icons-outlined" id="iconAnexo">attach_file</span> 
                                 <span id="txtAnexo">Nenhum anexo existente. Clique para adicionar.</span>
                             </label>
-                            <button id="btnRemoveAnexo" class="btn-icon-only hidden" title="Remover anexo" style="margin-left: 10px;">
-                                <span class="material-icons" style="font-size: 16px; color: #D32F2F;">close</span>
+
+                            <button id="btnRemoveAnexo" class="btn-remove-anexo hidden" title="Remover anexo">
+                                <span class="material-icons">close</span>
                             </button>
                         </div>
                     </div>
@@ -135,6 +137,20 @@
             </div>
 
         </main>
+    </div>
+
+    <div id="modalOverlay" class="modal-overlay" style="display: none;">
+        <div class="modal-box">
+            <div class="modal-header">
+                <span class="material-icons-outlined modal-icon-discrete">info</span>
+                <h3>Remover Item</h3>
+            </div>
+            <p>Deseja realmente remover este item do pedido?</p>
+            <div class="modal-actions">
+                <button id="btnModalCancel" class="modal-btn modal-btn-cancel">Não, Cancelar</button>
+                <button id="btnModalConfirm" class="modal-btn modal-btn-confirm">Sim, Remover</button>
+            </div>
+        </div>
     </div>
 
     <script src="novo_pedido4.js"></script>

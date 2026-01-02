@@ -3,6 +3,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const sidebar = document.getElementById('sidebarContainer');
     const resizeHandle = document.getElementById('resizeHandle');
     const btnConcluir = document.getElementById('btnConcluir');
+    // const accordionBtn = document.getElementById('accordionMainBtn'); // Usando onclick direto no HTML
+    const accordionContent = document.getElementById('accordionContent');
+    const accordionIcon = document.getElementById('accordionIcon');
     const totalHeader = document.getElementById('totalValorHeader');
 
     const modalOverlay = document.getElementById('modalOverlay');
@@ -15,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (dadosCarrinho) carrinho = JSON.parse(dadosCarrinho);
 
     if (carrinho.length === 0) {
-        // alert('Sessão expirada. Reinicie o processo.');
+        // Redirecionamento opcional se vazio
         // window.location.href = 'novo_pedido.html';
     }
 
@@ -62,16 +65,17 @@ document.addEventListener('DOMContentLoaded', () => {
             const detalhes = item.detalhesItem || {}; 
             
             const valQtd = item.quantidade;
-            const valAplic = detalhes.aplicacao || "Industrialização";
+            const valAplic = detalhes.aplicacao || "";
             const valData = detalhes.dataEntrega || "";
             const valClass = detalhes.classificacao || "";
             const valDep = detalhes.deposito || "";
-            const valOrcado = detalhes.orcado || "S";
-            const valTipo = detalhes.tipoCompra || "";
+            const valOrcado = detalhes.orcado || "";
+            const valTipo = detalhes.tipoCompra || "Normal";
             const valObs = detalhes.observacoes || "";
             const grupo = item.grupo || 'ALMOXARIFADO';
             const ultimoPreco = item.preco * 1.1;
 
+            // HTML com placeholders de "Obrigatório" e classe mandatory-field
             const detailHtml = `
                 <div class="item-detail-card" data-index="${index}">
                     
@@ -101,12 +105,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     <div class="card-inputs-grid" id="inputGrid-${index}">
                         <div class="field-group">
-                            <label>Quantidade</label>
-                            <input type="number" class="input-me mandatory-border input-qtd" value="${valQtd}" min="1">
+                            <label>Quantidade <span style="color:red">*</span></label>
+                            <input type="number" class="input-me mandatory-field input-qtd" value="${valQtd}" min="1" placeholder="Obrigatório">
                         </div>
                         <div class="field-group">
-                            <label>Aplicação</label>
-                            <select class="input-me mandatory-border input-aplicacao">
+                            <label>Aplicação <span style="color:red">*</span></label>
+                            <select class="input-me mandatory-field input-aplicacao">
+                                <option value="" disabled ${!valAplic ? 'selected' : ''}>Selecione (Obrigatório)</option>
                                 <option value="Industrialização" ${valAplic === 'Industrialização' ? 'selected' : ''}>Industrialização</option>
                                 <option value="Uso e Consumo" ${valAplic === 'Uso e Consumo' ? 'selected' : ''}>Uso e Consumo</option>
                             </select>
@@ -119,29 +124,29 @@ document.addEventListener('DOMContentLoaded', () => {
                             </select>
                         </div>
                         <div class="field-group">
-                            <label>Data Estimada</label>
-                            <input type="date" class="input-me mandatory-border input-data" value="${valData}">
+                            <label>Data Estimada <span style="color:red">*</span></label>
+                            <input type="date" class="input-me mandatory-field input-data" value="${valData}">
                         </div>
 
                         <div class="field-group">
-                            <label>Cat. Class. Contábil</label>
-                            <select class="input-me mandatory-border input-classificacao">
-                                <option value="" disabled selected>Selecione</option>
+                            <label>Cat. Class. Contábil <span style="color:red">*</span></label>
+                            <select class="input-me mandatory-field input-classificacao">
+                                <option value="" disabled ${!valClass ? 'selected' : ''}>Selecione (Obrigatório)</option>
                                 <option value="Material de Consumo" ${valClass === 'Material de Consumo' ? 'selected' : ''}>Material de Consumo</option>
                                 <option value="Ativo" ${valClass === 'Ativo' ? 'selected' : ''}>Ativo</option>
                             </select>
                         </div>
                         <div class="field-group">
-                            <label>Depósito</label>
-                            <select class="input-me mandatory-border input-deposito">
-                                <option value="" disabled selected>Selecione</option>
+                            <label>Depósito <span style="color:red">*</span></label>
+                            <select class="input-me mandatory-field input-deposito">
+                                <option value="" disabled ${!valDep ? 'selected' : ''}>Selecione (Obrigatório)</option>
                                 <option value="DEP01" ${valDep === 'DEP01' ? 'selected' : ''}>DEP01</option>
                             </select>
                         </div>
                         <div class="field-group">
-                            <label>Orçado</label>
-                            <select class="input-me mandatory-border input-orcado">
-                                <option value="" disabled selected>Selecione</option>
+                            <label>Orçado <span style="color:red">*</span></label>
+                            <select class="input-me mandatory-field input-orcado">
+                                <option value="" disabled ${!valOrcado ? 'selected' : ''}>Selecione (Obrigatório)</option>
                                 <option value="Sim" ${valOrcado === 'Sim' ? 'selected' : ''}>Sim</option>
                                 <option value="Não" ${valOrcado === 'Não' ? 'selected' : ''}>Não</option>
                             </select>
@@ -160,9 +165,14 @@ document.addEventListener('DOMContentLoaded', () => {
             container.insertAdjacentHTML('beforeend', detailHtml);
         });
 
-        // Listeners para Inputs e Botão Delete
+        // Listeners
         container.querySelectorAll('select, input, textarea').forEach(input => {
+            // Remove erro ao digitar/selecionar
+            input.addEventListener('input', (e) => {
+                if(e.target.value) e.target.classList.remove('input-error');
+            });
             input.addEventListener('change', (e) => {
+                if(e.target.value) e.target.classList.remove('input-error');
                 salvarDadosGridParaCarrinho();
                 if(e.target.classList.contains('input-qtd')) renderizarTudo();
             });
@@ -176,34 +186,25 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- FUNÇÕES DE TOGGLE (GLOBAL - IGUAL NOVO_PEDIDO4) ---
-    
-    // Toggle para Expandir/Recolher Itens Individuais
+    // Toggle (Global)
     window.toggleItemRow = function(index) {
         const grid = document.getElementById(`inputGrid-${index}`);
         const icon = document.querySelector(`.toggle-icon-${index}`);
-        
-        // Verifica display none ou vazio
         if (grid.style.display === 'none' || grid.style.display === '') {
-            grid.style.display = 'grid'; 
-            icon.innerText = 'expand_less';
+            grid.style.display = 'grid'; icon.innerText = 'expand_less';
         } else {
-            grid.style.display = 'none'; 
-            icon.innerText = 'expand_more';
+            grid.style.display = 'none'; icon.innerText = 'expand_more';
         }
     };
-
-    // Toggle para a Seção Principal de Itens (Accordion)
+    
+    // Toggle Section Principal
     window.toggleMainSection = function() {
         const content = document.getElementById('accordionContent');
         const icon = document.getElementById('accordionIcon');
-
         if (content.style.display === 'none') {
-            content.style.display = 'block';
-            icon.innerText = 'expand_less';
+            content.style.display = 'block'; icon.innerText = 'expand_less';
         } else {
-            content.style.display = 'none';
-            icon.innerText = 'expand_more';
+            content.style.display = 'none'; icon.innerText = 'expand_more';
         }
     };
 
@@ -227,16 +228,14 @@ document.addEventListener('DOMContentLoaded', () => {
         sessionStorage.setItem('carrinho_temp', JSON.stringify(carrinho));
     }
 
-    // --- LÓGICA DE ALÇA (SIDEBAR) ---
+    // Alça logic
     let isResizing = false, isDragging = false, startX = 0, startWidth = 0;
-    
     resizeHandle.addEventListener('mousedown', (e) => {
         e.preventDefault(); isResizing = true; isDragging = false; 
         startX = e.clientX; startWidth = sidebar.getBoundingClientRect().width;
         if (sidebar.classList.contains('closed')) startWidth = 0;
         sidebar.style.transition = 'none'; resizeHandle.classList.add('dragging'); document.body.style.cursor = 'col-resize';
     });
-    
     window.addEventListener('mousemove', (e) => {
         if (!isResizing) return;
         const dx = e.clientX - startX;
@@ -247,7 +246,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (newWidth > 0) sidebar.style.width = `${newWidth}px`; else sidebar.style.width = '0px';
         }
     });
-    
     window.addEventListener('mouseup', (e) => {
         if (!isResizing) return;
         isResizing = false; resizeHandle.classList.remove('dragging'); document.body.style.cursor = '';
@@ -259,40 +257,63 @@ document.addEventListener('DOMContentLoaded', () => {
             else { sidebar.classList.remove('closed'); if(finalWidth < 200) sidebar.style.width = '200px'; }
         }
     });
-    
     function toggleSidebar() {
         if (sidebar.classList.contains('closed')) { sidebar.classList.remove('closed'); if (!sidebar.style.width || sidebar.style.width === '0px') sidebar.style.width = '280px'; } 
         else { sidebar.classList.add('closed'); }
     }
 
-    // Botão Concluir
+    // --- AÇÃO CONCLUIR (VALIDAÇÃO SEM ALERT) ---
     btnConcluir.addEventListener('click', () => {
         salvarDadosGridParaCarrinho();
-        let erro = false;
-        carrinho.forEach(item => { if(!item.detalhesItem?.dataEntrega) erro = true; });
         
-        if (erro) { 
-            alert('Por favor, preencha a Data Estimada para todos os itens.'); 
-            return; 
+        let temErro = false;
+        const cards = document.querySelectorAll('.item-detail-card');
+        
+        // Verifica campos obrigatórios
+        cards.forEach((card, index) => {
+            const inputsObrigatorios = card.querySelectorAll('.mandatory-field');
+            let itemInvalido = false;
+
+            inputsObrigatorios.forEach(input => {
+                if (!input.value) {
+                    input.classList.add('input-error');
+                    itemInvalido = true;
+                    temErro = true;
+                } else {
+                    input.classList.remove('input-error');
+                }
+            });
+
+            // Se o item tem erro e está fechado, abre para o usuário ver
+            if (itemInvalido) {
+                const grid = document.getElementById(`inputGrid-${index}`);
+                if (grid.style.display === 'none' || grid.style.display === '') {
+                    toggleItemRow(index);
+                }
+            }
+        });
+
+        // Se tiver erro, para aqui (sem alert)
+        if (temErro) {
+            return;
         }
         
+        // Sucesso
         btnConcluir.innerHTML = 'Processando...';
         setTimeout(() => { window.location.href = 'novo_pedido4.html'; }, 300);
     });
 
-    // Modal de Exclusão
+    // Modal
     function abrirModal() { modalOverlay.style.display = 'flex'; }
     function fecharModal() { modalOverlay.style.display = 'none'; itemToDeleteIndex = null; }
-    
     btnModalCancel.addEventListener('click', fecharModal);
-    
     btnModalConfirm.addEventListener('click', () => {
         if (itemToDeleteIndex !== null) {
             carrinho.splice(itemToDeleteIndex, 1);
             sessionStorage.setItem('carrinho_temp', JSON.stringify(carrinho));
             fecharModal();
             if(carrinho.length === 0) {
-                alert('Todos os itens removidos.');
+                // alert('Todos os itens removidos.'); 
                 window.location.href = 'novo_pedido.html';
             } else {
                 renderizarTudo();

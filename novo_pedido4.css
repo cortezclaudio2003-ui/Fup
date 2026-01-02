@@ -5,7 +5,6 @@ body {
     height: 100vh; width: 100vw;
     display: flex; flex-direction: column;
     font-family: 'Calibri', 'Segoe UI', sans-serif;
-    /* FONTE AUMENTADA DE 14px PARA 15px */
     font-size: 15px; color: #333; overflow: hidden;
 }
 
@@ -18,14 +17,12 @@ input, select, textarea, button, h3, p, span, div { font-family: 'Calibri', 'Seg
     display: flex; justify-content: space-between; align-items: center;
     border-bottom: 2px solid #E67E22; flex-shrink: 0; z-index: 10;
 }
-/* FONTE AUMENTADA */
 .doc-title { font-size: 15px; color: #444; display: flex; align-items: center; font-weight: 600; }
 .top-actions { display: flex; gap: 10px; }
 
 .btn-top {
     height: 34px; padding: 0 15px; border-radius: 4px; 
     font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 5px; 
-    /* FONTE AUMENTADA */
     font-size: 14px;
     text-decoration: none; border: 1px solid transparent;
 }
@@ -52,16 +49,15 @@ input, select, textarea, button, h3, p, span, div { font-family: 'Calibri', 'Seg
     padding-bottom: 10px; border-bottom: 1px solid #EEE;
     cursor: pointer; user-select: none;
 }
-/* FONTE AUMENTADA */
 .section-header h3 { margin: 0; font-size: 17px; font-weight: 700; color: #333; }
 .toggle-icon-small { 
     font-size: 19px; color: #E67E22; background: #FFF5E5; 
     border-radius: 50%; padding: 2px; transition: background 0.2s;
+    display: inline-flex; align-items: center; justify-content: center;
 }
 .expand-link { 
     margin-left: auto; color: #666; font-weight: 400; cursor: pointer; 
     display: flex; align-items: center; gap: 4px; 
-    /* FONTE AUMENTADA */
     font-size: 13px;
 }
 .expand-link:hover { color: #E67E22; }
@@ -73,25 +69,34 @@ input, select, textarea, button, h3, p, span, div { font-family: 'Calibri', 'Seg
 }
 .info-grid.hidden { display: none; }
 .info-item { display: flex; flex-direction: column; gap: 4px; }
-/* FONTE AUMENTADA */
 .info-item label { font-size: 13px; color: #777; font-weight: 400; }
 .info-item span { font-size: 14px; color: #333; font-weight: 400; }
 .full-width { grid-column: span 4; }
 
-/* ESTILOS PARA O ANEXO */
-.attachment-wrapper { display: flex; align-items: center; }
-.attachment-btn {
-    display: flex; align-items: center; gap: 5px; color: #666; 
-    cursor: pointer; padding: 4px 8px; border-radius: 4px;
-    border: 1px dashed transparent; transition: all 0.2s;
+/* --- ESTILOS DO ANEXO (Melhorado) --- */
+.attachment-wrapper { 
+    display: flex; align-items: center; gap: 10px; 
 }
-.attachment-btn:hover { background-color: #F0F0F0; border-color: #CCC; color: #333; }
-.attachment-btn span.material-icons-outlined { font-size: 16px; }
+.attachment-btn {
+    display: flex; align-items: center; gap: 6px; color: #666; 
+    cursor: pointer; padding: 6px 10px; border-radius: 4px;
+    border: 1px dashed #CCC; transition: all 0.2s; background: #FAFAFA;
+}
+.attachment-btn:hover { background-color: #F0F0F0; border-color: #BBB; color: #333; }
+.attachment-btn span.material-icons-outlined { font-size: 18px; }
+
+/* Botão de Remover Anexo */
+.btn-remove-anexo {
+    background: transparent; border: none; cursor: pointer;
+    color: #999; display: flex; align-items: center; justify-content: center;
+    padding: 4px; border-radius: 50%; transition: all 0.2s;
+}
+.btn-remove-anexo:hover { background-color: #FFEBEE; color: #D32F2F; }
+.btn-remove-anexo.hidden { display: none; }
 
 /* --- Cards Endereço --- */
 .address-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px; }
 .address-card { border: 1px solid #DDD; border-radius: 6px; padding: 15px; background: #FAFAFA; }
-/* FONTE AUMENTADA */
 .card-label { font-size: 13px; color: #666; margin-bottom: 5px; font-weight: 700; text-transform: uppercase; }
 .orange-code { color: #E67E22; font-size: 17px; margin: 0 0 10px 0; font-weight: 700; }
 .address-details p { margin: 4px 0; color: #555; display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 400; }
@@ -103,7 +108,6 @@ input, select, textarea, button, h3, p, span, div { font-family: 'Calibri', 'Seg
     grid-template-columns: 40px 100px 130px 25% 60px 120px 1fr 50px;
     padding: 10px 20px; 
     border-bottom: 1px solid #DDD; 
-    /* FONTE AUMENTADA */
     font-weight: 700; color: #000; font-size: 14px; margin-bottom: 5px;
 }
 #itemsListContainer.hidden { display: none; }
@@ -122,7 +126,6 @@ input, select, textarea, button, h3, p, span, div { font-family: 'Calibri', 'Seg
     display: grid; 
     grid-template-columns: 40px 100px 130px 25% 60px 120px 1fr 50px;
     padding: 12px 20px; 
-    /* FONTE AUMENTADA */
     align-items: center; font-size: 14px; font-weight: 400;
 }
 .card-summary-row:hover { background-color: #FAFAFA; }
@@ -134,8 +137,13 @@ input, select, textarea, button, h3, p, span, div { font-family: 'Calibri', 'Seg
 .col-desc { color: #333; }
 .badge-g { background-color: #FFA000; color: white; font-weight: bold; font-size: 12px; padding: 2px 5px; border-radius: 2px; margin-right: 5px; }
 
-.btn-icon-only { background: transparent; border: none; cursor: pointer; color: #555; display: flex; align-items: center; justify-content: center; }
-.btn-icon-only:hover { color: #000; }
+/* Botão de Excluir Item */
+.btn-icon-only { 
+    background: transparent; border: none; cursor: pointer; 
+    color: #555; display: flex; align-items: center; justify-content: center; 
+    width: 24px; height: 24px; border-radius: 4px;
+}
+.btn-icon-only:hover { color: #000; background-color: #EEE; }
 
 /* --- GRID EXPANDIDO (INPUTS) --- */
 .card-inputs-grid {
@@ -147,13 +155,35 @@ input, select, textarea, button, h3, p, span, div { font-family: 'Calibri', 'Seg
 }
 .field-group { display: flex; flex-direction: column; gap: 4px; }
 .field-group.span-2 { grid-column: span 2; }
-/* FONTE AUMENTADA */
 .field-group label { font-size: 13px; color: #777; font-weight: 400; }
 
 .input-me { 
     width: 100%; padding: 6px 8px; border: 1px solid #CCC; border-radius: 4px; 
-    /* FONTE AUMENTADA */
     font-size: 14px; color: #333; outline: none; background: #FFF; font-weight: 400;
 }
-.input-me:focus { border-color: #E67E22; }
 textarea.input-me { resize: vertical; height: 32px; }
+
+/* --- MODAL (Copiado de novo_pedido3 para consistência) --- */
+.modal-overlay { 
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+    background: rgba(0, 0, 0, 0.4); z-index: 1000; 
+    display: flex; justify-content: center; align-items: center; backdrop-filter: blur(1px); 
+}
+.modal-box { 
+    background: #FFF; padding: 20px 30px; border-radius: 6px; width: 380px; 
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15); 
+    display: flex; flex-direction: column; align-items: center; text-align: center; 
+}
+.modal-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+.modal-icon-discrete { color: #9CA3AF; font-size: 24px; } 
+.modal-header h3 { margin: 0; font-size: 16px; color: #111; font-weight: 400; }
+.modal-box p { font-size: 14px; color: #000; margin: 0 0 20px 0; font-weight: 400; }
+.modal-actions { display: flex; justify-content: center; gap: 10px; width: 100%; }
+.modal-btn { 
+    padding: 8px 16px; border-radius: 4px; font-size: 13px; cursor: pointer; 
+    border: 1px solid transparent; font-family: 'Calibri', sans-serif; 
+}
+.modal-btn-cancel { background: #E5E7EB; color: #000; border: none; }
+.modal-btn-cancel:hover { background: #D1D5DB; }
+.modal-btn-confirm { background: #EF4444; color: white; }
+.modal-btn-confirm:hover { background: #DC2626; }
