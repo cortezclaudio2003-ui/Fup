@@ -8,11 +8,10 @@
 }
 
 /* --- CORREÇÃO DO ESPAÇAMENTO --- */
-/* Anula o limite de 1400px do style.css global */
 main.transacoes-content-erp {
-    max-width: none !important; /* Força largura ilimitada */
-    margin: 0 !important;       /* Remove margens centrais */
-    padding: 0 !important;      /* Remove paddings globais */
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -33,13 +32,14 @@ main.transacoes-content-erp {
     flex-shrink: 0;
 }
 
+/* AJUSTE AQUI: Aproximação dos botões */
 .erp-left {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 4px; /* Reduzido para ficar bem perto */
 }
 
-/* Botão Menu */
+/* AJUSTE AQUI: Remoção da sombra/contorno ao clicar */
 .icon-toggle-btn {
     background: transparent;
     border: none;
@@ -49,7 +49,17 @@ main.transacoes-content-erp {
     cursor: pointer;
     border-radius: 4px;
     transition: background 0.2s;
+    /* Garante que não tenha contorno padrão */
+    outline: none; 
 }
+
+/* Remove a borda azul/sombra de foco ao clicar */
+.icon-toggle-btn:focus, .icon-toggle-btn:active {
+    outline: none;
+    box-shadow: none;
+    background-color: transparent; /* Opcional: mantém transparente ao clicar */
+}
+
 .icon-toggle-btn:hover { background-color: #F0F0F0; color: #333; }
 .icon-toggle-btn .material-icons-outlined { font-size: 24px; }
 
@@ -170,7 +180,7 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 0;
-    table-layout: fixed; /* Tabela fixa */
+    table-layout: fixed; 
 }
 
 thead {
@@ -189,13 +199,12 @@ th {
 }
 
 /* Colunas Ajustadas */
-th:nth-child(1), td:nth-child(1) { width: 50px; text-align: center; } /* Checkbox */
-th:nth-child(2), td:nth-child(2) { width: 220px; } /* Doc Me */
-th:nth-child(3), td:nth-child(3) { width: 220px; } /* Doc ERP */
+th:nth-child(1), td:nth-child(1) { width: 50px; text-align: center; } 
+th:nth-child(2), td:nth-child(2) { width: 220px; } 
+th:nth-child(3), td:nth-child(3) { width: 220px; } 
 
-/* Coluna Título Expandida */
 th:nth-child(4), td:nth-child(4) {
-    width: auto; /* Ocupa TODO o resto do espaço */
+    width: auto; 
 }
 
 td {
