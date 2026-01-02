@@ -4,13 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Novo Pedido - Detalhes Itens</title>
+    
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
     <link rel="stylesheet" href="novo_pedido3.css">
 </head>
 <body>
+
     <div class="nav-bar">
         <div class="nav-left"><div class="breadcrumbs"></div></div>
+        
         <div class="nav-actions">
             <button class="btn-action btn-cancel" onclick="window.location.href='novo_pedido.html'">
                 <span class="material-icons-outlined">close</span> Cancelar
@@ -25,11 +29,13 @@
     </div>
 
     <div class="split-layout-container" id="splitLayout">
+        
         <aside class="sidebar-items" id="sidebarContainer">
             <div class="sidebar-header">
                 <span>ITENS (<span id="countSidebar">0</span>)</span>
             </div>
-            <div id="listaItensSidebar" class="items-list-content"></div>
+            <div id="listaItensSidebar" class="items-list-content">
+                </div>
         </aside>
 
         <div class="resize-handle" id="resizeHandle" title="Clique para ocultar | Arrastar para ajustar">
@@ -39,6 +45,7 @@
         </div>
 
         <main class="main-content-area" id="mainContainer">
+            
             <div class="content-header-row">
                 <div class="accordion-trigger" id="accordionMainBtn">
                     <span class="material-icons-outlined orange-icon" id="accordionIcon">expand_less</span>
@@ -60,21 +67,24 @@
                     <div class="col-val">Valor Total</div>
                     <div class="col-act">Ações</div>
                 </div>
-                <div id="itemsDetailContainer" class="items-detail-wrapper"></div>
+
+                <div id="itemsDetailContainer" class="items-detail-wrapper">
+                    </div>
             </div>
+
         </main>
     </div>
 
     <div id="modalOverlay" class="modal-overlay" style="display: none;">
         <div class="modal-box">
             <div class="modal-header">
-                <span class="material-icons-outlined" style="color:#E67E22;">warning</span>
+                <span class="material-icons-outlined modal-icon-discrete">info</span>
                 <h3>Remover Item</h3>
             </div>
             <p>Deseja realmente remover este item do pedido?</p>
             <div class="modal-actions">
-                <button id="btnModalCancel" class="btn-action btn-cancel">Não, Cancelar</button>
-                <button id="btnModalConfirm" class="btn-action btn-advance" style="background:#EF4444; border-color:#EF4444;">Sim, Remover</button>
+                <button id="btnModalCancel" class="modal-btn modal-btn-cancel">Não, Cancelar</button>
+                <button id="btnModalConfirm" class="modal-btn modal-btn-confirm">Sim, Remover</button>
             </div>
         </div>
     </div>

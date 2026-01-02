@@ -82,7 +82,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     
                     <div class="card-summary-row">
                         <div class="col-idx text-center">${index + 1}</div>
-                        
                         <div class="col-grp">${grupo}</div>
                         
                         <div class="col-code" onclick="toggleItemRow(${index})" title="Clique para expandir/recolher">
@@ -95,9 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                         
                         <div class="col-un text-center">${item.un}</div>
-                        
                         <div class="col-price">${ultimoPreco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</div>
-                        
                         <div class="col-val">${valorTotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</div>
                         
                         <div class="col-act">
@@ -108,7 +105,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
 
                     <div class="card-inputs-grid" id="inputGrid-${index}">
-                        
                         <div class="field-group">
                             <label>Quantidade</label>
                             <input type="number" class="input-me mandatory-border input-qtd" value="${valQtd}" min="1">
@@ -163,7 +159,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                         <div></div>
                         <div></div>
-
                     </div>
                 </div>
             `;
@@ -188,17 +183,31 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Toggle
+    // Modal
+    function abrirModal() { modalOverlay.style.display = 'flex'; }
+    function fecharModal() { modalOverlay.style.display = 'none'; itemToDeleteIndex = null; }
+    btnModalCancel.addEventListener('click', fecharModal);
+    btnModalConfirm.addEventListener('click', () => {
+        if (itemToDeleteIndex !== null) {
+            carrinho.splice(itemToDeleteIndex, 1);
+            sessionStorage.setItem('carrinho_temp', JSON.stringify(carrinho));
+            fecharModal();
+            if(carrinho.length === 0) {
+                alert('Todos os itens removidos. Voltando ao catálogo.');
+                window.location.href = 'novo_pedido.html';
+            } else {
+                renderizarTudo();
+            }
+        }
+    });
+
     window.toggleItemRow = function(index) {
         const grid = document.getElementById(`inputGrid-${index}`);
         const icon = document.querySelector(`.toggle-icon-${index}`);
-        
         if (grid.style.display === 'none' || grid.style.display === '') {
-            grid.style.display = 'grid'; 
-            icon.innerText = 'expand_less';
+            grid.style.display = 'grid'; icon.innerText = 'expand_less';
         } else {
-            grid.style.display = 'none'; 
-            icon.innerText = 'expand_more';
+            grid.style.display = 'none'; icon.innerText = 'expand_more';
         }
     };
 
@@ -223,7 +232,6 @@ document.addEventListener('DOMContentLoaded', () => {
         sessionStorage.setItem('carrinho_temp', JSON.stringify(carrinho));
     }
 
-    // Alça (Resizing)
     let isResizing = false;
     let isDragging = false; 
     let startX = 0;
@@ -278,23 +286,5 @@ document.addEventListener('DOMContentLoaded', () => {
         if (erro) { alert('Por favor, preencha a Data Estimada para todos os itens.'); return; }
         btnConcluir.innerHTML = 'Processando...';
         setTimeout(() => { window.location.href = 'novo_pedido4.html'; }, 300);
-    });
-
-    // Eventos Modal
-    function abrirModal() { modalOverlay.style.display = 'flex'; }
-    function fecharModal() { modalOverlay.style.display = 'none'; itemToDeleteIndex = null; }
-    btnModalCancel.addEventListener('click', fecharModal);
-    btnModalConfirm.addEventListener('click', () => {
-        if (itemToDeleteIndex !== null) {
-            carrinho.splice(itemToDeleteIndex, 1);
-            sessionStorage.setItem('carrinho_temp', JSON.stringify(carrinho));
-            fecharModal();
-            if(carrinho.length === 0) {
-                alert('Todos os itens removidos. Voltando ao catálogo.');
-                window.location.href = 'novo_pedido.html';
-            } else {
-                renderizarTudo();
-            }
-        }
     });
 });
