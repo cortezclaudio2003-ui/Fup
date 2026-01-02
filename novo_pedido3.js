@@ -183,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Modal
+    // Modal Logic
     function abrirModal() { modalOverlay.style.display = 'flex'; }
     function fecharModal() { modalOverlay.style.display = 'none'; itemToDeleteIndex = null; }
     btnModalCancel.addEventListener('click', fecharModal);
@@ -204,7 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.toggleItemRow = function(index) {
         const grid = document.getElementById(`inputGrid-${index}`);
         const icon = document.querySelector(`.toggle-icon-${index}`);
-        if (grid.style.display === 'none' || grid.style.display === '') {
+        if (grid.style.display === 'none') {
             grid.style.display = 'grid'; icon.innerText = 'expand_less';
         } else {
             grid.style.display = 'none'; icon.innerText = 'expand_more';
