@@ -4,92 +4,89 @@ document.addEventListener('DOMContentLoaded', () => {
     const sidebar = document.getElementById('sidebarContainer');
     const resizeHandle = document.getElementById('resizeHandle');
     
-    // --- LÓGICA DE INTERAÇÃO NA ALÇA ---
+    // --- LÓGICA DE ALÇA (CLIQUE vs ARRASTE) ---
     let isResizing = false;
+    let isDragging = false; 
     let startX = 0;
-    let currentWidth = 280;
+    let startWidth = 0;
 
-    // 1. DUPLO CLIQUE (TOGGLE)
-    // "Se clicar duas vezes a alça é desoculta/oculta sem precisar pressionar"
-    resizeHandle.addEventListener('dblclick', (e) => {
-        toggleSidebar();
-    });
-
-    // 2. PRESSIONAR (INÍCIO DO ARRASTE)
     resizeHandle.addEventListener('mousedown', (e) => {
         e.preventDefault();
         isResizing = true;
+        isDragging = false; 
         startX = e.clientX;
-        currentWidth = sidebar.getBoundingClientRect().width;
+        startWidth = sidebar.getBoundingClientRect().width;
         
-        // Se estiver fechado e começar a arrastar, abre imediatamente para redimensionar
         if (sidebar.classList.contains('closed')) {
-            currentWidth = 0;
-            sidebar.classList.remove('closed'); 
-            sidebar.style.width = '0px';
+            startWidth = 0;
         }
 
-        // Desativa transição para arraste fluído
-        sidebar.style.transition = 'none';
+        sidebar.style.transition = 'none'; 
         resizeHandle.classList.add('dragging');
         document.body.style.cursor = 'col-resize';
     });
 
-    // 3. MOVER MOUSE (ARRASTAR)
-    document.addEventListener('mousemove', (e) => {
+    window.addEventListener('mousemove', (e) => {
         if (!isResizing) return;
 
         const dx = e.clientX - startX;
-        let newWidth = currentWidth + dx;
+        
+        if (Math.abs(dx) > 5) {
+            isDragging = true;
+            if (sidebar.classList.contains('closed')) {
+                sidebar.classList.remove('closed');
+                sidebar.style.width = '0px'; 
+            }
+        }
 
-        // Limites de tamanho
-        if (newWidth < 200) newWidth = 200; 
-        if (newWidth > 600) newWidth = 600;
+        if (isDragging) {
+            let newWidth = startWidth + dx;
+            if (newWidth < 150) newWidth = 0; 
+            if (newWidth > 600) newWidth = 600;
 
-        // Se arrastar muito para a esquerda, visualmente fecha
-        if (newWidth < 150) {
-            sidebar.style.width = '0px'; 
-        } else {
-            sidebar.style.width = `${newWidth}px`;
+            if (newWidth > 0) {
+                sidebar.style.width = `${newWidth}px`;
+            } else {
+                sidebar.style.width = '0px';
+            }
         }
     });
 
-    // 4. SOLTAR MOUSE (FIM DO ARRASTE)
-    document.addEventListener('mouseup', (e) => {
+    window.addEventListener('mouseup', (e) => {
         if (!isResizing) return;
         
         isResizing = false;
         resizeHandle.classList.remove('dragging');
         document.body.style.cursor = '';
-        
-        // Reativa a animação suave
-        sidebar.style.transition = 'width 0.3s cubic-bezier(0.25, 0.8, 0.25, 1)';
+        sidebar.style.transition = 'width 0.3s ease'; 
 
-        // Verifica se soltou com largura muito pequena (intensão de fechar)
-        const finalWidth = sidebar.getBoundingClientRect().width;
-        if (finalWidth < 150) {
-            sidebar.classList.add('closed');
-            sidebar.style.width = ''; // Limpa width inline
+        if (!isDragging) {
+            toggleSidebar();
         } else {
-            sidebar.classList.remove('closed');
+            const finalWidth = sidebar.getBoundingClientRect().width;
+            if (finalWidth < 100) {
+                sidebar.classList.add('closed');
+                sidebar.style.width = ''; 
+            } else {
+                sidebar.classList.remove('closed');
+                if(finalWidth < 200) sidebar.style.width = '200px'; 
+            }
         }
     });
 
     function toggleSidebar() {
         if (sidebar.classList.contains('closed')) {
-            // ABRIR (DESOCULTAR)
             sidebar.classList.remove('closed');
-            if (sidebar.style.width === '0px' || !sidebar.style.width) {
+            if (!sidebar.style.width || sidebar.style.width === '0px') {
                 sidebar.style.width = '280px';
             }
         } else {
-            // FECHAR (OCULTAR)
             sidebar.classList.add('closed');
         }
     }
 
 
-    // --- LÓGICA PADRÃO (DADOS) ---
+    // --- DADOS E FORMULÁRIO ---
     const dadosSessao = sessionStorage.getItem('carrinho_temp');
     let carrinho = [];
 
