@@ -32,14 +32,13 @@ main.transacoes-content-erp {
     flex-shrink: 0;
 }
 
-/* AJUSTE AQUI: Aproximação dos botões */
 .erp-left {
     display: flex;
     align-items: center;
-    gap: 4px; /* Reduzido para ficar bem perto */
+    gap: 4px; /* Botões próximos */
 }
 
-/* AJUSTE AQUI: Remoção da sombra/contorno ao clicar */
+/* Botão Menu */
 .icon-toggle-btn {
     background: transparent;
     border: none;
@@ -49,30 +48,32 @@ main.transacoes-content-erp {
     cursor: pointer;
     border-radius: 4px;
     transition: background 0.2s;
-    /* Garante que não tenha contorno padrão */
     outline: none; 
 }
-
-/* Remove a borda azul/sombra de foco ao clicar */
 .icon-toggle-btn:focus, .icon-toggle-btn:active {
-    outline: none;
-    box-shadow: none;
-    background-color: transparent; /* Opcional: mantém transparente ao clicar */
+    outline: none; box-shadow: none; background-color: transparent;
 }
-
 .icon-toggle-btn:hover { background-color: #F0F0F0; color: #333; }
 .icon-toggle-btn .material-icons-outlined { font-size: 24px; }
 
-/* Botão Novo Pedido */
+/* Botão Novo Pedido (LINK ou BUTTON) */
 .btn-group { display: flex; align-items: center; }
 
 .btn-primary-erp {
-    background-color: #1A56DB; color: white; border: none;
-    padding: 0 16px; height: 36px;
+    background-color: #1A56DB; 
+    color: white; 
+    border: none;
+    padding: 0 16px; 
+    height: 36px;
     border-radius: 4px 0 0 4px;
-    font-weight: 600; font-size: 0.85rem;
-    display: flex; align-items: center; gap: 8px;
-    cursor: pointer; border-right: 1px solid rgba(255,255,255,0.3);
+    font-weight: 600; 
+    font-size: 0.85rem;
+    display: flex; 
+    align-items: center; 
+    gap: 8px;
+    cursor: pointer; 
+    border-right: 1px solid rgba(255,255,255,0.3);
+    text-decoration: none; /* Garante que o link não tenha sublinhado */
 }
 
 .btn-primary-erp-arrow {
