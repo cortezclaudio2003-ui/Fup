@@ -36,15 +36,26 @@
 
         <div class="context-module">
             <div class="context-item">
-                <span class="ctx-label">Centro de Custo</span>
-                <span class="ctx-value" id="displayCC">ADM - GERAL</span>
+                <span class="ctx-label">Categoria</span>
+                <span class="ctx-value" id="displayCategoria">CCI CONIPA</span>
             </div>
-            
             <div class="context-separator"></div>
             
             <div class="context-item">
                 <span class="ctx-label">Empresa</span>
-                <span class="ctx-value" id="displayEmpresa">VIVARA MATRIZ</span>
+                <span class="ctx-value" id="displayEmpresa">3000 - CONIPA</span>
+            </div>
+            <div class="context-separator"></div>
+
+            <div class="context-item">
+                <span class="ctx-label">Org. Compras</span>
+                <span class="ctx-value" id="displayOrg">OCCO - CONIPA</span>
+            </div>
+            <div class="context-separator"></div>
+
+            <div class="context-item">
+                <span class="ctx-label">Centro</span>
+                <span class="ctx-value" id="displayCentro">FAB1</span>
             </div>
             
             <button id="btnAlterarContexto" class="btn-edit-context">
@@ -83,9 +94,11 @@
             <div class="panel-footer">
                 <span class="footer-info" id="infoResultados">Itens exibidos</span>
                 <div class="pagination">
-                    <button disabled><span class="material-icons">chevron_left</span></button>
-                    <span>1 - 1</span>
-                    <button disabled><span class="material-icons">chevron_right</span></button>
+                    <button id="btnPrevPage" class="nav-arrow" disabled><span class="material-icons">chevron_left</span></button>
+                    
+                    <div id="pageNumbers" class="page-numbers"></div>
+                    
+                    <button id="btnNextPage" class="nav-arrow" disabled><span class="material-icons">chevron_right</span></button>
                 </div>
             </div>
         </section>
@@ -117,6 +130,46 @@
             </div>
         </aside>
 
+    </div>
+
+    <div id="modalConfig" class="modal-overlay">
+        <div class="modal-config-box">
+            <div class="modal-header-config">
+                <h3>Configuração</h3>
+                <span class="close-cross" id="btnCloseConfigTop">×</span>
+            </div>
+            <div class="modal-body-config">
+                <div class="config-group">
+                    <label>Categoria de Requisição:</label>
+                    <select id="confCategoria" class="input-config">
+                        <option>CCI CONIPA</option>
+                        <option>USO E CONSUMO</option>
+                        <option>IMOBILIZADO</option>
+                    </select>
+                </div>
+                <div class="config-group">
+                    <label>EMPRESA:</label>
+                    <input type="text" id="confEmpresa" class="input-config" value="3000 - CONIPA">
+                </div>
+                <div class="config-group">
+                    <label>ORGANIZAÇÃO DE COMPRAS:</label>
+                    <input type="text" id="confOrg" class="input-config" value="OCCO - CONIPA">
+                </div>
+                <div class="config-group">
+                    <label>CENTRO:</label>
+                    <input type="text" id="confCentro" class="input-config" value="FAB1 - FABRICA MANAUS">
+                </div>
+            </div>
+            <div class="modal-footer-config">
+                <button id="btnSalvarConfig" class="btn-config-save">
+                    <span class="material-icons" style="font-size:16px;">save</span> Salvar
+                </button>
+                <button id="btnFecharConfig" class="btn-config-white">
+                    <span class="material-icons" style="font-size:14px; margin-right:3px;">close</span> Fechar
+                </button>
+                <button id="btnVoltarMercado" class="btn-config-white">Voltar Para Meu Mercado</button>
+            </div>
+        </div>
     </div>
 
     <script src="novo_pedido.js"></script>
