@@ -14,146 +14,136 @@
 </head>
 <body>
 
-    <div class="catalog-top-bar">
-        <div class="catalog-breadcrumbs">
-            <strong>Catálogo ></strong> <span>Faça uma busca ou navegue por grupos</span>
+    <div class="nav-bar">
+        <div class="breadcrumbs">
+            <strong>Catálogo</strong> <span class="divider">/</span> <span>Novo Pedido</span>
         </div>
-        <div class="catalog-actions">
-            <a href="transacoes.html" class="btn-cancelar">
-                <span class="material-icons-outlined">cancel</span> Cancelar
+        <div class="nav-actions">
+            <a href="transacoes.html" class="btn-cancel">
+                <span class="material-icons-outlined">close</span> Cancelar
             </a>
-            <button id="btnAvancar" class="btn-avancar">
-                Avançar <span class="material-icons-outlined">arrow_circle_right</span>
+            <button id="btnAvancar" class="btn-advance">
+                Avançar <span class="material-icons-outlined">arrow_forward</span>
             </button>
         </div>
     </div>
 
-    <div class="search-context-strip">
-        <div class="search-box">
-            <input type="text" placeholder="Buscar por código, descrição ou referência..." class="search-input">
-            <button class="btn-search-icon">
+    <div class="search-context-wrapper">
+        <div class="search-module">
+            <input type="text" class="search-input" placeholder="Pesquise por código, nome ou grupo...">
+            <button class="search-btn">
                 <span class="material-icons">search</span>
             </button>
         </div>
 
-        <div class="context-info-bar">
-            <div class="info-group">
-                <span class="info-label">Categoria</span>
-                <span class="info-value">CCI CONIPA</span>
+        <div class="context-module">
+            <div class="context-item">
+                <span class="ctx-label">Centro de Custo</span>
+                <span class="ctx-value">ADM - GERAL</span>
             </div>
-            <div class="info-group">
-                <span class="info-label">Empresa</span>
-                <span class="info-value">3000 - CONIPA</span>
-            </div>
-            <div class="info-group">
-                <span class="info-label">Organização</span>
-                <span class="info-value">OCCO - CONIPA</span>
-            </div>
-            <div class="info-group">
-                <span class="info-label">Centro</span>
-                <span class="info-value">FAB1 - FABRICA...</span>
+            <div class="context-separator"></div>
+            <div class="context-item">
+                <span class="ctx-label">Empresa</span>
+                <span class="ctx-value">VIVARA MATRIZ</span>
             </div>
             
-            <button class="btn-editar-contexto">
-                <span class="material-icons-outlined">settings</span> EDITAR
+            <button class="btn-edit-context">
+                <span class="material-icons-outlined">edit</span> Alterar
             </button>
         </div>
     </div>
 
-    <div class="catalog-grid">
+    <div class="main-layout">
         
-        <section class="results-content">
-            <div class="results-toolbar">
-                <div class="left-tools">
-                    </div>
-                <div class="right-tools">
-                    <div class="pagination">
-                        <span class="material-icons-outlined icon-btn disabled">chevron_left</span>
-                        <span>1 - 1 de 1</span>
-                        <span class="material-icons-outlined icon-btn disabled">chevron_right</span>
-                    </div>
-                    <span class="material-icons-outlined icon-btn">refresh</span>
-                    <span class="material-icons-outlined icon-btn">more_vert</span>
-                    <div class="view-mode">
-                        <span class="material-icons">view_list</span>
-                        <span class="material-icons">arrow_drop_down</span>
+        <section class="results-panel">
+            <div class="panel-header">
+                <span class="panel-title">Produtos Disponíveis</span>
+                <div class="panel-controls">
+                    <button class="icon-btn" title="Atualizar"><span class="material-icons">refresh</span></button>
+                    <div class="view-toggle">
+                        <span class="material-icons">list</span>
                     </div>
                 </div>
             </div>
 
-            <div class="table-scroll">
+            <div class="table-container">
                 <table class="catalog-table">
                     <thead>
                         <tr>
-                            <th style="width: 50px;">#</th>
-                            <th style="width: 120px;">Código</th>
+                            <th width="80">Código</th>
                             <th>Descrição</th>
-                            <th>Grupo de produto</th>
-                            <th style="width: 60px;">UM</th>
-                            <th style="width: 120px;">Preço</th>
-                            <th style="width: 50px;">(+)</th>
+                            <th>Grupo</th>
+                            <th width="80">Unidade</th>
+                            <th width="100">Preço Unit.</th>
+                            <th width="60" class="text-center">Ação</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td class="icon-cell">
-                                <span class="material-icons icon-gold">monetization_on</span>
-                            </td>
-                            <td>INS150124</td>
-                            <td><a href="#" class="product-link">SACO ZIP TRANSP 12X17CM c/100</a></td>
+                    <tbody id="tabelaProdutos">
+                        <tr data-codigo="INS150124" 
+                            data-descricao="SACO ZIP TRANSP 12X17CM c/100" 
+                            data-grupo="ALMOXARIFADO" 
+                            data-un="PCT" 
+                            data-preco="8.75">
+                            <td><strong>INS150124</strong></td>
+                            <td><a href="#" class="link-prod">SACO ZIP TRANSP 12X17CM c/100</a></td>
                             <td>ALMOXARIFADO</td>
                             <td>PCT</td>
-                            <td>BRL 8,750000</td>
+                            <td>R$ 8,750000</td>
                             <td class="text-center">
-                                <span class="material-icons icon-cart-add">shopping_cart</span>
+                                <button type="button" class="btn-add-cart" title="Adicionar ao carrinho">
+                                    <span class="material-icons">shopping_cart</span>
+                                </button>
+                            </td>
+                        </tr>
+
+                        <tr data-codigo="INS99999" 
+                            data-descricao="CANETA ESFEROGRÁFICA AZUL" 
+                            data-grupo="ESCRITÓRIO" 
+                            data-un="UN" 
+                            data-preco="1.50">
+                            <td><strong>INS99999</strong></td>
+                            <td><a href="#" class="link-prod">CANETA ESFEROGRÁFICA AZUL</a></td>
+                            <td>ESCRITÓRIO</td>
+                            <td>UN</td>
+                            <td>R$ 1,500000</td>
+                            <td class="text-center">
+                                <button type="button" class="btn-add-cart" title="Adicionar ao carrinho">
+                                    <span class="material-icons">shopping_cart</span>
+                                </button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
+            
+            <div class="panel-footer">
+                <span class="footer-info">Itens exibidos</span>
+                <div class="pagination">
+                    <button disabled><span class="material-icons">chevron_left</span></button>
+                    <span>1 - 2 de 2</span>
+                    <button disabled><span class="material-icons">chevron_right</span></button>
+                </div>
+            </div>
         </section>
 
-        <aside class="sidebar-cart">
+        <aside class="cart-panel">
             <div class="cart-header">
-                <div class="cart-top-row">
-                    <span class="material-icons-outlined arrow-back">arrow_back</span>
-                    <div class="cart-title">
-                        <span class="material-icons">shopping_cart</span> Carrinho
-                    </div>
-                    <a href="#" class="cart-clear">Limpar</a>
+                <div class="cart-title-row">
+                    <span class="material-icons cart-icon">shopping_cart</span>
+                    <h3>Carrinho</h3>
+                    <button id="btnLimparCarrinho" class="btn-clear-cart">Limpar</button>
                 </div>
-                <div class="cart-total-row">
-                    <span>Total</span>
-                    <span class="total-big">235,000000</span>
+                
+                <div class="cart-summary">
+                    <span class="summary-label">Total Estimado</span>
+                    <span class="summary-value total-value">R$ 0,00</span>
                 </div>
             </div>
 
-            <div class="cart-body">
-                <div class="cart-item-card">
-                    <div class="card-header">
-                        <span class="material-icons-outlined remove-icon">remove_circle_outline</span>
-                        <div class="card-meta">
-                            <div class="meta-row">GRUPO: <strong>ALMOXARIFADO</strong></div>
-                            <div class="meta-row">SUB-TOTAL: <strong>235,000000</strong></div>
-                        </div>
-                        <span class="material-icons-outlined close-icon">close</span>
-                    </div>
-                    
-                    <div class="card-product-name">
-                        SACO ZIP 5X7 CM 10... (INS150123)
-                    </div>
-
-                    <div class="card-controls">
-                        <div class="stepper">
-                            <button>-</button>
-                            <input type="text" value="10,00000">
-                            <button>+</button>
-                        </div>
-                        <div class="unit-price">
-                            UN. <strong>23,500000</strong>
-                            <span class="badge-g">G</span>
-                        </div>
-                    </div>
+            <div class="cart-items-container">
+                <div class="empty-cart-state">
+                    <span class="material-icons-outlined">remove_shopping_cart</span>
+                    <p>Seu carrinho está vazio</p>
                 </div>
             </div>
         </aside>

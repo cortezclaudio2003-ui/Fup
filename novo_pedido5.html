@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes da Requisição</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <link rel="stylesheet" href="novo_pedido5.css">
+</head>
+<body>
+
+    <div class="actions-bar">
+        <div class="left-actions">
+            <button class="action-btn"><span class="material-icons-outlined">close</span> Cancelar</button>
+            <button class="action-btn"><span class="material-icons-outlined">edit</span> Editar</button>
+            <button class="action-btn"><span class="material-icons-outlined">content_copy</span> Reaproveitar</button>
+            <button class="action-btn"><span class="material-icons-outlined">remove_circle_outline</span> Cancelar Itens</button>
+        </div>
+        <div class="right-actions">
+            <button class="action-btn">Opções <span class="material-icons">arrow_drop_down</span></button>
+        </div>
+    </div>
+
+    <div class="main-container">
+        
+        <div class="hero-section">
+            <div class="id-box">
+                <span class="id-label">Requisição</span>
+                <span class="id-value" id="viewId">ME# ...</span>
+            </div>
+            
+            <div class="hero-info">
+                <div class="hero-title" id="viewTitulo">...</div>
+                <div class="hero-subtitle">VIVARA MATRIZ E FILIAIS LTDA.</div>
+                <div class="hero-user">
+                    <span class="material-icons-outlined user-icon">person</span>
+                    <span id="viewRequisitante">JOSE CLAUDIO CORTEZ DA SILVA</span>
+                </div>
+            </div>
+
+            <div class="hero-status">
+                <div class="total-value" id="viewTotalHero">R$ 0,00</div>
+                <div class="status-badge" id="viewStatus">AGUARDANDO APROVAÇÃO</div>
+                <div class="created-date" id="viewDataCriacao">Criado em: --/--/----</div>
+            </div>
+        </div>
+
+        <div class="address-row">
+            <div class="address-card">
+                <div class="card-header-label">Entrega</div>
+                <div class="card-code" id="viewLocalEntrega">...</div>
+                <div class="address-lines">
+                    <p><span class="icon-tiny material-icons-outlined">badge</span> CNPJ: 26013023000124</p>
+                    <p><span class="icon-tiny material-icons-outlined">description</span> IE: 62011383</p>
+                    <p><span class="icon-tiny material-icons-outlined">place</span> <span id="viewEnderecoEntrega">...</span></p>
+                </div>
+            </div>
+            <div class="address-card">
+                <div class="card-header-label">Faturamento</div>
+                <div class="card-code" id="viewLocalFat">...</div>
+                <div class="address-lines">
+                    <p><span class="icon-tiny material-icons-outlined">badge</span> CNPJ: 26013023000124</p>
+                    <p><span class="icon-tiny material-icons-outlined">description</span> IE: 62011383</p>
+                    <p><span class="icon-tiny material-icons-outlined">place</span> <span id="viewEnderecoFat">...</span></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-block">
+            <div class="section-title">
+                <span class="material-icons-outlined toggle-orange">expand_less</span> 
+                Informações Gerais
+            </div>
+            <div class="info-grid">
+                <div class="field-box">
+                    <label>Título</label>
+                    <span id="infoTitulo">...</span>
+                </div>
+                <div class="field-box">
+                    <label>Requisitante</label>
+                    <span id="infoRequisitante">...</span>
+                </div>
+                <div class="field-box">
+                    <label>Nº Do Documento ME</label>
+                    <span id="infoMeId">...</span>
+                </div>
+                <div class="field-box">
+                    <label>Categoria De Requisição</label>
+                    <span>CCI CONIPA</span>
+                </div>
+                <div class="field-box">
+                    <label>EMPRESA</label>
+                    <span>3000 - CONIPA</span>
+                </div>
+                <div class="field-box">
+                    <label>ORGANIZAÇÃO DE COMPRAS</label>
+                    <span>OCCO - CONIPA</span>
+                </div>
+                <div class="field-box">
+                    <label>CENTRO</label>
+                    <span>FAB1 - MANAUS</span>
+                </div>
+                <div class="field-box">
+                    <label>Data De Criação</label>
+                    <span id="infoData">...</span>
+                </div>
+                <div class="field-box">
+                    <label>Centro De Custos</label>
+                    <span id="infoCC">...</span>
+                </div>
+                <div class="field-box">
+                    <label>Valor Total</label>
+                    <span id="infoTotal">...</span>
+                </div>
+                <div class="field-box full">
+                    <label>Anexo</label>
+                    <span class="attachment-link"><span class="material-icons-outlined" style="font-size:16px;">attach_file</span> Nenhum anexo existente.</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-block">
+            <div class="section-title">
+                <span class="material-icons-outlined toggle-orange">expand_less</span> 
+                Histórico De Aprovações - Estado Atual: <span class="status-inline">AGUARDANDO APROVAÇÃO</span>
+            </div>
+            <div style="padding: 5px 0 0 35px; font-size:13px; color:#555;">
+                <div style="display:flex; align-items:center; gap:10px;">
+                    <span class="material-icons" style="font-size:18px; color:#E67E22;">check_circle</span>
+                    <span>Solicitação criada por <strong>JOSE CLAUDIO</strong> em <span id="histData">...</span></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-block">
+            <div class="section-title">
+                <span class="material-icons-outlined toggle-orange">expand_less</span> 
+                Itens (<span id="cntItens">0</span>) <span class="expand-all"><span class="material-icons" style="font-size:14px;">open_in_full</span> Expandir Tudo</span>
+            </div>
+            
+            <div class="table-container">
+                <div class="table-items-header">
+                    <div style="width:40px;">#</div>
+                    <div style="width:140px;">Código Produto</div>
+                    <div style="flex:1;">Descrição</div>
+                    <div style="width:80px;">Unidade</div>
+                    <div style="width:100px;">Qtde</div>
+                    <div style="width:140px; text-align:right;">Preço Estimado</div>
+                    <div style="width:140px; text-align:right;">Valor Total</div>
+                    <div style="width:60px; text-align:right;">Ações</div>
+                </div>
+                
+                <div id="listaItensFinal">
+                    </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="novo_pedido5.js"></script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novo Pedido - Condições Gerais</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    
+    <link rel="stylesheet" href="novo_pedido2.css">
+</head>
+<body>
+
+    <div class="nav-bar">
+        <div class="breadcrumbs">
+            <strong>Catálogo</strong> 
+            <span class="divider">/</span> <span>Novo Pedido</span> 
+            <span class="divider">/</span> <span>Condições Gerais</span>
+        </div>
+        <div class="nav-actions">
+            <a href="novo_pedido.html" class="btn-back">
+                <span class="material-icons-outlined">arrow_back</span> Voltar
+            </a>
+            <button id="btnAvancarEtapa2" class="btn-advance">
+                Avançar <span class="material-icons-outlined">arrow_forward</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="split-layout">
+        
+        <aside class="sidebar-items">
+            <div class="sidebar-header">ITENS SELECIONADOS</div>
+            <div id="listaItensSidebar" class="items-list">
+                </div>
+        </aside>
+
+        <main class="main-form">
+            
+            <div class="accordion-section">
+                <div class="accordion-header">
+                    <span class="material-icons-outlined toggle-icon">expand_less</span>
+                    <h3>Condições Gerais</h3>
+                </div>
+                
+                <div class="accordion-body">
+                    <form id="formPedido">
+                        
+                        <div class="form-row">
+                            <label>Título da Requisição:</label>
+                            <input type="text" id="inputTitulo" class="input-field mandatory" placeholder="Ex: Materiais para Escritório">
+                        </div>
+
+                        <div class="form-row">
+                            <label>Local de Entrega:</label>
+                            <div class="select-wrapper mandatory">
+                                <select id="selectEntrega" class="input-field">
+                                    <option value="" disabled selected>Selecione</option>
+                                    <option value="CD-SP">CD - São Paulo</option>
+                                    <option value="LOJA-RJ">Loja - Rio de Janeiro</option>
+                                    <option value="MATRIZ">Matriz</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <label>Centro de Custo do Aprovador:</label>
+                            <input type="text" id="inputCC" class="input-field mandatory" value="10020 - MARKETING">
+                        </div>
+
+                        <div class="form-row">
+                            <label>Local de Faturamento:</label>
+                            <div class="select-wrapper mandatory">
+                                <select id="selectFaturamento" class="input-field">
+                                    <option value="" disabled selected>Selecione</option>
+                                    <option value="VIVARA-MATRIZ">VIVARA MATRIZ</option>
+                                    <option value="VIVARA-FILIAL">VIVARA FILIAL</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row align-top">
+                            <label>Comentários:</label>
+                            <textarea id="inputComentarios" class="input-field" rows="4"></textarea>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="novo_pedido2.js"></script>
+</body>
+</html>
