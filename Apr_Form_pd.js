@@ -32,17 +32,15 @@ document.addEventListener('DOMContentLoaded', () => {
         btnEmail.addEventListener('click', () => {
             if (confirm('Confirma que o e-mail com a requisição foi enviado para o setor de compras?')) {
                 // Atualiza Status
-                pedido.status = "AGUARDANDO ENVIO"; // Visualmente é "Aguardando SAP" na verdade
-                // Vamos usar um status interno específico se quiser, mas vou manter o texto do prompt
+                pedido.status = "AGUARDANDO ENVIO"; 
                 
-                // Salvar estado intermediário (opcional, ou apenas mudança visual)
-                // Para simplificar, mudamos o status visualmente para o usuário:
-                pedido.formalizacaoStarted = true; // Flag para saber que já passou da etapa 1
+                // Flag para controle de estado interno
+                pedido.formalizacaoStarted = true; 
                 
                 atualizarPedidoNoStorage(pedido);
                 gerenciarEstado(pedido);
                 
-                alert('Envio confirmado! Agora aguarde o retorno com o número do Pedido SAP.');
+                alert('Envio confirmado! O status mudou para AGUARDANDO ENVIO. Insira o número SAP quando receber.');
             }
         });
     }
@@ -63,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (confirm(`Confirma vincular o Pedido SAP #${sapValue} a esta requisição?`)) {
                 // ATUALIZAÇÃO FINAL
                 pedido.erpId = sapValue;
-                pedido.status = "AGUARDANDO ENTREGA"; // Status final que vai para a lista de Pedidos
+                pedido.status = "AGUARDANDO ENTREGA"; 
                 
                 atualizarPedidoNoStorage(pedido);
                 
@@ -116,19 +114,20 @@ document.addEventListener('DOMContentLoaded', () => {
         const lineSap = document.getElementById('lineSap');
         const stepSap = document.getElementById('stepSap');
 
-        // Verifica flag ou status
         // Se status for "APROVADO", estamos na etapa 1 (Envio Email)
         if (p.status === 'APROVADO' && !p.formalizacaoStarted) {
             lblStatus.innerText = "AGUARDANDO ENVIO";
+            lblStatus.style.background = "#FFF3E0";
+            lblStatus.style.color = "#E67E22";
             cardEmail.classList.remove('hidden');
             cardSap.classList.add('hidden');
         } 
-        // Se já enviou email (formalizacaoStarted true)
+        // Se já enviou email (ou status já foi atualizado)
         else if (p.formalizacaoStarted || p.status === 'AGUARDANDO ENVIO') {
             lblStatus.innerText = "AGUARDANDO SAP";
-            lblStatus.style.background = "#E8F5E9";
-            lblStatus.style.color = "#2E7D32";
-            lblStatus.style.borderColor = "#C8E6C9";
+            lblStatus.style.background = "#E3F2FD";
+            lblStatus.style.color = "#1565C0";
+            lblStatus.style.borderColor = "#BBDEFB";
 
             cardEmail.classList.add('hidden');
             cardSap.classList.remove('hidden');

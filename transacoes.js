@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
         carregarTabela(tabelaBody);
     }
 
-    // 5. Busca Principal (Tabela)
+    // 5. Busca Principal
     const mainSearchInput = document.querySelector('.erp-input-search');
     if (mainSearchInput) {
         mainSearchInput.addEventListener('input', function() {

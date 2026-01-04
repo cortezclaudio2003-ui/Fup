@@ -57,10 +57,9 @@ function carregarAprovacoes() {
     
     tbody.innerHTML = '';
 
-    // Filtra: "AGUARDANDO APROVAÇÃO" OU "APROVADO" (pois Aprovado ainda precisa gerar o pedido)
-    // Se "Concluído" ou "Processado" (Pedido já gerado), não mostra aqui, só em Transações.
+    // Filtra: "AGUARDANDO APROVAÇÃO" OU "APROVADO" ou "AGUARDANDO ENVIO"
     const itensParaAcao = pedidos.filter(p => 
-        p.status === 'AGUARDANDO APROVAÇÃO' || p.status === 'APROVADO'
+        p.status === 'AGUARDANDO APROVAÇÃO' || p.status === 'APROVADO' || p.status === 'AGUARDANDO ENVIO'
     );
 
     if (itensParaAcao.length === 0) {
@@ -68,17 +67,20 @@ function carregarAprovacoes() {
         return;
     }
 
+    // Ordena mais antigo primeiro para aprovar na ordem
     itensParaAcao.forEach(p => {
         const id = p.id;
         const erp = p.erpId || '-';
         const titulo = p.cabecalho ? p.cabecalho.titulo : 'Sem Título';
-        const requisitante = p.requisitamte || 'Usuário'; 
+        // CORREÇÃO AQUI: Usa a propriedade correta do objeto 'p' ou a variável definida
+        const requisitanteNome = p.requisitamte || 'Usuário'; 
         const data = p.dataCriacao || '-';
         
         // Define cor do status
         let corStatus = '#666';
-        if(p.status === 'AGUARDANDO APROVAÇÃO') corStatus = '#E67E22'; // Laranja
-        if(p.status === 'APROVADO') corStatus = '#2E7D32'; // Verde
+        if(p.status === 'AGUARDANDO APROVAÇÃO') corStatus = '#E67E22'; 
+        if(p.status === 'APROVADO') corStatus = '#2E7D32'; 
+        if(p.status === 'AGUARDANDO ENVIO') corStatus = '#1976D2';
 
         // Botões Dinâmicos
         let botoesHtml = '';
@@ -91,7 +93,7 @@ function carregarAprovacoes() {
                     <span class="material-icons-outlined" style="font-size:16px;">close</span> Reprovar
                 </button>
             `;
-        } else if (p.status === 'APROVADO') {
+        } else if (p.status === 'APROVADO' || p.status === 'AGUARDANDO ENVIO') {
             botoesHtml = `
                 <button class="btn-generate" onclick="acaoGerarPedidoALM(${id})">
                     <span class="material-icons-outlined" style="font-size:16px;">assignment</span> Gerar Pedido Formalização ALM
@@ -100,13 +102,14 @@ function carregarAprovacoes() {
         }
 
         const tr = document.createElement('tr');
+        // CORREÇÃO: Usando a variável 'requisitanteNome' correta
         tr.innerHTML = `
             <td class="doc-me">${id}</td>
             <td>${erp}</td>
             <td style="font-weight: 500;">${titulo}</td>
             <td style="color:${corStatus};" class="status-text">${p.status}</td>
             <td>${data}</td>
-            <td>${requisitamte}</td>
+            <td>${requisitanteNome}</td> 
             <td class="action-cell">
                 ${botoesHtml}
             </td>
@@ -121,7 +124,6 @@ window.acaoAprovar = function(id) {
     if(!confirm(`Confirma a aprovação da requisição ${id}?`)) return;
     
     atualizarStatusPedido(id, "APROVADO");
-    // Não gera alerta, apenas atualiza a tela para mostrar o novo botão
     carregarAprovacoes();
 };
 
@@ -135,12 +137,7 @@ window.acaoReprovar = function(id) {
 };
 
 window.acaoGerarPedidoALM = function(id) {
-    // Redireciona para a futura página de geração de pedido
-    // Por enquanto, vou redirecionar para um placeholder ou simular
-    // window.location.href = `gerar_pedido_alm.html?req_id=${id}`; 
-    
-    alert(`Redirecionando para geração do Pedido de Formalização ALM (Requisição ${id})...`);
-    // Aqui você colocaria o window.location.href correto quando criar a página
+    window.location.href = `Apr_Form_pd.html?id=${id}`; 
 };
 
 function atualizarStatusPedido(id, novoStatus, motivo = "") {
@@ -156,6 +153,7 @@ function atualizarStatusPedido(id, novoStatus, motivo = "") {
 // --- LÓGICA DE COLUNAS AJUSTÁVEIS (RESIZABLE) ---
 function enableColumnResizing() {
     const table = document.getElementById('resizableTable');
+    if (!table) return; // Segurança extra
     const cols = table.querySelectorAll('th');
 
     cols.forEach((col) => {

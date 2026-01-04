@@ -7,35 +7,36 @@ body {
 }
 input, button, div, span, h1, h2, h3 { font-family: 'Calibri', 'Segoe UI', sans-serif; }
 
-/* Header & Subheader (Padrão) */
-.main-header {
-    background: #FFF; padding: 0 30px; height: 75px; 
-    display: flex; align-items: center; justify-content: space-between; 
-    border-bottom: 1px solid #E5E7EB; flex-shrink: 0;
-}
-.logo-area h1 { font-weight: 700; font-size: 20px; color: #E67E22; margin: 0; }
-.logo-subtitle { font-size: 0.5em; color: #999; font-weight: 400; }
-.main-nav ul { list-style: none; display: flex; gap: 30px; height: 100%; margin: 0; }
-.nav-item { display: flex; flex-direction: column; align-items: center; justify-content: center; text-decoration: none; color: #666; font-size: 13px; font-weight: 500; height: 100%; padding: 0 10px; border-bottom: 3px solid transparent; gap: 4px; }
-.nav-item.active { color: #000; border-bottom-color: #E67E22; }
-.user-profile .avatar { width: 40px; height: 40px; background-color: #8D6E63; border-radius: 50%; color: #FFF; display: flex; align-items: center; justify-content: center; font-weight: bold; }
-
+/* --- HEADER SIMPLIFICADO --- */
+/* Apenas o sub-header, agora um pouco mais alto para destaque */
 .erp-sub-header {
-    background: #FFF; height: 60px; border-bottom: 1px solid #E5E7EB;
+    background: #FFF; height: 70px; border-bottom: 1px solid #E5E7EB;
     display: flex; justify-content: space-between; align-items: center; padding: 0 30px; flex-shrink: 0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05); z-index: 10;
 }
 .erp-left { display: flex; align-items: center; gap: 15px; }
-.btn-back-link { text-decoration: none; color: #666; font-weight: 600; display: flex; align-items: center; gap: 5px; font-size: 14px; }
-.btn-back-link:hover { color: #E67E22; }
-.separator { color: #CCC; }
+
+.btn-back-link { 
+    text-decoration: none; color: #666; font-weight: 600; 
+    display: flex; align-items: center; gap: 5px; font-size: 14px; 
+    padding: 8px 12px; border-radius: 4px; transition: background 0.2s;
+}
+.btn-back-link:hover { background-color: #F3F4F6; color: #333; }
+
+.separator { color: #CCC; font-size: 18px; }
 .page-title { font-size: 18px; font-weight: 700; color: #333; }
-.status-badge-large { background: #FFF3E0; color: #E67E22; padding: 5px 15px; border-radius: 20px; font-weight: 700; font-size: 12px; letter-spacing: 0.5px; border: 1px solid #FFE0B2; }
+
+.status-badge-large { 
+    background: #FFF3E0; color: #E67E22; padding: 6px 18px; 
+    border-radius: 20px; font-weight: 700; font-size: 13px; 
+    letter-spacing: 0.5px; border: 1px solid #FFE0B2; 
+}
 
 /* --- Layout Principal --- */
 .main-wrapper { flex: 1; overflow-y: auto; padding: 30px; max-width: 1200px; margin: 0 auto; width: 100%; }
 
 /* Workflow */
-.workflow-container { display: flex; align-items: center; justify-content: center; margin-bottom: 40px; }
+.workflow-container { display: flex; align-items: center; justify-content: center; margin-bottom: 40px; margin-top: 10px; }
 .step { display: flex; flex-direction: column; align-items: center; position: relative; z-index: 2; width: 100px; }
 .step-circle { width: 32px; height: 32px; border-radius: 50%; background: #E0E0E0; color: #FFF; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-bottom: 8px; transition: all 0.3s; }
 .step-label { font-size: 12px; color: #999; font-weight: 600; text-align: center; }
