@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FUP</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+    <div class="login-card">
+        <div class="login-header">
+            <h2>FUP ALM</h2>
+            <p>Identifique-se para continuar</p>
+        </div>
+
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="usuario">Usuário ou Matrícula</label>
+                <input type="text" id="usuario" class="input-field" placeholder="Ex: jsilva" required autofocus>
+            </div>
+
+            <div class="form-group">
+                <label for="senha">Senha de Acesso</label>
+                <input type="password" id="senha" class="input-field" placeholder="••••••••" required>
+            </div>
+
+            <button type="submit" class="btn-primary-large">
+                Entrar no Sistema
+            </button>
+        </form>
+
+        <p class="footer-text">
+            Em caso de problemas de acesso, contate o setor de TI.<br>
+            Versão 2.1.0
+        </p>
+    </div>
+
+    <script src="login.js"></script>
+</body>
+</html>
