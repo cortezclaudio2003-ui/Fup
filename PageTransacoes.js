@@ -43,6 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     item.style.display = 'none';
                 }
             });
+            // Expande os grupos se houver busca
             if (termo.length > 0) {
                 document.querySelectorAll('.menu-group ul').forEach(ul => ul.style.display = 'block');
                 document.querySelectorAll('.group-title .arrow').forEach(arrow => arrow.innerText = 'expand_less');
@@ -56,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
         carregarTabela(tabelaBody);
     }
 
-    // 5. Busca Principal
+    // 5. Busca Principal (Filtra as linhas da tabela)
     const mainSearchInput = document.querySelector('.erp-input-search');
     if (mainSearchInput) {
         mainSearchInput.addEventListener('input', function() {
@@ -75,22 +76,19 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function carregarTabela(tbody) {
+    // Recupera pedidos do LocalStorage
     const pedidos = JSON.parse(localStorage.getItem('vivara_pedidos')) || [];
+    
+    // Inverte para mostrar os mais recentes primeiro
     pedidos.reverse();
 
     tbody.innerHTML = ''; 
-
-    // Mock de dados estáticos
-    const itensEstaticos = [
-        { id: '21568398', erp: '', titulo: 'INSTALAÇÃO DE PORCELANATO NA BANCADA', status: 'Processado', data: '02/01/2025', autor: 'MARIA SILVA' },
-        { id: '847099', erp: '4600016929', titulo: 'APORTE LEI DO ESPORTE - Futebol', status: 'Concluído', data: '28/12/2024', autor: 'JOÃO SOUZA' },
-        { id: '847031', erp: '', titulo: 'IMPERMEABILIZAÇÃO DO PISO DA FUNDIÇÃO', status: 'Pendente', data: '20/12/2024', autor: 'ANA PEREIRA' }
-    ];
 
     const criarLinha = (id, erp, titulo, status, data, autor) => {
         let corStatus = '#666';
         let corTextoStatus = status;
 
+        // Lógica de Cores dos Status
         if(status.includes('AGUARDANDO')) { corStatus = '#E67E22'; }
         else if(status.includes('CANCELADO') || status.includes('REPROVADO')) { corStatus = '#D32F2F'; }
         else if(status.includes('Concluído') || status.includes('Processado') || status.includes('APROVADO')) { corStatus = '#2E7D32'; }
@@ -98,48 +96,56 @@ function carregarTabela(tbody) {
         return `
             <tr style="background-color: #fff;">
                 <td style="text-align:center;"><input type="checkbox"></td>
+                
                 <td class="text-orange-link" onclick="abrirDetalhes('${id}')">
                     <strong>${id}</strong>
                 </td>
+                
                 <td class="text-orange-link" onclick="abrirDetalhes('${id}')">
                     ${erp || '-'}
                 </td>
+                
                 <td onclick="abrirDetalhes('${id}')" style="cursor:pointer; color:#333; font-weight:500;">
                     ${titulo}
                 </td>
+                
                 <td onclick="abrirDetalhes('${id}')" style="cursor:pointer;">
-                    <div style="font-size:11px; color:${corStatus}; font-weight:700; text-transform:uppercase;">
+                    <div style="font-size:13px; color:${corStatus}; font-weight:700; text-transform:uppercase;">
                         ${corTextoStatus}
                     </div>
                 </td>
+                
                 <td style="color:#555;">${data}</td>
                 <td style="color:#555;">${autor}</td>
             </tr>
         `;
     };
 
-    pedidos.forEach(p => {
-        const id = p.id || 'N/A';
-        const titulo = p.cabecalho ? p.cabecalho.titulo : 'Sem Título';
-        const status = p.status || 'Aguardando';
-        const data = p.dataCriacao || '-';
-        const autor = p.requisitamte || 'Desconhecido';
-        
-        const html = criarLinha(id, p.erpId, titulo, status, data, autor);
-        tbody.insertAdjacentHTML('beforeend', html);
-    });
-
-    itensEstaticos.forEach(p => {
-        const existe = pedidos.some(dinamico => dinamico.id == p.id);
-        if(!existe) {
-            const html = criarLinha(p.id, p.erp, p.titulo, p.status, p.data, p.autor);
+    // Gera as linhas baseadas no LocalStorage
+    if (pedidos.length > 0) {
+        pedidos.forEach(p => {
+            const id = p.id || 'N/A';
+            const titulo = p.cabecalho ? p.cabecalho.titulo : 'Sem Título';
+            const status = p.status || 'Aguardando';
+            const data = p.dataCriacao || '-';
+            const autor = p.requisitamte || 'Desconhecido'; 
+            
+            const html = criarLinha(id, p.erpId, titulo, status, data, autor);
             tbody.insertAdjacentHTML('beforeend', html);
-        }
-    });
+        });
+    } else {
+        // Mensagem de estado vazio caso não tenha pedidos
+        tbody.innerHTML = `
+            <tr>
+                <td colspan="7" style="text-align:center; padding: 40px; color: #999;">
+                    Nenhuma transação encontrada.
+                </td>
+            </tr>
+        `;
+    }
 }
 
 window.abrirDetalhes = function(id) {
-    // ALTERADO: Redirecionamento removido para isolar a página
-    console.log('Visualização de detalhes desativada para: ' + id);
+    console.log('Navegando para detalhes do ID: ' + id);
     // window.location.href = `novo_pedido5.html?id=${id}`;
 };

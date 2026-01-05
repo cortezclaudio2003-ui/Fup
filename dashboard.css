@@ -14,16 +14,25 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-/* Fonte Global Calibri */
+/* Fonte Global: Base 16px para igualar PageTransacoes */
 body { 
     background-color: var(--bg-body); 
     color: var(--text-dark);
     font-family: 'Calibri', 'Segoe UI', sans-serif;
-    /* ALTERADO: Tamanho da fonte aumentado para 16px */
-    font-size: 16px; 
+    font-size: 15px; 
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-button, input, select, textarea, h1, h2, h3, h4, span, div, a {
+/* Regra Específica de Títulos (Igual ao PageTransacoes.css) 
+   Isso garante que o peso visual dos títulos seja idêntico */
+h1, h2, h3, h4, .group-title, th, .logo-area, .btn-cta {
+    font-family: 'Calibre', 'Calibri', 'Segoe UI', sans-serif;
+    font-weight: 700;
+}
+
+button, input, select, textarea, span, div, a {
     font-family: 'Calibri', 'Segoe UI', sans-serif;
 }
 
@@ -36,7 +45,7 @@ header {
 }
 
 .logo-area h1 { 
-    font-weight: 700; font-size: 20px; color: var(--primary-orange); letter-spacing: 0.5px; margin: 0;
+    font-size: 20px; color: var(--primary-orange); letter-spacing: 0.5px; margin: 0;
 }
 
 /* Menu movido para a direita */
@@ -57,7 +66,7 @@ nav ul li a {
     height: 100%; padding: 0 10px;
     border-bottom: 3px solid transparent;
     transition: 0.2s;
-    text-align: center; /* Garante alinhamento */
+    text-align: center;
 }
 
 nav ul li a .material-icons-outlined { font-size: 24px; margin-bottom: 2px; }
@@ -102,7 +111,7 @@ nav ul li a:hover, nav ul li a.active {
 }
 .btn-filter:hover { background-color: #F9FAFB; border-color: #9CA3AF; }
 
-/* Botões de Ação (Add, Delete, Save) */
+/* Botões de Ação */
 .icon-action {
     background: transparent; border: none; color: var(--text-grey); cursor: pointer; padding: 6px;
     display: flex; align-items: center; justify-content: center; border-radius: 50%;
@@ -115,7 +124,7 @@ nav ul li a:hover, nav ul li a.active {
 
 
 /* --- 3. DASHBOARD GRID --- */
-main { padding: 20px 30px; max-width: 1400px; margin: 0 auto; }
+main { padding: 20px 30px; max-width: 1400px; margin: 0 auto; width: 100%; }
 
 /* Grid Superior */
 .dashboard-grid-top {
@@ -129,7 +138,7 @@ main { padding: 20px 30px; max-width: 1400px; margin: 0 auto; }
     padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
 
-/* Estilo do HERO CARD (Laranja Suave) */
+/* Estilo do HERO CARD */
 .hero-card {
     background: linear-gradient(135deg, #FFF8F0 0%, #FFFFFF 100%);
     border-color: #FFE0B2;
@@ -138,7 +147,7 @@ main { padding: 20px 30px; max-width: 1400px; margin: 0 auto; }
 }
 
 .hero-content { z-index: 2; }
-.hero-content h2 { color: #333; font-size: 18px; margin-bottom: 5px; font-weight: 700; }
+.hero-content h2 { color: #333; font-size: 18px; margin-bottom: 5px; }
 .hero-content p { color: #666; font-size: 14px; margin-bottom: 20px; max-width: 300px; }
 
 .btn-cta {
@@ -167,13 +176,13 @@ main { padding: 20px 30px; max-width: 1400px; margin: 0 auto; }
 }
 
 .processos-container h3, .pendencias-container h3 {
-    font-size: 16px; color: #444; margin-bottom: 15px; font-weight: 700;
+    font-size: 16px; color: #444; margin-bottom: 15px;
 }
 
 .stats-row { display: flex; gap: 20px; }
 .stat-card {
     flex: 1; display: flex; flex-direction: column; gap: 10px; padding: 25px;
-    border-left: 4px solid var(--primary-orange); /* Detalhe lateral laranja */
+    border-left: 4px solid var(--primary-orange);
 }
 .icon-stat { color: var(--primary-orange); font-size: 24px; }
 .stat-number { font-size: 28px; font-weight: 700; color: #333; }
