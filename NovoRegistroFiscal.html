@@ -3,92 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Novo Registro Fiscal - NF-e</title>
+    <title>Nova Nota Fiscal</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
     <link rel="stylesheet" href="RegistrosFiscais.css">
 </head>
-<body>
-    <header class="main-header">
-        <div class="logo-area"><h1>VIVARA <span class="logo-subtitle">(Portal de Compras)</span></h1></div>
-        <nav class="main-nav">
-            <ul>
-                <li><a href="dashboard.html" class="nav-item"><span class="material-icons-outlined">dashboard</span><span>Dashboard</span></a></li>
-                <li><a href="PageTransacoes.html" class="nav-item"><span class="material-icons-outlined">receipt_long</span><span>Transações</span></a></li>
-                <li><a href="RegistrosFiscais.html" class="nav-item active"><span class="material-icons-outlined">description</span><span>Registros Fiscais</span></a></li>
-                </ul>
-        </nav>
-        <div class="user-profile"><div class="avatar">JS</div></div>
-    </header>
-
-    <div class="transacoes-wrapper" style="height: calc(100vh - 75px);">
-        <aside id="sidebarRegistros" class="sidebar-erp">
-            <div class="sidebar-inner-search"><span class="material-icons-outlined">search</span><input type="text" placeholder="Buscar no menu"></div>
-            <div class="menu-group">
-                <div class="group-title"><span>DOCUMENTOS FISCAIS</span><span class="material-icons-outlined arrow">expand_less</span></div>
-                <ul>
-                    <li onclick="window.location.href='RegistrosFiscais.html'"><div class="li-content"><span class="material-icons-outlined icon-left">arrow_back</span><span>Voltar para Lista</span></div></li>
-                    <li class="active-item"><div class="li-content"><span class="material-icons-outlined icon-left">receipt</span><span>Nova Nota Fiscal</span></div><span class="material-icons-outlined arrow-right" style="font-size: 16px; color:#E67E22;">chevron_right</span></li>
-                </ul>
-            </div>
-        </aside>
-
-        <main class="transacoes-content-erp form-page-container">
-            <div class="form-header-bar">
-                <h2><span class="material-icons-outlined icon-title">receipt</span> Lançamento de Nota Fiscal</h2>
-                <button class="btn-text-icon" onclick="window.location.href='RegistrosFiscais.html'">Cancelar</button>
-            </div>
-
-            <form class="erp-form">
-                <div class="form-section-title">Dados da Nota</div>
-                <div class="form-row">
-                    <div class="form-group col-2">
-                        <label>Chave de Acesso (44 dígitos)</label>
-                        <input type="text" placeholder="Passar leitor de código de barras ou digitar...">
-                    </div>
-                    <div class="form-group col-1">
-                        <label>CNPJ Emitente</label>
-                        <input type="text" placeholder="00.000.000/0000-00">
-                    </div>
-                    <div class="form-group col-1">
-                        <label>Número NF</label>
-                        <input type="text">
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group col-2">
-                        <label>Razão Social</label>
-                        <input type="text">
-                    </div>
-                    <div class="form-group col-1">
-                        <label>Data Emissão</label>
-                        <input type="date">
-                    </div>
-                    <div class="form-group col-1">
-                        <label>Valor Total (R$)</label>
-                        <input type="text" placeholder="0,00">
-                    </div>
-                </div>
-
-                <div class="form-section-title">Anexos e Observações</div>
-                <div class="form-row">
-                    <div class="form-group col-3">
-                        <label>Arquivo XML / PDF</label>
-                        <input type="file" style="padding: 6px;">
-                    </div>
-                    <div class="form-group col-1">
-                        <label>Centro de Custo</label>
-                        <select><option>Selecione...</option><option>Administrativo</option><option>TI</option></select>
-                    </div>
-                </div>
-
-                <div class="form-actions-footer">
-                    <button type="button" class="btn-secondary" onclick="window.location.href='RegistrosFiscais.html'">Cancelar</button>
-                    <button type="button" class="btn-primary-action">Salvar e Enviar</button>
-                </div>
-            </form>
-        </main>
+<body class="clean-body">
+    
+    <div class="minimal-header">
+        <div class="header-title">
+            <span class="material-icons-outlined icon-header">receipt</span>
+            <h2>Lançamento de Nota Fiscal</h2>
+        </div>
+        <div class="header-actions">
+            <button class="btn-text-icon" onclick="window.location.href='RegistrosFiscais.html'">
+                <span class="material-icons-outlined">close</span> Cancelar
+            </button>
+            <button class="btn-primary-erp" style="margin-left: 10px;">Salvar Registro</button>
+        </div>
     </div>
-    <script src="RegistrosFiscais.js"></script>
+
+    <div class="full-screen-wrapper">
+        <form class="erp-form full-width-form">
+            <div class="form-section-title">Dados Principais</div>
+            <div class="form-row">
+                <div class="form-group col-3">
+                    <label>Chave de Acesso (44 dígitos)</label>
+                    <input type="text" placeholder="Código de barras..." autofocus>
+                </div>
+                <div class="form-group col-1">
+                    <label>Número NF</label>
+                    <input type="text">
+                </div>
+                <div class="form-group col-1">
+                    <label>Série</label>
+                    <input type="text">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-2">
+                    <label>Emitente (Razão Social)</label>
+                    <input type="text">
+                </div>
+                <div class="form-group col-1">
+                    <label>CNPJ</label>
+                    <input type="text">
+                </div>
+                <div class="form-group col-1">
+                    <label>Emissão</label>
+                    <input type="date">
+                </div>
+                <div class="form-group col-1">
+                    <label>Entrada</label>
+                    <input type="date">
+                </div>
+            </div>
+
+            <div class="form-section-title">Valores</div>
+            <div class="form-row">
+                <div class="form-group col-1">
+                    <label>Valor Produtos</label>
+                    <input type="text" placeholder="R$ 0,00">
+                </div>
+                <div class="form-group col-1">
+                    <label>Valor Frete</label>
+                    <input type="text" placeholder="R$ 0,00">
+                </div>
+                <div class="form-group col-1">
+                    <label>IPI</label>
+                    <input type="text" placeholder="R$ 0,00">
+                </div>
+                <div class="form-group col-1">
+                    <label>ICMS ST</label>
+                    <input type="text" placeholder="R$ 0,00">
+                </div>
+                <div class="form-group col-1 total-highlight">
+                    <label>Valor Total Nota</label>
+                    <input type="text" placeholder="R$ 0,00" style="font-weight: bold; color: #2196F3;">
+                </div>
+            </div>
+            
+            <div class="form-section-title">Classificação</div>
+            <div class="form-row">
+                <div class="form-group col-2">
+                    <label>Centro de Custo</label>
+                    <select><option>Selecione...</option><option>Administrativo</option><option>Vendas</option></select>
+                </div>
+                <div class="form-group col-3">
+                    <label>Anexar XML / PDF</label>
+                    <input type="file" style="padding: 10px;">
+                </div>
+            </div>
+        </form>
+    </div>
 </body>
 </html>

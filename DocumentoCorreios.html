@@ -3,79 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documento Correios - Logística</title>
+    <title>Doc Correios</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
     <link rel="stylesheet" href="RegistrosFiscais.css">
 </head>
-<body>
-    <header class="main-header">
-        <div class="logo-area"><h1>VIVARA <span class="logo-subtitle">(Portal de Compras)</span></h1></div>
-        <nav class="main-nav">
-            <ul>
-                <li><a href="dashboard.html" class="nav-item"><span class="material-icons-outlined">dashboard</span><span>Dashboard</span></a></li>
-                <li><a href="RegistrosFiscais.html" class="nav-item active"><span class="material-icons-outlined">description</span><span>Registros Fiscais</span></a></li>
-            </ul>
-        </nav>
-        <div class="user-profile"><div class="avatar">JS</div></div>
-    </header>
-
-    <div class="transacoes-wrapper" style="height: calc(100vh - 75px);">
-        <aside id="sidebarRegistros" class="sidebar-erp">
-            <div class="sidebar-inner-search"><span class="material-icons-outlined">search</span><input type="text" placeholder="Buscar no menu"></div>
-            <div class="menu-group">
-                <div class="group-title"><span>DOCUMENTOS FISCAIS</span><span class="material-icons-outlined arrow">expand_less</span></div>
-                <ul>
-                    <li onclick="window.location.href='RegistrosFiscais.html'"><div class="li-content"><span class="material-icons-outlined icon-left">arrow_back</span><span>Voltar para Lista</span></div></li>
-                    <li class="active-item"><div class="li-content"><span class="material-icons-outlined icon-left">local_shipping</span><span>Doc. Correios</span></div><span class="material-icons-outlined arrow-right" style="font-size: 16px; color:#E67E22;">chevron_right</span></li>
-                </ul>
-            </div>
-        </aside>
-
-        <main class="transacoes-content-erp form-page-container">
-            <div class="form-header-bar">
-                <h2><span class="material-icons-outlined icon-title">local_shipping</span> Documento Correios / Logística</h2>
-                <button class="btn-text-icon" onclick="window.location.href='RegistrosFiscais.html'">Cancelar</button>
-            </div>
-
-            <form class="erp-form">
-                <div class="form-section-title">Dados da Encomenda</div>
-                <div class="form-row">
-                    <div class="form-group col-1">
-                        <label>Código de Rastreio</label>
-                        <input type="text" placeholder="AA123456789BR">
-                    </div>
-                    <div class="form-group col-2">
-                        <label>Remetente</label>
-                        <input type="text">
-                    </div>
-                    <div class="form-group col-1">
-                        <label>Data Postagem</label>
-                        <input type="date">
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group col-1">
-                        <label>Peso (Kg)</label>
-                        <input type="text">
-                    </div>
-                    <div class="form-group col-1">
-                        <label>Valor Declarado (R$)</label>
-                        <input type="text" placeholder="0,00">
-                    </div>
-                    <div class="form-group col-2">
-                        <label>Observações / Conteúdo</label>
-                        <input type="text" placeholder="Ex: Peças para manutenção...">
-                    </div>
-                </div>
-
-                <div class="form-actions-footer">
-                    <button type="button" class="btn-secondary" onclick="window.location.href='RegistrosFiscais.html'">Cancelar</button>
-                    <button type="button" class="btn-primary-action">Salvar Rastreio</button>
-                </div>
-            </form>
-        </main>
+<body class="clean-body">
+    
+    <div class="minimal-header">
+        <div class="header-title">
+            <span class="material-icons-outlined icon-header">local_shipping</span>
+            <h2>Registro Correios / Logística</h2>
+        </div>
+        <div class="header-actions">
+            <button class="btn-text-icon" onclick="window.location.href='RegistrosFiscais.html'">
+                <span class="material-icons-outlined">close</span> Cancelar
+            </button>
+            <button class="btn-primary-erp" style="margin-left: 10px;">Salvar Rastreio</button>
+        </div>
     </div>
-    <script src="RegistrosFiscais.js"></script>
+
+    <div class="full-screen-wrapper">
+        <form class="erp-form full-width-form">
+            <div class="form-section-title">Rastreamento</div>
+            <div class="form-row">
+                <div class="form-group col-1">
+                    <label>Código Rastreio</label>
+                    <input type="text" placeholder="AA123456789BR" style="font-weight: bold;">
+                </div>
+                <div class="form-group col-1">
+                    <label>Transportadora</label>
+                    <select><option>Correios</option><option>DHL</option><option>FedEx</option></select>
+                </div>
+                <div class="form-group col-1">
+                    <label>Postagem</label>
+                    <input type="date">
+                </div>
+                <div class="form-group col-2">
+                    <label>Remetente</label>
+                    <input type="text">
+                </div>
+            </div>
+
+            <div class="form-section-title">Conteúdo</div>
+            <div class="form-row">
+                <div class="form-group col-3">
+                    <label>Descrição</label>
+                    <input type="text" placeholder="Documentos, Amostras...">
+                </div>
+                <div class="form-group col-1">
+                    <label>Peso (kg)</label>
+                    <input type="text">
+                </div>
+                <div class="form-group col-1">
+                    <label>Valor (R$)</label>
+                    <input type="text">
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group col-5">
+                    <label>Destinatário Interno</label>
+                    <input type="text" placeholder="Nome do colaborador">
+                </div>
+            </div>
+        </form>
+    </div>
 </body>
 </html>
