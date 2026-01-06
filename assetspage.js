@@ -91,14 +91,10 @@ function carregarDadosAtivos() {
         const dataEntrega = d.dataEntrega ? formatarData(d.dataEntrega) : '-';
         const criadoPor = d.criadoPor || 'Usuário Atual';
 
+        // Removida a coluna do botão de protocolo
         const html = `
             <tr>
                 <td style="text-align:center;"><input type="checkbox"></td>
-                <td style="text-align:center;">
-                    <button class="btn-protocol" title="Gerar Protocolo" onclick="gerarProtocolo('${d.codInterno}')">
-                        <span class="material-icons-outlined">assignment_return</span>
-                    </button>
-                </td>
                 <td class="text-orange-link"><strong>${d.codInterno || '-'}</strong></td>
                 <td>${d.equipamento || '-'}</td>
                 <td><span class="status-pill ${d.fabrica === 'FÁBRICA DE JOIA' ? 'status-joia' : 'status-life'}">${d.fabrica || '-'}</span></td>
@@ -126,9 +122,7 @@ function formatarData(dataISO) {
     return dataISO;
 }
 
-window.gerarProtocolo = function(codInterno) {
-    alert(`Protocolo de entrega gerado para: ${codInterno}`);
-};
+// A função gerarProtocolo foi removida pois o botão não existe mais
 
 window.filtrarTabela = function(filtro) {
     const input = document.querySelector('.erp-input-search');

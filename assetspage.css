@@ -187,10 +187,4 @@ input[type="checkbox"] { width: 18px; height: 18px; cursor: pointer; accent-colo
 .status-joia { background-color: #FFF3E0; color: #E65100; border: 1px solid #FFE0B2; }
 .status-life { background-color: #E3F2FD; color: #1565C0; border: 1px solid #BBDEFB; }
 
-.btn-protocol {
-    background-color: #FFF; border: 1px solid #D1D5DB; border-radius: 4px;
-    color: #555; cursor: pointer; padding: 4px 8px;
-    transition: all 0.2s; display: inline-flex; align-items: center; justify-content: center;
-}
-.btn-protocol:hover { background-color: #E3F2FD; color: #1565C0; border-color: #BBDEFB; }
-.btn-protocol .material-icons-outlined { font-size: 18px; }
+/* A classe .btn-protocol foi removida */
