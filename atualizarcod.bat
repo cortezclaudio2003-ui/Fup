@@ -1,20 +1,25 @@
 @echo off
-[cite_start]title FUP - GitHub Sync [cite: 4]
+title FUP - GitHub Sync
 color 0b
 echo ==========================================
 echo       SINCRONIZANDO SISTEMA FUP
 echo ==========================================
 echo.
-[cite_start]git remote set-url origin https://github.com/systemdevx/Fup.git [cite: 4]
+git remote set-url origin https://github.com/systemdevx/Fup.git
 
-[cite_start]echo [1/3] Adicionando alteracoes... [cite: 4]
+echo [1/3] Adicionando alteracoes...
 git add .
-[cite_start]echo [2/3] Criando commit de atualizacao... [cite: 4]
-git commit -m "Full System Upgrade: Dashboard and Auth Logic"
 
-[cite_start]echo [3/3] Enviando para o GitHub... [cite: 4]
+echo.
+set /p commitmsg="Digite a mensagem do commit (ou ENTER para padrao): "
+if "%commitmsg%"=="" set commitmsg=Atualizacao de arquivos do sistema (Asset Page)
+
+echo [2/3] Criando commit: "%commitmsg%"...
+git commit -m "%commitmsg%"
+
+echo [3/3] Enviando para o GitHub...
 git push origin main
 
 echo.
-[cite_start]echo Processo Finalizado com sucesso! [cite: 4]
+echo Processo Finalizado com sucesso!
 pause
