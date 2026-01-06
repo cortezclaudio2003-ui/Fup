@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FUP</title>
+    <title>Registros Fiscais - FUP ALM</title>
     
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
-    <link rel="stylesheet" href="PageTransacoes.css">
+    <link rel="stylesheet" href="taxdocuments.css">
 </head>
 <body>
 
     <header class="main-header">
         <div class="logo-area">
-            <h1>FUP ALM <span class="logo-subtitle"></span></h1>
+            <h1>FUP ALM <span class="logo-subtitle">FISCAL</span></h1>
         </div>
         
         <nav class="main-nav">
@@ -24,13 +24,13 @@
                     </a>
                 </li>
                 <li>
-                    <a href="PageTransacoes.html" class="nav-item active">
+                    <a href="PageTransacoes.html" class="nav-item">
                         <span class="material-icons-outlined">receipt_long</span>
                         <span>Transações</span>
                     </a>
                 </li>
                 <li>
-                    <a href="taxdocuments.html" class="nav-item">
+                    <a href="taxdocuments.html" class="nav-item active">
                         <span class="material-icons-outlined">description</span>
                         <span>Registros Fiscais</span>
                     </a>
@@ -74,9 +74,9 @@
             </button>
             
             <div class="btn-group">
-                <a href="CarrItens.html" class="btn-primary-erp">
-                    <span class="material-icons-outlined" style="font-size: 18px;">add</span> Novo Pedido
-                </a>
+                <button class="btn-primary-erp">
+                    <span class="material-icons-outlined" style="font-size: 18px;">add</span> Novo Registro
+                </button>
                 <button class="btn-primary-erp-arrow"><span class="material-icons-outlined">expand_more</span></button>
             </div>
         </div>
@@ -84,66 +84,78 @@
         <div class="erp-right">
             <div class="erp-search-container">
                 <span class="material-icons-outlined search-icon">search</span>
-                <input type="text" placeholder="Pesquisar transação..." class="erp-input-search">
+                <input type="text" placeholder="Buscar nota, DI ou rastreio..." class="erp-input-search">
             </div>
             <button class="btn-text-icon"><span class="material-icons-outlined" style="font-size:18px;">filter_list</span> Filtros</button>
             <div class="erp-divider"></div>
-            <button class="icon-only"><span class="material-icons-outlined">bar_chart</span></button>
-            <button class="icon-only"><span class="material-icons-outlined">grid_view</span></button>
+            <button class="icon-only"><span class="material-icons-outlined">file_download</span></button>
         </div>
     </div>
 
-    <div class="transacoes-wrapper">
+    <div class="content-wrapper">
         
-        <aside id="sidebarTransacoes" class="sidebar-erp">
+        <aside id="sidebarTax" class="sidebar-erp">
             <div class="sidebar-inner-search">
                 <span class="material-icons-outlined" style="font-size: 18px;">search</span>
                 <input type="text" placeholder="Buscar no menu">
             </div>
             
             <div class="menu-group">
-                <div class="group-title"><span>PENDÊNCIAS</span><span class="material-icons-outlined arrow">expand_less</span></div>
+                <div class="group-title"><span>ENTRADA DE DOCUMENTOS</span><span class="material-icons-outlined arrow">expand_less</span></div>
                 <ul>
-                    <li style="cursor: default;">
+                    <li onclick="filtrarTabela('NF')">
                         <div class="li-content">
-                            <span class="material-icons-outlined icon-left">assignment_turned_in</span>
-                            <span>Aprovações</span>
-                        </div>
-                        <span class="material-icons-outlined arrow-right" style="font-size: 16px; color:#CCC;">chevron_right</span>
-                    </li>
-                </ul>
-            </div> 
-
-            <div class="menu-group">
-                <div class="group-title"><span>TRANSAÇÕES</span><span class="material-icons-outlined arrow">expand_less</span></div>
-                <ul>
-                    <li style="cursor: default;">
-                        <div class="li-content">
-                            <span class="material-icons-outlined icon-left">list_alt</span>
-                            <span>Pedidos</span>
+                            <span class="material-icons-outlined icon-left">receipt</span>
+                            <span>Notas Fiscais</span>
                         </div>
                         <span class="material-icons-outlined arrow-right" style="font-size: 16px; color:#CCC;">chevron_right</span>
                     </li>
 
-                    <li style="cursor: default;">
+                    <li onclick="filtrarTabela('DI')">
                         <div class="li-content">
-                            <span class="material-icons-outlined icon-left">description</span>
-                            <span>Contratos</span>
+                            <span class="material-icons-outlined icon-left">local_shipping</span>
+                            <span>DI's Importação</span>
+                        </div>
+                        <span class="material-icons-outlined arrow-right" style="font-size: 16px; color:#CCC;">chevron_right</span>
+                    </li>
+
+                    <li onclick="filtrarTabela('Correios')">
+                        <div class="li-content">
+                            <span class="material-icons-outlined icon-left">inventory_2</span>
+                            <span>Doc Correios</span>
                         </div>
                         <span class="material-icons-outlined arrow-right" style="font-size: 16px; color:#CCC;">chevron_right</span>
                     </li>
                 </ul>
             </div>
+
+            <div class="menu-group">
+                <div class="group-title"><span>STATUS</span><span class="material-icons-outlined arrow">expand_more</span></div>
+                <ul style="display:none;">
+                    <li>
+                        <div class="li-content">
+                            <span class="material-icons-outlined icon-left">hourglass_empty</span>
+                            <span>Em Análise</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="li-content">
+                            <span class="material-icons-outlined icon-left">check_circle</span>
+                            <span>Escriturado</span>
+                        </div>
+                    </li>
+                </ul>
+            </div> 
         </aside>
 
-        <main class="transacoes-content-erp">
+        <main class="main-content-erp">
             <div class="table-toolbar">
                 <div class="toolbar-left">
-                    <button class="pill-btn">Todos Processos <span class="material-icons-outlined" style="font-size: 16px;">expand_more</span></button>
-                    <button class="pill-btn">Todo período <span class="material-icons-outlined" style="font-size: 16px;">expand_more</span></button>
+                    <button class="pill-btn">Todos Tipos <span class="material-icons-outlined" style="font-size: 16px;">expand_more</span></button>
+                    <button class="pill-btn">Mês Atual <span class="material-icons-outlined" style="font-size: 16px;">expand_more</span></button>
                 </div>
                 <div class="toolbar-right">
-                    <span class="material-icons-outlined icon-nav">refresh</span>
+                    <span class="material-icons-outlined icon-nav" onclick="carregarDadosFicticios()">refresh</span>
                     <span class="material-icons-outlined icon-nav">more_vert</span>
                 </div>
             </div>
@@ -153,20 +165,21 @@
                     <thead>
                         <tr>
                             <th><input type="checkbox"></th>
-                            <th>Número do documento</th>
-                            <th>Número do documento ERP</th>
-                            <th>Título</th>
-                            <th>Status</th>
-                            <th>Criado em</th>
-                            <th>Criado por</th>
+                            <th>Tipo Doc.</th>
+                            <th>Número / Chave</th>
+                            <th>Emissor / Fornecedor</th>
+                            <th>Valor (R$)</th>
+                            <th>Status Fiscal</th>
+                            <th>Data Entrada</th>
                         </tr>
                     </thead>
-                    <tbody id="tabelaBody"></tbody>
+                    <tbody id="tabelaTaxBody">
+                        </tbody>
                 </table>
             </div>
         </main>
     </div>
 
-    <script src="PageTransacoes.js"></script>
+    <script src="taxdocuments.js"></script>
 </body>
 </html>
