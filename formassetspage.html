@@ -1,147 +1,83 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro de Ativo - FUP ALM</title>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <title>Cadastro de Ativo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="formassetspage.css">
 </head>
 <body>
 
-    <div class="toolbar-header">
-        <div class="toolbar-left">
-            <button class="btn-icon-back" onclick="window.location.href='assetspage.html'" title="Voltar">
-                <span class="material-icons-outlined">arrow_back</span>
-            </button>
-            <div class="page-titles">
-                <span class="breadcrumb">Ativos SGQ / Novo Registro</span>
-                <h1>Cadastro de Equipamento</h1>
-            </div>
-        </div>
-        
-        <div class="toolbar-right">
-            <span class="status-indicator">Novo Registro</span>
-            <div class="divider-vertical"></div>
-            <button class="btn-secondary" onclick="window.location.href='assetspage.html'">Cancelar</button>
-            <button class="btn-primary" form="formNovoAtivo" type="submit">
-                <span class="material-icons-outlined">save</span> Salvar Registro
-            </button>
-        </div>
+    <div class="top-actions">
+        <button class="btn btn-default" onclick="window.location.href='assetspage.html'">
+            <i class="fa-solid fa-circle-xmark"></i> Cancelar
+        </button>
+       
+        <button class="btn btn-primary" onclick="salvarAtivo()">
+            <i class="fa-solid fa-save"></i> Salvar Ativo
+        </button>
     </div>
 
-    <div class="workspace-container">
-        <div class="form-card">
-            
-            <form id="formNovoAtivo">
-                
-                <div class="section-header">
-                    <span class="material-icons-outlined icon-section">precision_manufacturing</span>
-                    <h3>Dados do Equipamento</h3>
-                </div>
-
-                <div class="form-grid">
-                    <div class="input-wrapper span-2">
-                        <label for="equipamento">Descrição do Equipamento *</label>
-                        <input type="text" id="equipamento" name="equipamento" placeholder="Ex: Balança Analítica de Precisão" required>
-                    </div>
-
-                    <div class="input-wrapper">
-                        <label for="marca">Marca / Fabricante *</label>
-                        <input type="text" id="marca" name="marca" placeholder="Ex: Shimadzu" required>
-                    </div>
-
-                    <div class="input-wrapper">
-                        <label for="modelo">Modelo Técnico *</label>
-                        <input type="text" id="modelo" name="modelo" placeholder="Ex: ATX224" required>
-                    </div>
-
-                    <div class="input-wrapper">
-                        <label for="numSerie">Número de Série (S/N)</label>
-                        <input type="text" id="numSerie" name="numSerie" placeholder="Insira o serial">
-                    </div>
-
-                    <div class="input-wrapper">
-                        <label for="notaFiscal">Nota Fiscal de Origem</label>
-                        <div class="input-icon-group">
-                            <span class="material-icons-outlined">receipt</span>
-                            <input type="text" id="notaFiscal" name="notaFiscal" placeholder="000.000">
-                        </div>
-                    </div>
-
-                    <div class="input-wrapper">
-                        <label for="valor">Valor Estimado (BRL)</label>
-                        <input type="text" id="valor" name="valor" placeholder="0,00">
-                    </div>
-
-                    <div class="input-wrapper">
-                        <label for="dataAquisicao">Data de Aquisição</label>
-                        <input type="date" id="dataAquisicao" name="dataAquisicao">
-                    </div>
-                </div>
-
-                <div class="spacer-line"></div>
-
-                <div class="section-header">
-                    <span class="material-icons-outlined icon-section">place</span>
-                    <h3>Localização e Responsabilidade</h3>
-                </div>
-
-                <div class="form-grid">
-                    <div class="input-wrapper">
-                        <label for="fabrica">Unidade Fabril *</label>
-                        <select id="fabrica" name="fabrica" required>
-                            <option value="">Selecione a unidade...</option>
-                            <option value="FÁBRICA DE JOIA">FÁBRICA DE JOIA</option>
-                            <option value="FÁBRICA DE LIFE">FÁBRICA DE LIFE</option>
-                        </select>
-                    </div>
-
-                    <div class="input-wrapper">
-                        <label for="setor">Setor / Departamento *</label>
-                        <input type="text" id="setor" name="setor" placeholder="Ex: Fundição" list="setores-sugestao" required>
-                        <datalist id="setores-sugestao">
-                            <option value="Fundição">
-                            <option value="Qualidade">
-                            <option value="Montagem">
-                            <option value="PCP">
-                        </datalist>
-                    </div>
-
-                    <div class="input-wrapper span-2">
-                        <label for="responsavel">Responsável pelo Ativo</label>
-                        <div class="input-icon-group">
-                            <span class="material-icons-outlined">person</span>
-                            <input type="text" id="responsavel" name="responsavel" placeholder="Busque pelo nome do colaborador...">
-                        </div>
-                    </div>
-                    
-                    <div class="input-wrapper">
-                        <label for="dataEntrega">Data de Entrega/Instalação</label>
-                        <input type="date" id="dataEntrega" name="dataEntrega">
-                    </div>
-                </div>
-
-                <div class="spacer-line"></div>
-
-                <div class="section-header">
-                    <span class="material-icons-outlined icon-section">sticky_note_2</span>
-                    <h3>Observações Adicionais</h3>
-                </div>
-
-                <div class="form-grid">
-                    <div class="input-wrapper span-full">
-                        <label for="observacoes">Detalhes técnicos ou estado de conservação</label>
-                        <textarea id="observacoes" name="observacoes" rows="4" placeholder="Descreva aqui quaisquer particularidades, acessórios inclusos ou avarias preexistentes..."></textarea>
-                    </div>
-                </div>
-
-            </form>
-        </div>
+    <div class="main-container">
         
-        <div class="footer-msg">
-            <span class="material-icons-outlined">info</span>
-            Os campos marcados com (*) são de preenchimento obrigatório para a criação do registro.
+        <div class="section-header">
+            <i class="fa-solid fa-box-open"></i> Dados do Equipamento
+        </div>
+
+        <div class="item-details">
+            <div class="form-grid">
+                
+                <div class="field-group input-req">
+                    <label>Código Interno</label>
+                    <input type="text" id="codInterno" placeholder="Ex: AT-001">
+                </div>
+
+                <div class="field-group input-req">
+                    <label>Equipamento</label>
+                    <select id="equipamento">
+                        <option selected disabled value="">Selecione o equipamento</option>
+                        <option value="Balança D200">Balança D200</option>
+                        <option value="Balança D500">Balança D500</option>
+                        <option value="Paquimetro Digital">Paquimetro Digital</option>
+                    </select>
+                </div>
+
+                <div class="field-group">
+                    <label>Modelo</label>
+                    <input type="text" id="modelo">
+                </div>
+
+                <div class="field-group input-req">
+                    <label>N° Serie AI</label>
+                    <input type="text" id="nSerie">
+                </div>
+
+                <div class="field-group">
+                    <label>Nota Fiscal</label>
+                    <input type="text" id="notaFiscal">
+                </div>
+
+                <div class="field-group">
+                    <label>Data Emissão</label>
+                    <div class="input-with-icon">
+                        <input type="date" id="dataEmissao">
+                    </div>
+                </div>
+
+                <div class="field-group">
+                    <label>Data Registro</label>
+                    <div class="input-with-icon">
+                        <input type="date" id="dataRegistro" readonly>
+                    </div>
+                </div>
+
+                <div class="field-group">
+                    <label>Criado por</label>
+                    <input type="text" id="criadoPor" value="Admin (Você)" class="readonly-field" readonly>
+                </div>
+
+            </div>
         </div>
     </div>
 

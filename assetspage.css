@@ -3,7 +3,6 @@
     --bg-body: #F3F4F6;
     --header-bg: #FFFFFF;
     --primary-orange: #E67E22;
-    --primary-orange-hover: #D35400;
     --text-dark: #333333;
     --text-grey: #666666;
     --border-color: #E5E7EB;
@@ -23,14 +22,14 @@ body {
     overflow: hidden;
 }
 
-h1, h2, h3, .group-title, th, .btn-primary-erp, .logo-area {
+h1, h2, h3, .group-title, .btn-primary-erp, .logo-area {
     font-family: 'Calibre', 'Calibri', 'Segoe UI', sans-serif;
     font-weight: 700;
 }
 
 input, select, button, div, span, a { font-family: 'Calibri', 'Segoe UI', sans-serif; }
 
-/* --- HEADER --- */
+/* --- HEADER (Mantido igual) --- */
 .main-header {
     background: var(--header-bg); padding: 0 30px; height: 75px; 
     display: flex; align-items: center; justify-content: space-between; 
@@ -50,7 +49,6 @@ input, select, button, div, span, a { font-family: 'Calibri', 'Segoe UI', sans-s
     font-size: 13px; font-weight: 500; height: 100%; padding: 0 10px;
     border-bottom: 3px solid transparent; transition: all 0.2s; gap: 4px;
 }
-
 .nav-item:hover, .nav-item.active { color: #000; border-bottom-color: var(--primary-orange); }
 .nav-item .material-icons-outlined { font-size: 24px; margin-bottom: 2px; }
 
@@ -102,7 +100,7 @@ input, select, button, div, span, a { font-family: 'Calibri', 'Segoe UI', sans-s
 .icon-only { background: transparent; border: none; cursor: pointer; color: #6B7280; padding: 6px; border-radius: 50%; }
 .icon-only:hover { color: var(--primary-orange); background-color: #FFF5E5; }
 
-/* --- WRAPPER E SIDEBAR --- */
+/* --- SIDEBAR --- */
 .content-wrapper { 
     display: flex; flex: 1; overflow: hidden; background-color: var(--bg-body); width: 100%;
     height: calc(100vh - 135px); 
@@ -132,10 +130,13 @@ input, select, button, div, span, a { font-family: 'Calibri', 'Segoe UI', sans-s
 .main-content-erp {
     flex: 1; display: flex; flex-direction: column; overflow: hidden;
     background-color: #FFF; margin: 20px; border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05); border: 1px solid var(--border-color);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05); 
+    border: 1px solid var(--border-color);
 }
 .table-toolbar {
-    padding: 10px 20px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between;
+    padding: 10px 20px; 
+    border-bottom: 1px solid var(--border-color); 
+    display: flex; justify-content: space-between;
     align-items: center; background: #FFF; border-radius: 8px 8px 0 0;
 }
 .pill-btn {
@@ -147,44 +148,90 @@ input, select, button, div, span, a { font-family: 'Calibri', 'Segoe UI', sans-s
 .icon-nav { font-size: 22px; cursor: pointer; color: #9CA3AF; padding: 4px; }
 .icon-nav:hover { color: #333; }
 
-/* --- TABELA E COLUNAS --- */
+/* --- TABELA SEM CONTAINERS --- */
 .table-container-erp { 
     flex-grow: 1; 
     overflow-x: auto; 
-    width: 100%; 
+    width: 100%;
+    background: #FFF;
     scrollbar-width: thin;
-    scrollbar-color: #ccc #f1f1f1;
+    scrollbar-color: #E5E7EB #FFF;
 }
-/* Scrollbar customizada */
-.table-container-erp::-webkit-scrollbar { height: 8px; }
-.table-container-erp::-webkit-scrollbar-track { background: #f1f1f1; }
-.table-container-erp::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
-.table-container-erp::-webkit-scrollbar-thumb:hover { background: #bbb; }
+.table-container-erp::-webkit-scrollbar { height: 6px; width: 6px; }
+.table-container-erp::-webkit-scrollbar-track { background: #FFF; }
+.table-container-erp::-webkit-scrollbar-thumb { background: #D1D5DB; border-radius: 3px; }
 
 table { 
     width: 100%; 
-    min-width: 1500px; /* Garante espaço para todas as colunas */
     border-collapse: collapse; 
+    min-width: 1400px;
 }
-thead { background-color: #F9FAFB; position: sticky; top: 0; z-index: 10; }
+
+thead { 
+    background-color: #FAFAFA;
+    position: sticky; top: 0; z-index: 10;
+    border-bottom: 1px solid #E5E7EB;
+}
+
+/* CABEÇALHO LIMPO E SEM NEGRITO */
 th {
-    text-align: left; padding: 16px 20px; border-bottom: 1px solid var(--border-color);
-    color: #374151; font-size: 14px; white-space: nowrap;
+    text-align: left; 
+    padding: 16px 20px; 
+    color: #6B7280; 
+    font-size: 12px; 
+    font-weight: 400; /* Normal weight */
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border: none;
 }
+
 td { 
-    padding: 14px 20px; border-bottom: 1px solid #F3F4F6; color: #111; 
-    font-size: 14px; white-space: nowrap; 
+    padding: 14px 20px; 
+    border-bottom: 1px solid #F3F4F6; 
+    color: #374151; 
+    font-size: 14px; 
+    vertical-align: middle;
 }
-tbody tr:hover { background-color: #FAFAFA; }
-.text-orange-link { color: var(--primary-orange); cursor: pointer; font-weight: 600; }
-input[type="checkbox"] { width: 18px; height: 18px; cursor: pointer; accent-color: var(--primary-orange); }
 
-/* Badges e Botões */
-.status-pill {
-    display: inline-block; padding: 4px 12px; border-radius: 12px;
-    font-size: 12px; font-weight: 700; text-transform: uppercase;
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover { background-color: #F9FAFB; }
+
+/* TIPOGRAFIA DIRETA (SEM BOXES) */
+.font-mono {
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 13px;
+    color: #555;
 }
-.status-joia { background-color: #FFF3E0; color: #E65100; border: 1px solid #FFE0B2; }
-.status-life { background-color: #E3F2FD; color: #1565C0; border: 1px solid #BBDEFB; }
 
-/* A classe .btn-protocol foi removida */
+.text-main { color: #111827; }
+.text-sec { color: #6B7280; }
+
+/* Link Limpo */
+.text-link {
+    color: var(--primary-orange);
+    text-decoration: none;
+    font-family: 'Consolas', monospace;
+    font-size: 13px;
+    font-weight: 500;
+}
+.text-link:hover { text-decoration: underline; }
+
+/* Ação Ícone Limpo */
+.action-icon {
+    background: transparent; border: none;
+    color: #9CA3AF; cursor: pointer; padding: 4px;
+    display: inline-flex; align-items: center; justify-content: center;
+    transition: color 0.2s;
+}
+.action-icon:hover { color: var(--primary-orange); }
+
+/* Checkbox */
+input[type="checkbox"] {
+    width: 16px; height: 16px; accent-color: var(--primary-orange);
+    cursor: pointer; border: 1px solid #D1D5DB;
+}
+
+.active-menu {
+    background-color: #FFF7ED; color: #E67E22; border-left: 3px solid #E67E22 !important; font-weight: 600;
+}
+.active-menu .material-icons-outlined { color: #E67E22; }   

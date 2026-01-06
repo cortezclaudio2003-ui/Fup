@@ -21,7 +21,7 @@
                 <li><a href="PageTransacoes.html" class="nav-item"><span class="material-icons-outlined">receipt_long</span><span>Transações</span></a></li>
                 <li><a href="taxdocuments.html" class="nav-item"><span class="material-icons-outlined">description</span><span>Registros Fiscais</span></a></li>
                 <li>
-                    <a href="assetspage.html" class="nav-item active">
+                    <a href="#" class="nav-item active" onclick="carregarDadosAtivos(); return false;">
                         <span class="material-icons-outlined">fact_check</span>
                         <span>Ativos SGQ</span>
                     </a>
@@ -54,7 +54,7 @@
         <div class="erp-right">
             <div class="erp-search-container">
                 <span class="material-icons-outlined search-icon">search</span>
-                <input type="text" placeholder="Buscar por Cód, Marca ou Responsável..." class="erp-input-search">
+                <input type="text" placeholder="Buscar..." class="erp-input-search">
             </div>
             <button class="btn-text-icon"><span class="material-icons-outlined" style="font-size:18px;">filter_list</span> Filtros</button>
             <div class="erp-divider"></div>
@@ -72,17 +72,23 @@
             </div>
             
             <div class="menu-group">
-                <div class="group-title"><span>FILTROS RÁPIDOS</span><span class="material-icons-outlined arrow">expand_less</span></div>
-                <ul>
-                    <li onclick="filtrarTabela('Balança')">
-                        <div class="li-content"><span class="material-icons-outlined icon-left">scale</span><span>Balanças</span></div>
+                <div class="group-title"><span>VISUALIZAÇÃO</span><span class="material-icons-outlined arrow">expand_less</span></div>
+                <ul id="menuList">
+                    
+                    <li id="btnListaAtivos" class="active-menu" onclick="carregarDadosAtivos()">
+                        <div class="li-content">
+                            <span class="material-icons-outlined icon-left">inventory_2</span>
+                            <span>Lista de Ativos</span>
+                        </div>
                     </li>
-                    <li onclick="filtrarTabela('Paquímetro')">
-                        <div class="li-content"><span class="material-icons-outlined icon-left">square_foot</span><span>Paquímetros</span></div>
+
+                    <li id="btnHistorico" onclick="carregarHistoricoEntregas()">
+                        <div class="li-content">
+                            <span class="material-icons-outlined icon-left">history</span>
+                            <span>Histórico Entregas</span>
+                        </div>
                     </li>
-                    <li onclick="filtrarTabela('Motor')">
-                        <div class="li-content"><span class="material-icons-outlined icon-left">engineering</span><span>Motores</span></div>
-                    </li>
+
                 </ul>
             </div>
         </aside>
@@ -90,31 +96,18 @@
         <main class="main-content-erp">
             <div class="table-toolbar">
                 <div class="toolbar-left">
-                    <button class="pill-btn">Todos Status <span class="material-icons-outlined" style="font-size: 16px;">expand_more</span></button>
-                    <button class="pill-btn">Setor <span class="material-icons-outlined" style="font-size: 16px;">expand_more</span></button>
+                    <h3 id="tableTitle" style="margin:0; font-size:16px; color:#555;">Lista de Ativos</h3>
                 </div>
                 <div class="toolbar-right">
-                    <span class="material-icons-outlined icon-nav" onclick="carregarDadosAtivos()">refresh</span>
+                    <span class="material-icons-outlined icon-nav" onclick="location.reload()">refresh</span>
                     <span class="material-icons-outlined icon-nav">more_vert</span>
                 </div>
             </div>
 
             <div class="table-container-erp">
                 <table id="tabelaPrincipal">
-                    <thead>
-                        <tr>
-                            <th style="width: 40px;"><input type="checkbox"></th>
-                            <th>Cód Interno</th>
-                            <th>Equipamento</th>
-                            <th>Fábrica</th>
-                            <th>Setor</th>
-                            <th>Responsável</th>
-                            <th>Data Entrega</th>
-                            <th>Criado Por</th>
-                            <th>Marca / Modelo</th>
-                            <th>Nota Fiscal</th>
-                        </tr>
-                    </thead>
+                    <thead id="tabelaHead">
+                        </thead>
                     <tbody id="tabelaAssetsBody">
                         </tbody>
                 </table>

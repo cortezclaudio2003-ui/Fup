@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protocolo de Entrega</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="protocassets.css">
+</head>
+<body>
+
+    <div class="top-actions">
+        <button class="btn btn-default" onclick="window.location.href='assetspage.html'">
+            <i class="fa-solid fa-circle-xmark"></i> Cancelar
+        </button>
+        <button class="btn btn-primary" onclick="salvarProtocolo()">
+            <i class="fa-solid fa-file-signature"></i> Confirmar Entrega
+        </button>
+    </div>
+
+    <div class="main-container">
+        
+        <div class="section-header">
+            <i class="fa-solid fa-clipboard-check"></i> Dados do Protocolo
+        </div>
+
+        <div class="item-details">
+            <div class="form-grid">
+                
+                <div class="field-group input-req">
+                    <label>Data de Entrega</label>
+                    <div class="input-with-icon">
+                        <input type="date" id="dataEntrega">
+                    </div>
+                </div>
+
+                <div class="field-group input-req">
+                    <label>Setor Entregue</label>
+                    <select id="setorEntrega">
+                        <option selected disabled>Selecione o setor...</option>
+                        <option>Qualidade (SGQ)</option>
+                        <option>Almoxarifado</option>
+                        <option>Produção - Linha 1</option>
+                        <option>Produção - Linha 2</option>
+                        <option>Laboratório</option>
+                        <option>Manutenção</option>
+                    </select>
+                </div>
+
+                <div class="field-group input-req">
+                    <label>Responsável Recebimento</label>
+                    <input type="text" id="respRecebimento" placeholder="Nome de quem recebeu">
+                </div>
+
+                <div class="field-group">
+                    <label>Observações da Entrega</label>
+                    <input type="text" placeholder="Detalhes adicionais (opcional)">
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="modalSucesso" class="modal-overlay">
+        <div class="modal-box">
+            <div class="icon-circle">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <h3>Protocolo Gerado!</h3>
+            <p>O ativo foi entregue e movido para o histórico com sucesso.</p>
+        </div>
+    </div>
+
+    <script src="protocassets.js"></script>
+</body>
+</html>
